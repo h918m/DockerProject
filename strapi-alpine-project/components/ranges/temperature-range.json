@@ -1,0 +1,21 @@
+{
+  "connection": "default",
+  "collectionName": "components_ranges_temperature_ranges",
+  "info": {
+    "name": "temperatureRange",
+    "icon": "arrow-right"
+  },
+  "options": {},
+  "attributes": {
+    "minimum": {
+      "type": "decimal",
+      "default": -256,
+      "required": false
+    },
+    "maximum": {
+      "type": "decimal",
+      "default": 150,
+      "required": false
+    }
+  }
+}

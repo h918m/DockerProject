@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "planned_maintenance_tasks",
+  "info": {
+    "name": "plannedMaintenanceTasks"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "completed": {
+      "type": "boolean",
+      "default": false
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "mechanical",
+        "electrical",
+        "pneumatic",
+        "steam",
+        "control",
+        "sensor"
+      ],
+      "required": true
+    },
+    "task": {
+      "type": "string"
+    },
+    "component": {
+      "type": "string"
+    },
+    "comment": {
+      "type": "richtext"
+    },
+    "users": {
+      "via": "planned_maintenance_tasks",
+      "plugin": "users-permissions",
+      "collection": "user",
+      "dominant": true
+    },
+    "machine": {
+      "model": "machine",
+      "via": "planned_maintenance_tasks"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "company": {
+      "model": "company",
+      "via": "planned_maintenance_tasks"
+    }
+  }
+}

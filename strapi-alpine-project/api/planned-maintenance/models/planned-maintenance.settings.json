@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "planned_maintenances",
+  "info": {
+    "name": "plannedMaintenanceCRON"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "mechanical",
+        "electrical",
+        "pneumatic",
+        "steam",
+        "control",
+        "sensor"
+      ],
+      "default": "mechanical",
+      "required": true
+    },
+    "task": {
+      "type": "string",
+      "unique": false,
+      "required": true
+    },
+    "component": {
+      "type": "string",
+      "required": false
+    },
+    "repeating": {
+      "type": "enumeration",
+      "enum": [
+        "daily_at_9am",
+        "every_monday_at_9am",
+        "first_day_of_month",
+        "first_day_of_every_3_months",
+        "first_day_of_every_6_months",
+        "first_day_of_every_year"
+      ]
+    },
+    "machine": {
+      "model": "machine",
+      "via": "planned_maintenance_crons"
+    },
+    "comment": {
+      "type": "richtext"
+    },
+    "users": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "planned_maintenance_crons",
+      "dominant": true
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "company": {
+      "model": "company",
+      "via": "planned_maintenance_crons"
+    }
+  }
+}

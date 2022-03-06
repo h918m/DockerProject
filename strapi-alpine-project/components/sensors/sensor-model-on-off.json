@@ -1,0 +1,14 @@
+{
+  "connection": "default",
+  "collectionName": "components_sensors_sensor_model_on_offs",
+  "info": {
+    "name": "SensorModelOnOff",
+    "icon": "align-center"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

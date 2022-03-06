@@ -1,0 +1,17 @@
+{
+  "connection": "default",
+  "collectionName": "components_ranges_power_ranges",
+  "info": {
+    "name": "powerRange",
+    "icon": "arrow-left"
+  },
+  "options": {},
+  "attributes": {
+    "minimum": {
+      "type": "decimal"
+    },
+    "maximum": {
+      "type": "decimal"
+    }
+  }
+}

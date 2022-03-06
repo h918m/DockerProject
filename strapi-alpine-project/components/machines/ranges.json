@@ -1,0 +1,26 @@
+{
+  "connection": "default",
+  "collectionName": "components_machines_ranges",
+  "info": {
+    "name": "ranges",
+    "icon": "anchor"
+  },
+  "options": {},
+  "attributes": {
+    "temperatureRange": {
+      "type": "component",
+      "repeatable": false,
+      "component": "ranges.temperature-range"
+    },
+    "vibrationRange": {
+      "type": "component",
+      "repeatable": false,
+      "component": "ranges.vibration-ranges"
+    },
+    "powerRange": {
+      "type": "component",
+      "repeatable": false,
+      "component": "ranges.power-range"
+    }
+  }
+}

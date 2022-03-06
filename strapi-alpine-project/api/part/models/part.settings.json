@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "parts",
+  "info": {
+    "name": "part"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "ref": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "inventory": {
+      "type": "component",
+      "repeatable": false,
+      "component": "parts.inventory"
+    }
+  }
+}

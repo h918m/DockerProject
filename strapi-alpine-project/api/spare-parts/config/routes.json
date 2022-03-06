@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/spare-parts",
+      "handler": "spare-parts.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/spare-parts/count",
+      "handler": "spare-parts.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/spare-parts/:id",
+      "handler": "spare-parts.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/spare-parts",
+      "handler": "spare-parts.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/spare-parts/:id",
+      "handler": "spare-parts.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/spare-parts/:id",
+      "handler": "spare-parts.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

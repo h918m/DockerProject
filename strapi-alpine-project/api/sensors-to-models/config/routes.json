@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/sensors-to-models",
+      "handler": "sensors-to-models.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/sensors-to-models/count",
+      "handler": "sensors-to-models.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/sensors-to-models/:id",
+      "handler": "sensors-to-models.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/sensors-to-models",
+      "handler": "sensors-to-models.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/sensors-to-models/:id",
+      "handler": "sensors-to-models.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/sensors-to-models/:id",
+      "handler": "sensors-to-models.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

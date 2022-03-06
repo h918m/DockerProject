@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "sensors_to_models",
+  "info": {
+    "name": "sensorsToModels"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "MAC": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "machine": {
+      "model": "machine",
+      "via": "sensors_to_models"
+    },
+    "model": {
+      "type": "enumeration",
+      "enum": [
+        "temperature",
+        "vibration",
+        "current",
+        "indicator",
+        "call"
+      ]
+    },
+    "customModel": {
+      "type": "boolean"
+    },
+    "customModelValue": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sensors.sensor-model-current"
+    },
+    "range": {
+      "type": "component",
+      "repeatable": false,
+      "component": "ranges.vibration-ranges"
+    },
+    "limit": {
+      "type": "component",
+      "repeatable": false,
+      "component": "ranges.vibration-ranges"
+    },
+    "company": {
+      "model": "company",
+      "via": "sensors_to_models"
+    }
+  }
+}

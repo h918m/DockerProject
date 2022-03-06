@@ -1,0 +1,20 @@
+{
+  "info": {
+    "name": "partsUsed",
+    "icon": "angle-double-down"
+  },
+  "options": {},
+  "attributes": {
+    "part": {
+      "model": "part"
+    },
+    "quantityUsed": {
+      "type": "integer",
+      "default": 0,
+      "required": true,
+      "min": 0
+    }
+  },
+  "connection": "default",
+  "collectionName": "components_parts_parts_useds"
+}

@@ -1,0 +1,30 @@
+{
+  "connection": "default",
+  "collectionName": "components_ranges_unit_ranges",
+  "info": {
+    "name": "unitRanges",
+    "icon": "angle-up"
+  },
+  "options": {},
+  "attributes": {
+    "rangeType": {
+      "type": "enumeration",
+      "enum": [
+        "temperature",
+        "currency",
+        "humidity",
+        "vibration"
+      ],
+      "required": true,
+      "unique": false
+    },
+    "minimum": {
+      "type": "float",
+      "required": true
+    },
+    "maximum": {
+      "type": "float",
+      "required": true
+    }
+  }
+}

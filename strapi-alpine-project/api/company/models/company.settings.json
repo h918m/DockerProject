@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "companies",
+  "info": {
+    "name": "Company"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "membership": {
+      "default": 0,
+      "type": "integer",
+      "max": 5,
+      "min": 0
+    },
+    "users": {
+      "via": "company",
+      "plugin": "users-permissions",
+      "collection": "user"
+    },
+    "machines": {
+      "via": "company",
+      "collection": "machine"
+    },
+    "spare_parts": {
+      "via": "company",
+      "collection": "spare-parts"
+    },
+    "facilities": {
+      "via": "company",
+      "collection": "facility"
+    },
+    "sensors_to_models": {
+      "via": "company",
+      "collection": "sensors-to-models"
+    },
+    "planned_maintenance_crons": {
+      "via": "company",
+      "collection": "planned-maintenance"
+    },
+    "planned_maintenance_tasks": {
+      "via": "company",
+      "collection": "planned-maintenance-tasks"
+    },
+    "failure_records": {
+      "via": "company",
+      "collection": "failure-record"
+    },
+    "orders": {
+      "via": "company",
+      "collection": "order"
+    }
+  }
+}

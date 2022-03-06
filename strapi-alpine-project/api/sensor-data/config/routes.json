@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/sensor-data",
+      "handler": "sensor-data.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/sensor-data/count",
+      "handler": "sensor-data.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/sensor-data/:id",
+      "handler": "sensor-data.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/sensor-data",
+      "handler": "sensor-data.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/sensor-data/:id",
+      "handler": "sensor-data.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/sensor-data/:id",
+      "handler": "sensor-data.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

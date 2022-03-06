@@ -1,0 +1,17 @@
+{
+  "connection": "default",
+  "collectionName": "components_sensors_sensor_model_temperatures",
+  "info": {
+    "name": "sensorModelTemperature",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "symbol": {
+      "type": "string"
+    }
+  }
+}

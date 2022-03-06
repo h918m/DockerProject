@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/send-pdfs",
+      "handler": "send-pdf.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/send-pdfs/count",
+      "handler": "send-pdf.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/send-pdfs/:id",
+      "handler": "send-pdf.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/send-pdfs",
+      "handler": "send-pdf.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/send-pdfs/:id",
+      "handler": "send-pdf.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/send-pdfs/:id",
+      "handler": "send-pdf.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

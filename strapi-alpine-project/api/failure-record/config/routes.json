@@ -1,0 +1,60 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/failure-records",
+      "handler": "failure-record.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/failure-records/count",
+      "handler": "failure-record.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/failure-records/:id",
+      "handler": "failure-record.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/failure-records",
+      "handler": "failure-record.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/failure-records-bulk",
+      "handler": "failure-record.createBulk",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/failure-records/:id",
+      "handler": "failure-record.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/failure-records/:id",
+      "handler": "failure-record.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

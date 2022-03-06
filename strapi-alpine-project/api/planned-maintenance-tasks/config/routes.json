@@ -1,0 +1,60 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/planned-maintenance-tasks",
+      "handler": "planned-maintenance-tasks.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/planned-maintenance-tasks/count",
+      "handler": "planned-maintenance-tasks.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/planned-maintenance-tasks/:id",
+      "handler": "planned-maintenance-tasks.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/planned-maintenance-tasks",
+      "handler": "planned-maintenance-tasks.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/planned-maintenance-tasks-bulk",
+      "handler": "planned-maintenance-tasks.createBulk",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/planned-maintenance-tasks/:id",
+      "handler": "planned-maintenance-tasks.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/planned-maintenance-tasks/:id",
+      "handler": "planned-maintenance-tasks.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

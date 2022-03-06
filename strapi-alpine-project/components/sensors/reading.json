@@ -1,0 +1,25 @@
+{
+  "info": {
+    "name": "reading",
+    "icon": "book-reader"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "temperature_and_vibration",
+        "temperature",
+        "vibration",
+        "power"
+      ],
+      "required": true
+    },
+    "value": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "connection": "default",
+  "collectionName": "components_sensors_readings"
+}

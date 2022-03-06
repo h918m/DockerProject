@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "sensor_data",
+  "info": {
+    "name": "SensorData"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "topic": {
+      "type": "string"
+    },
+    "data": {
+      "type": "json"
+    },
+    "MAC": {
+      "type": "string"
+    },
+    "formattedData": {
+      "type": "json"
+    },
+    "value": {
+      "type": "decimal"
+    },
+    "slug": {
+      "type": "uid"
+    }
+  }
+}

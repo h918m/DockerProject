@@ -1,0 +1,104 @@
+version: '3.7'
+services:
+  strapi:
+    build:
+      context: ./strapi-alpine-project
+      dockerfile: dev.Dockerfile
+    container_name: strapi-container1
+    environment:
+      - DATABASE_CONNECTOR=mongoose
+      - DATABASE_CLIENT=mongo
+      - DATABASE_HOST=db
+      - DATABASE_PORT=27017
+      - DATABASE_NAME=strapi
+      - DATABASE_USERNAME=
+      - DATABASE_PASSWORD=
+      - NODE_ENV=development
+      - DATABASE_SSL=false
+      - DATABASE_AUTHENTICATION_DATABASE=strapi
+      - HOST=db
+    restart: always
+    networks:
+      - inside-network
+    volumes:
+      - ./strapi-alpine-project:/srv/app
+      - /srv/app/node_modules
+    ports:
+      - "1337:1337"
+    depends_on:
+      - db
+  vuetify:
+    build:
+      context: ./vuetify
+      dockerfile: dev.Dockerfile
+    container_name: vuetify-container1
+    environment:
+      - NODE_ENV=development
+      - VUE_APP_API_BASE_URL=http://localhost:1337
+    restart: always
+    networks:
+      - inside-network
+    volumes:
+      - ./vuetify:/app
+      - /app/node_modules
+    ports:
+      - "8080:8080"
+    depends_on:
+      - strapi
+  nginx:
+    image: nginx:latest
+    container_name: nginx-container1
+    restart: always
+    networks:
+      - inside-network
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - vuetify
+  db:
+    image: mongo
+    container_name: mongo-container1
+    networks:
+      - inside-network
+    environment:
+      - MONGO_INITDB_DATABASE=strapi
+    ports:
+      - 27017:27017
+    volumes:
+      - db:/data/db
+    restart: always
+  nodered:
+    image: nodered/node-red
+    container_name: nodered-container1
+    working_dir: /usr/src/node-red
+    restart: always
+    networks:
+      - inside-network
+    volumes:
+      - "./nodered:/data"
+    ports:
+      - 1880:1880
+    depends_on:
+      - broker
+      - strapi
+  broker:
+    image: eclipse-mosquitto
+    container_name: mosquitto-container1
+    restart: always
+    volumes:
+      - "./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf"
+      - "./mosquitto:/mosquitto"
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    networks:
+      - inside-network
+
+volumes:
+  db:
+    name: abdu-project_db
+
+networks:
+  inside-network:

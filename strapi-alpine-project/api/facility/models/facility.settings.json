@@ -1,0 +1,79 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "facilities",
+  "info": {
+    "name": "Facility"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "QR": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "location": {
+      "type": "string"
+    },
+    "photo": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "fileUpload": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "financialLabourPastMonth": {
+      "type": "decimal"
+    },
+    "financialLabourPastYear": {
+      "type": "decimal"
+    },
+    "financialLabourTotal": {
+      "type": "decimal"
+    },
+    "financialTotalPartsPastMonth": {
+      "type": "decimal"
+    },
+    "financialTotalPartsPastYear": {
+      "type": "decimal"
+    },
+    "financialTotalPartsTotal": {
+      "type": "decimal"
+    },
+    "financialMiscPastMonth": {
+      "type": "decimal"
+    },
+    "financialMiscPastYear": {
+      "type": "decimal"
+    },
+    "financialMiscTotal": {
+      "type": "decimal"
+    },
+    "labour": {
+      "via": "facilities",
+      "plugin": "users-permissions",
+      "collection": "user",
+      "dominant": true
+    },
+    "machines": {
+      "collection": "machine",
+      "via": "facility"
+    },
+    "company": {
+      "model": "company",
+      "via": "facilities"
+    }
+  }
+}

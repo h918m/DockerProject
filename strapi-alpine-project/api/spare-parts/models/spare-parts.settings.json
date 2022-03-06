@@ -1,0 +1,73 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "spare_parts",
+  "info": {
+    "name": "SpareParts"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "QR": {
+      "type": "string"
+    },
+    "photo": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "description": {
+      "type": "text"
+    },
+    "stockAmount": {
+      "type": "integer"
+    },
+    "filesToUpload": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "leadtime": {
+      "type": "integer"
+    },
+    "leadtimeType": {
+      "type": "enumeration",
+      "enum": [
+        "days",
+        "weeks",
+        "months"
+      ]
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "vendorDetails": {
+      "type": "text"
+    },
+    "warranty": {
+      "type": "text"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "machines": {
+      "collection": "machine",
+      "via": "spareParts"
+    },
+    "company": {
+      "model": "company",
+      "via": "spare_parts"
+    },
+    "failure_records": {
+      "via": "spare_parts",
+      "collection": "failure-record"
+    }
+  }
+}

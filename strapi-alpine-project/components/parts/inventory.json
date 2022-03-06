@@ -1,0 +1,22 @@
+{
+  "connection": "default",
+  "collectionName": "components_parts_inventories",
+  "info": {
+    "name": "inventory",
+    "icon": "clipboard-list"
+  },
+  "options": {},
+  "attributes": {
+    "current": {
+      "type": "integer",
+      "required": true,
+      "default": 0
+    },
+    "threshold": {
+      "type": "integer",
+      "default": 0,
+      "unique": false,
+      "required": true
+    }
+  }
+}

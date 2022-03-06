@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ea68a89d-be47-4c9d-99f5-ef2911dc4fb5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../docker-compose.prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vuetify/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vuetify/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vuetify/src/plugins/vue-socket.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vuetify/src/plugins/vue-socket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vuetify/src/views/routes/machine/MachineQRScanner.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vuetify/src/views/routes/machine/MachineQRScanner.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vuetify/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../vuetify/yarn.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1ln0dwsY3vvl6XNj0RjVPCZEnUO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ea68a89d-be47-4c9d-99f5-ef2911dc4fb5" name="Default Changelist" comment="" />
+      <created>1608217638367</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608217638367</updated>
+      <workItem from="1608217640319" duration="84000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="680" y="281" width="615" height="390" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1608217679172">
+      <screen x="67" y="27" width="1851" height="901" />
+    </state>
+    <state x="680" y="281" width="615" height="390" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1851.901@67.27.1851.901" timestamp="1608217679172" />
+    <state x="775" y="234" width="424" height="484" key="FileChooserDialogImpl" timestamp="1608217722341">
+      <screen x="67" y="27" width="1851" height="901" />
+    </state>
+    <state x="775" y="234" width="424" height="484" key="FileChooserDialogImpl/67.27.1851.901@67.27.1851.901" timestamp="1608217722341" />
+  </component>
+</project>

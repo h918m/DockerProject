@@ -1,0 +1,18 @@
+{
+  "info": {
+    "name": "workTime",
+    "icon": "stopwatch"
+  },
+  "options": {},
+  "attributes": {
+    "startDateTime": {
+      "type": "datetime",
+      "required": true
+    },
+    "endDateTime": {
+      "type": "datetime"
+    }
+  },
+  "connection": "default",
+  "collectionName": "components_work_time_work_times"
+}

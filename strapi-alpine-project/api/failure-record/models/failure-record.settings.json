@@ -1,0 +1,147 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "failure_records",
+  "info": {
+    "name": "failureRecord"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "typeOfWork": {
+      "type": "enumeration",
+      "enum": [
+        "mechanical",
+        "electrical",
+        "pneumatic",
+        "steam",
+        "control"
+      ],
+      "default": "mechanical",
+      "required": true
+    },
+    "natureOfWork": {
+      "type": "enumeration",
+      "enum": [
+        "breakdown",
+        "planned",
+        "setup",
+        "repair"
+      ],
+      "required": true
+    },
+    "severity": {
+      "type": "integer",
+      "required": false,
+      "max": 10,
+      "min": 1
+    },
+    "occurance": {
+      "type": "integer",
+      "required": false,
+      "max": 10,
+      "min": 1
+    },
+    "detection": {
+      "type": "integer",
+      "required": false,
+      "max": 10,
+      "min": 1
+    },
+    "operatorsError": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "workTime": {
+      "type": "component",
+      "repeatable": false,
+      "component": "work-time.work-time"
+    },
+    "partsUsed": {
+      "type": "component",
+      "repeatable": true,
+      "component": "parts.parts-used"
+    },
+    "requiredFollowUp": {
+      "type": "richtext"
+    },
+    "workCarriedOut": {
+      "type": "richtext"
+    },
+    "stateDescription": {
+      "type": "text"
+    },
+    "workorderState": {
+      "type": "enumeration",
+      "enum": [
+        "onHold",
+        "inProgress",
+        "waitingForParts",
+        "rejected",
+        "completed",
+        "addMultiplePhotosOrAVideo"
+      ]
+    },
+    "rootCause": {
+      "type": "text"
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "submittedBy": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "failure_records_created"
+    },
+    "users": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "failure_records",
+      "dominant": true
+    },
+    "machine": {
+      "model": "machine",
+      "via": "failure_records"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "completed": {
+      "type": "boolean"
+    },
+    "company": {
+      "model": "company",
+      "via": "failure_records"
+    },
+    "labourCost": {
+      "type": "decimal",
+      "default": 12
+    },
+    "spareCost": {
+      "type": "decimal",
+      "default": 12
+    },
+    "spare_parts": {
+      "collection": "spare-parts",
+      "via": "failure_records",
+      "dominant": true
+    },
+    "startDateTime": {
+      "type": "datetime"
+    },
+    "endDateTime": {
+      "type": "datetime"
+    }
+  }
+}

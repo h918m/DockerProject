@@ -1,0 +1,21 @@
+{
+  "connection": "default",
+  "collectionName": "components_sensors_sensors",
+  "info": {
+    "name": "sensors",
+    "icon": "wifi"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "MAC": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    }
+  }
+}

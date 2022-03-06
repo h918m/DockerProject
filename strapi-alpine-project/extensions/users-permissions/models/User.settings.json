@@ -1,0 +1,103 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "users-permissions_user",
+  "info": {
+    "name": "user",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "username": {
+      "type": "string",
+      "minLength": 3,
+      "unique": true,
+      "configurable": false,
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "minLength": 6,
+      "configurable": false,
+      "required": true
+    },
+    "provider": {
+      "type": "string",
+      "configurable": false
+    },
+    "password": {
+      "type": "password",
+      "minLength": 6,
+      "configurable": false,
+      "private": true
+    },
+    "resetPasswordToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true
+    },
+    "confirmed": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "blocked": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "role": {
+      "model": "role",
+      "via": "users",
+      "plugin": "users-permissions",
+      "configurable": false
+    },
+    "name": {
+      "type": "string"
+    },
+    "surname": {
+      "type": "string"
+    },
+    "failure_records_created": {
+      "via": "submittedBy",
+      "collection": "failure-record"
+    },
+    "planned_maintenance_tasks": {
+      "collection": "planned-maintenance-tasks",
+      "via": "users"
+    },
+    "failure_records": {
+      "via": "users",
+      "collection": "failure-record"
+    },
+    "machines": {
+      "collection": "machine",
+      "via": "users"
+    },
+    "facilities": {
+      "collection": "facility",
+      "via": "labour"
+    },
+    "planned_maintenance_crons": {
+      "via": "users",
+      "collection": "planned-maintenance"
+    },
+    "level": {
+      "type": "integer",
+      "required": false,
+      "max": 2,
+      "min": 0,
+      "default": 2
+    },
+    "company": {
+      "model": "company",
+      "via": "users"
+    },
+    "cost": {
+      "type": "integer",
+      "default": 12
+    }
+  }
+}

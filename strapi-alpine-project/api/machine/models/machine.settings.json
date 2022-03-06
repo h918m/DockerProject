@@ -1,0 +1,132 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "machines",
+  "info": {
+    "name": "machine"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "QR": {
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "description": {
+      "type": "text"
+    },
+    "warranty": {
+      "type": "text"
+    },
+    "location": {
+      "type": "string"
+    },
+    "users": {
+      "via": "machines",
+      "plugin": "users-permissions",
+      "collection": "user",
+      "dominant": true
+    },
+    "manufacturer": {
+      "type": "string"
+    },
+    "make": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "serialCode": {
+      "type": "string"
+    },
+    "purchaseDate": {
+      "type": "date"
+    },
+    "seller": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "purchaseFile": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "financialLabourPastMonth": {
+      "type": "decimal"
+    },
+    "financialLabourPastYear": {
+      "type": "decimal"
+    },
+    "financialLabourTotal": {
+      "type": "decimal"
+    },
+    "financialSparePastMonth": {
+      "type": "decimal"
+    },
+    "financialSparePastYear": {
+      "type": "decimal"
+    },
+    "financialSpareTotal": {
+      "type": "decimal"
+    },
+    "financialMiscPastMonth": {
+      "type": "decimal"
+    },
+    "financialMiscPastYear": {
+      "type": "decimal"
+    },
+    "financialMiscTotal": {
+      "type": "decimal"
+    },
+    "spareParts": {
+      "via": "machines",
+      "collection": "spare-parts",
+      "dominant": true
+    },
+    "failure_records": {
+      "via": "machine",
+      "collection": "failure-record"
+    },
+    "planned_maintenance_tasks": {
+      "via": "machine",
+      "collection": "planned-maintenance-tasks"
+    },
+    "sensors_to_models": {
+      "via": "machine",
+      "collection": "sensors-to-models"
+    },
+    "facility": {
+      "via": "machines",
+      "model": "facility"
+    },
+    "operationTime": {
+      "type": "decimal",
+      "max": 24,
+      "min": 0,
+      "default": 8
+    },
+    "planned_maintenance_crons": {
+      "via": "machine",
+      "collection": "planned-maintenance"
+    },
+    "company": {
+      "model": "company",
+      "via": "machines"
+    }
+  }
+}

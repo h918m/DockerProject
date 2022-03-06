@@ -1,0 +1,25 @@
+{
+  "connection": "default",
+  "collectionName": "components_sensor_units_symbols",
+  "info": {
+    "name": "symbols",
+    "icon": "arrow-alt-circle-right"
+  },
+  "options": {},
+  "attributes": {
+    "unitType": {
+      "type": "enumeration",
+      "enum": [
+        "currency",
+        "temperature",
+        "vibration"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "symbol": {
+      "type": "string"
+    }
+  }
+}
