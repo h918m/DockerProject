@@ -42,8 +42,8 @@
       "dominant": true
     },
     "machine": {
-      "model": "machine",
-      "via": "planned_maintenance_tasks"
+      "via": "planned_maintenance_tasks",
+      "model": "machine"
     },
     "image": {
       "model": "file",
@@ -54,6 +54,10 @@
     "company": {
       "model": "company",
       "via": "planned_maintenance_tasks"
+    },
+    "submachine": {
+      "via": "planned_maintenance_tasks",
+      "model": "sub-machine"
     }
   }
 }

@@ -586,6 +586,12 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "submachines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             }
           },

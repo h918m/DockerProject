@@ -58,8 +58,8 @@
       "type": "text"
     },
     "machines": {
-      "collection": "machine",
-      "via": "spareParts"
+      "via": "spareParts",
+      "collection": "machine"
     },
     "company": {
       "model": "company",
@@ -68,6 +68,10 @@
     "failure_records": {
       "via": "spare_parts",
       "collection": "failure-record"
+    },
+    "submachines": {
+      "via": "spareParts",
+      "collection": "sub-machine"
     }
   }
 }

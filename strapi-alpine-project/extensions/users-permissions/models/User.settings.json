@@ -73,8 +73,8 @@
       "collection": "failure-record"
     },
     "machines": {
-      "collection": "machine",
-      "via": "users"
+      "via": "users",
+      "collection": "machine"
     },
     "facilities": {
       "collection": "facility",
@@ -98,6 +98,10 @@
     "cost": {
       "type": "integer",
       "default": 12
+    },
+    "submachines": {
+      "via": "users",
+      "collection": "sub-machine"
     }
   }
 }

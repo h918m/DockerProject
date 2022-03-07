@@ -659,6 +659,12 @@
                 },
                 "cost": {
                   "type": "integer"
+                },
+                "submachines": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }

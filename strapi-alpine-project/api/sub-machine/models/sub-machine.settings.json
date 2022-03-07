@@ -1,9 +1,9 @@
 {
   "kind": "collectionType",
   "connection": "default",
-  "collectionName": "machines",
+  "collectionName": "submachines",
   "info": {
-    "name": "machine"
+    "name": "Submachine"
   },
   "options": {
     "increments": true,
@@ -36,7 +36,7 @@
     "users": {
       "plugin": "users-permissions",
       "collection": "user",
-      "via": "machines",
+      "via": "submachines",
       "dominant": true
     },
     "manufacturer": {
@@ -95,24 +95,24 @@
     },
     "spareParts": {
       "collection": "spare-parts",
-      "via": "machines",
+      "via": "submachines",
       "dominant": true
     },
     "failure_records": {
       "collection": "failure-record",
-      "via": "machine"
+      "via": "submachine"
     },
     "planned_maintenance_tasks": {
       "collection": "planned-maintenance-tasks",
-      "via": "machine"
+      "via": "submachine"
     },
     "sensors_to_models": {
       "collection": "sensors-to-models",
-      "via": "machine"
+      "via": "submachine"
     },
     "facility": {
       "model": "facility",
-      "via": "machines"
+      "via": "submachines"
     },
     "operationTime": {
       "type": "decimal",
@@ -122,16 +122,15 @@
     },
     "planned_maintenance_crons": {
       "collection": "planned-maintenance",
-      "via": "machine"
+      "via": "submachine"
     },
     "company": {
       "model": "company",
-      "via": "machines"
+      "via": "submachines"
     },
-    "submachines": {
-      "collection": "sub-machine",
-      "via": "machines",
-      "dominant": true
+    "machines": {
+      "via": "submachines",
+      "collection": "machine"
     }
   }
 }

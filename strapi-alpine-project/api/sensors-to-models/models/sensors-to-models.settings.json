@@ -19,8 +19,8 @@
       "type": "string"
     },
     "machine": {
-      "model": "machine",
-      "via": "sensors_to_models"
+      "via": "sensors_to_models",
+      "model": "machine"
     },
     "model": {
       "type": "enumeration",
@@ -53,6 +53,10 @@
     "company": {
       "model": "company",
       "via": "sensors_to_models"
+    },
+    "submachine": {
+      "via": "sensors_to_models",
+      "model": "sub-machine"
     }
   }
 }

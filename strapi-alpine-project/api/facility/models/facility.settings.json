@@ -68,12 +68,16 @@
       "dominant": true
     },
     "machines": {
-      "collection": "machine",
-      "via": "facility"
+      "via": "facility",
+      "collection": "machine"
     },
     "company": {
       "model": "company",
       "via": "facilities"
+    },
+    "submachines": {
+      "via": "facility",
+      "collection": "sub-machine"
     }
   }
 }

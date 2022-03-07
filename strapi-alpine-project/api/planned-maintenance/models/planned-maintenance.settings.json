@@ -44,8 +44,8 @@
       ]
     },
     "machine": {
-      "model": "machine",
-      "via": "planned_maintenance_crons"
+      "via": "planned_maintenance_crons",
+      "model": "machine"
     },
     "comment": {
       "type": "richtext"
@@ -65,6 +65,10 @@
     "company": {
       "model": "company",
       "via": "planned_maintenance_crons"
+    },
+    "submachine": {
+      "via": "planned_maintenance_crons",
+      "model": "sub-machine"
     }
   }
 }

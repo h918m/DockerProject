@@ -108,8 +108,8 @@
       "dominant": true
     },
     "machine": {
-      "model": "machine",
-      "via": "failure_records"
+      "via": "failure_records",
+      "model": "machine"
     },
     "image": {
       "model": "file",
@@ -142,6 +142,10 @@
     },
     "endDateTime": {
       "type": "datetime"
+    },
+    "submachine": {
+      "via": "failure_records",
+      "model": "sub-machine"
     }
   }
 }

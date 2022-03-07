@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/sub-machines",
+      "handler": "sub-machine.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/sub-machines/count",
+      "handler": "sub-machine.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/sub-machines/:id",
+      "handler": "sub-machine.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/sub-machines",
+      "handler": "sub-machine.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/sub-machines/:id",
+      "handler": "sub-machine.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/sub-machines/:id",
+      "handler": "sub-machine.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
