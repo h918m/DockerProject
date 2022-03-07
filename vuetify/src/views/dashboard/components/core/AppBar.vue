@@ -55,8 +55,6 @@
         >
           <v-badge
             color="red"
-            overlap
-            bordered
             v-if="notifications.length>0"
           >
             <template v-slot:badge>

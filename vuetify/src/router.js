@@ -141,6 +141,19 @@ const router = new Router({
         },
 
         // SUBMACHINE
+
+        {
+          name: 'SubMachinesList',
+          path: 'sub-machine/sub-machines-list',
+          component: () => import('@/views/routes/subMachine/SubMachinesList'),
+        },
+
+        {
+          name: 'SubMachineForm',
+          path: 'sub-machine/sub-machine-form',
+          component: () => import('@/views/routes/subMachine/SubMachineForm'),
+        },
+
         {
           name: 'MachineSubMachinesForMachine',
           path: 'machine/submachines-list/:id',

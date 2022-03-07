@@ -207,6 +207,21 @@ export default {
           },
 
           {
+            group: '/sub-machine',
+            title: 'SubMachines',
+            icon: 'mdi-screw-machine-flat-top',
+            children: [
+              {
+                title: 'SubMachines List',
+                to: 'sub-machines-list',
+              },
+              {
+                title: 'Add SubMachine',
+                to: 'sub-machine-form',
+              },
+            ],
+          },
+          {
             group: '/machine',
             title: 'Machines',
             icon: 'mdi-screw-machine-round-top',

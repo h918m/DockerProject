@@ -163,6 +163,7 @@
                 <!--                Relation spare parts-->
                 <v-col
                   cols="12"
+                  md="6"
                 >
                   <v-select
                     v-model="form.spareParts"
@@ -172,6 +173,39 @@
                     :disabled="formIsDisabled"
                     return-object
                     :items="spareParts"
+                    multiple
+                    item-text="name"
+                    item-value="id"
+                  >
+                    <template v-slot:item="{ attrs, item, on }">
+                      <v-list-item
+                        v-bind="attrs"
+                        active-class="secondary elevation-4 white--text"
+                        class="mx-3 mb-3 v-sheet"
+                        elevation="0"
+                        v-on="on"
+                      >
+                        <v-list-item-content>
+                          <v-list-item-title v-text="`${item ? item.name : ''}`" />
+                        </v-list-item-content>
+                      </v-list-item>
+                    </template>
+                  </v-select>
+                </v-col>
+
+                <!--                Relation SubMachines-->
+                <v-col
+                  cols="12"
+                  md="6"
+                >
+                  <v-select
+                    v-model="form.submachines"
+                    color="secondary"
+                    item-color="secondary"
+                    label="SubMachines relation (optional)"
+                    :disabled="formIsDisabled"
+                    return-object
+                    :items="submachines"
                     multiple
                     item-text="name"
                     item-value="id"
@@ -683,6 +717,7 @@
       userList: [],
       loading: true,
       spareParts: [],
+      submachines: [],
       formIsValid: null,
       formIsDisabled: false,
       form: {
@@ -702,6 +737,7 @@
         seller: '',
         price: '',
         spareParts: null,
+        submachines: null,
         purchaseFile: null,
         financialLabourPastMonth: '',
         financialLabourPastYear: '',
@@ -740,6 +776,7 @@
       }
 
       this.spareParts = await this.getSpareParts();
+      this.submachines = await this.getSubMachines();
       // Check action
       switch (this.action) {
         case 'modify':
@@ -859,6 +896,7 @@
         const machine = "Machine: " + this.form.name;
         const assignedTo = "Assigned to:   " + this.getUserName(this.form.users);
         const spareParts = "Spare parts:   " + this.getUserName(this.form.spareParts);
+        const submachines = "SubMachines:   " + this.getUserName(this.form.submachines);
         const manufactureTitle = "Manufacture Information" ;
         const manufacturer = "Manufacturer:   " + this.form.manufacturer;
         const model = "Model:   " + this.form.model;
@@ -890,6 +928,7 @@
         doc.text(assignedTo, 40, 100);
         doc.text(machine, 40, 120);
         doc.text(spareParts, 40, 160);
+        doc.text(submachines, 40, 160);
         doc.text(manufactureTitle, 40, 180);
         doc.text(manufacturer, 80, 200);
         doc.text(model, 80, 240);
@@ -992,6 +1031,7 @@
           const machine = "Machine: " + this.form.name;
           const assignedTo = "Assigned to:   " + this.getUserName(this.form.users);
           const spareParts = "Spare parts:   " + this.getUserName(this.form.spareParts);
+          const submachines = "Spare parts:   " + this.getUserName(this.form.submachines);
           const manufactureTitle = "Manufacture Information" ;
           const manufacturer = "Manufacturer:   " + this.form.manufacturer;
           const model = "Model:   " + this.form.model;
@@ -1023,6 +1063,7 @@
           doc.text(assignedTo, 40, 100);
           doc.text(machine, 40, 120);
           doc.text(spareParts, 40, 160);
+          doc.text(submachines, 40, 160);
           doc.text(manufactureTitle, 40, 180);
           doc.text(manufacturer, 80, 200);
           doc.text(model, 80, 240);
@@ -1112,6 +1153,10 @@
                 id
                 name
               }
+              submachines {
+                id
+                name
+              }
               operationTime
               manufacturer
               model
@@ -1143,6 +1188,7 @@
               seller: result.seller,
               price: result.price,
               spareParts: result.spareParts,
+              submachines: result.submachines,
               operationTime: result.operationTime,
               financialLabourPastMonth: labourPastMonth,
               financialLabourPastYear: labourPastYear,
@@ -1159,7 +1205,7 @@
       async addMachine() {
         const { name, image, description, warranty, users, location,
           manufacturer, model, serialCode, purchaseDate, seller, price, purchaseFile,
-          spareParts, operationTime
+          spareParts, submachines, operationTime
         } = this.form;
 
         const formData = new FormData();
@@ -1170,9 +1216,15 @@
           });
         }
         let spareParam = [];
+        let smParam = [];
         if (spareParts) {
           spareParts.forEach(item => {
             spareParam.push(item.id);
+          })
+        }
+        if (submachines) {
+          submachines.forEach(item => {
+            smParam.push(item.id);
           })
         }
         const data = {
@@ -1188,6 +1240,7 @@
           seller: seller,
           price: price,
           spareParts: spareParam,
+          submachines: smParam,
           operationTime: operationTime,
           company: this.company
         };
@@ -1222,7 +1275,7 @@
       async modifyMachine() {
         const { name, image, description, warranty, users, location,
           manufacturer,  model, serialCode, purchaseDate, seller, price, purchaseFile,
-          spareParts, operationTime
+          spareParts, submachines, operationTime
         } = this.form;
         const formData = new FormData();
         let userParam = [];
@@ -1232,9 +1285,15 @@
           });
         }
         let spareParam = [];
+        let smParam = [];
         if (spareParts) {
           spareParts.forEach(item => {
             spareParam.push(item.id);
+          })
+        }
+        if (submachines) {
+          submachines.forEach(item => {
+            smParam.push(item.id);
           })
         }
         const data = {
@@ -1250,6 +1309,7 @@
           seller: seller,
           price: price,
           spareParts: spareParam,
+          submachines: smParam,
           operationTime: operationTime,
           company: this.company
         };
@@ -1326,6 +1386,27 @@
           .then(({data}) => {
             if (data.data.spareParts) {
               return data.data.spareParts;
+            } else {
+              return [];
+            }
+          })
+      },
+      async getSubMachines() {
+        return this.$axios({
+          method: 'POST',
+          url: '/graphql',
+          data: {
+            query: `{
+              subMachines (where: {company: "${this.company}"}){
+                id
+                name
+              }
+            }`,
+          },
+        })
+          .then(({data}) => {
+            if (data.data.subMachines) {
+              return data.data.subMachines;
             } else {
               return [];
             }
