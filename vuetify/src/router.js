@@ -297,6 +297,13 @@ const router = new Router({
           component: () => import('@/views/routes/Analytics'),
           props: true,
         },
+        // Notifications
+        {
+          name: 'Notifications',
+          path: 'notifications',
+          component: () => import('@/views/routes/Notifications'),
+          props: true,
+        },
         // END own routes
       ],
     },

@@ -384,7 +384,6 @@
           },
         }).then(async (res) => {
           const subMachines = res.data.data.subMachines;
-          console.log("////////////// subMachins = ", subMachines)
           // Get data count
           let count = await this.$axios({
             method: 'POST',
@@ -400,9 +399,7 @@
             },
           });
           this.count = count.data.data.subMachinesConnection.aggregate.count;
-          console.log('count: ', this.count);
 
-          console.log("//////////////  aaaa -  subMachins = ", subMachines)
           return subMachines
         }).catch(err => {
           return [];

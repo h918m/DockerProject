@@ -1208,6 +1208,24 @@
             type: 'success',
             snackbar: true,
           };
+          // const notifyData = new FormData()
+          // let notification_data = {
+          //   eventDescription: 'SubMachine has been successfully Added.',
+          //   eventDate: new Date().toLocaleString(),
+          //   checked: false,
+          // };
+          // console.log('====== notification data = ', notification_data)
+          // notifyData.append('data', JSON.stringify(notification_data));
+          // return this.$axios({
+          //     method: 'post',
+          //     url: '/notifications',
+          //     data: notifyData,
+          //     headers: {'Content-Type': 'multipart/form-data'},
+          //   },
+          // ).then(({not_data}) => {
+          //   console.log('--------- not_data = ', not_data)
+          //   return not_data
+          // });
           return data
         })
           .catch(err => {
@@ -1277,6 +1295,22 @@
             type: 'success',
             snackbar: true,
           };
+          // const notifyData = new FormData()
+          // let notification_data = {
+          //   eventDescription: 'SubMachine has been successfully updated.',
+          //   eventDate: new Date().toLocaleString(),
+          //   checked: false,
+          // };
+          // notifyData.append('data', JSON.stringify(notification_data));
+          // return this.$axios({
+          //     method: 'post',
+          //     url: '/notifications',
+          //     data: notifyData,
+          //     headers: {'Content-Type': 'multipart/form-data'},
+          //   },
+          // ).then(({not_data}) => {
+          //   return not_data
+          // });
           return data
         })
           .catch(err => {

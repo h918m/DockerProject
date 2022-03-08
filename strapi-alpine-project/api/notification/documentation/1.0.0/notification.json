@@ -620,6 +620,9 @@
                 }
               }
             }
+          },
+          "eventDate": {
+            "type": "string"
           }
         }
       },
@@ -632,6 +635,9 @@
             "type": "boolean"
           },
           "user": {
+            "type": "string"
+          },
+          "eventDate": {
             "type": "string"
           }
         }

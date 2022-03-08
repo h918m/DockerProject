@@ -19,6 +19,9 @@
     "user": {
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "eventDate": {
+      "type": "string"
     }
   }
 }

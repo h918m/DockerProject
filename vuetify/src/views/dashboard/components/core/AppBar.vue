@@ -41,6 +41,7 @@
     <v-menu
       bottom
       left
+      open-on-hover
       offset-y
       origin="top right"
       transition="scale-transition"
@@ -72,6 +73,7 @@
       <v-list
         :tile="false"
         nav
+        v-if="notifications.length>0"
         max-height="350"
       >
         <div
@@ -245,7 +247,6 @@
         }).catch(err => {
         })
       },
-
     },
 
 

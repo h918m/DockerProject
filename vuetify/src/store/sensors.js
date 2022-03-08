@@ -176,9 +176,9 @@ export default {
                 id
                 eventDescription
                 checked
-                 user {
-                    name
-                  }
+                user {
+                  name
+                }
               }
             }`
         }

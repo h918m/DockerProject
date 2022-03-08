@@ -288,6 +288,12 @@ export default {
             icon: 'mdi-google-analytics',
             to: '/analytics'
           },
+          {
+            group: '/notifications ',
+            title: 'Notifications',
+            icon: 'mdi-bell',
+            to: '/notifications'
+          },
         ])
       } else {
         return ([
