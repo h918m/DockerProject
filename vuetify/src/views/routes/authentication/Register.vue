@@ -79,8 +79,6 @@
                       </validation-provider>
 
                       <validation-provider
-                        v-slot="{ errors }"
-                        rules="required|min:6"
                         name="Password"
                       >
                         <v-text-field
@@ -91,7 +89,7 @@
                           label="Password"
                           hint="Minimum 6 characters"
                           prepend-icon="mdi-lock-outline"
-                          :error-messages="errors"
+                          :rules="[rules.password]"
                         />
                       </validation-provider>
 
@@ -130,6 +128,16 @@ import { mapActions } from 'vuex'
         password: '',
       },
       message: '',
+      rules: {
+        required: value => !!value || "Required.",
+        password: value => {
+          const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+          return (
+            pattern.test(value) ||
+            "Min. 8 characters with at least one capital letter, a number and a special character."
+          );
+        }
+      }
     }),
     methods: {
       ...mapActions('auth', ['register']),
