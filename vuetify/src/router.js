@@ -304,6 +304,13 @@ const router = new Router({
           component: () => import('@/views/routes/Notifications'),
           props: true,
         },
+        // Calendar example
+        {
+          name: 'Calendar',
+          path: 'calendar',
+          component: () => import('@/views/routes/calendar'),
+          props: true,
+        },
         // END own routes
       ],
     },

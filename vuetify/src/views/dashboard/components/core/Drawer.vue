@@ -294,6 +294,12 @@ export default {
             icon: 'mdi-bell',
             to: '/notifications'
           },
+          {
+            group: '/calendar ',
+            title: 'Calendar-example',
+            icon: 'mdi-calendar',
+            to: '/calendar'
+          },
         ])
       } else {
         return ([

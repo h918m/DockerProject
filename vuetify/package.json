@@ -16,13 +16,16 @@
   "dependencies": {
     "@chenfengyuan/vue-qrcode": "^1.0.2",
     "axios": "^0.19.2",
+    "chart.js": "^2.9.4",
     "core-js": "^3.6.2",
     "file-saver": "^2.0.2",
     "js-cookie": "^2.2.1",
     "jspdf": "^2.2.0",
-    "moment": "^2.24.0",
     "lodash": "^4.17.20",
+    "moment": "^2.24.0",
     "vue": "^2.6.11",
+    "vue-chartist": "^2.2.1",
+    "vue-chartjs": "^3.5.1",
     "vue-i18n": "^8.15.3",
     "vue-loading-overlay": "^3.3.2",
     "vue-moment": "^4.1.0",
@@ -30,13 +33,10 @@
     "vue-router": "^3.1.3",
     "vue-socket.io": "^3.0.7",
     "vue-svg-gauge": "^1.2.1",
-    "vuetify": "^2.2.6",
+    "vuetify": "^2.6.4",
     "vuex": "^3.1.2",
     "vuex-persistedstate": "^2.7.1",
-    "xlsx": "^0.15.6",
-    "vue-chartist": "^2.2.1",
-    "chart.js": "^2.9.4",
-    "vue-chartjs": "^3.5.1"
+    "xlsx": "^0.15.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.2",
