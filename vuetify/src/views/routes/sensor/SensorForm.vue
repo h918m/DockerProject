@@ -160,16 +160,16 @@
                   <validation-provider
                     v-slot="{ errors }"
                     rules="required"
-                    name="Machine"
+                    name="SubMachine"
                   >
                     <v-select
-                      v-model="form.machine"
+                      v-model="form.submachine"
                       color="secondary"
                       item-color="secondary"
-                      label="Machine"
+                      label="SubMachine"
                       :disabled="formIsDisabled"
                       :error-messages="errors"
-                      :items="machines"
+                      :items="submachines"
                       return-object
                       item-text="name"
                       item-value="id"
@@ -401,7 +401,7 @@
       message: '',
     },
     loading: true,
-    machines: [],
+    submachines: [],
     sensorModels: [
       {
         label: 'Temperature (°C)',
@@ -428,7 +428,7 @@
     formIsDisabled: false,
     form: {
       model: 'temperature',
-      machine: null,
+      submachine: null,
       MAC: '',
       name: '',
       customModel: false,
@@ -466,7 +466,7 @@
       this.formIsDisabled = true;
     }
     // Load form data
-    this.machines = await this.getMachines();
+    this.submachines = await this.getSubMachines();
 
     // Check action
     switch (this.action) {
@@ -492,7 +492,7 @@
       const date = new Date().toISOString().replace(".", "");
       const name = "Name:   " + this.form.name;
       const macAddress = "MAC Address:   " + this.form.MAC;
-      const machine = "Machine: " + this.form.machine.name;
+      const submachine = "SubMachine: " + this.form.submachine.name;
       const sensorModel = "Sensor model:   " + (!this.form.customModel ? this.sensorModels[this.sensorModels.getIndexBy("value", this.form.model)].label : `${this.form.customModelValue.name} (${this.form.customModelValue.symbol})`);
       const rangeTitle = "Range";
       const minRange = "Minimum:   " + this.form.range.minimum;
@@ -508,7 +508,7 @@
 
       doc.text(name, 40, 100);
       doc.text(macAddress, 40, 120);
-      doc.text(machine, 40, 140);
+      doc.text(submachine, 40, 140);
       doc.text(sensorModel, 40, 160);
       doc.text(rangeTitle, 40, 180);
       doc.text(minRange, 80, 200);
@@ -585,7 +585,7 @@
        const date = new Date().toISOString().replace(".", "");
        const name = "Name:   " + this.form.name;
        const macAddress = "MAC Address:   " + this.form.MAC;
-       const machine = "Machine: " + this.form.machine.name;
+       const submachine = "SubMachine: " + this.form.submachine.name;
        const sensorModel = "Sensor model:   " + (!this.form.customModel ? this.sensorModels[this.sensorModels.getIndexBy("value", this.form.model)].label : `${this.form.customModelValue.name} (${this.form.customModelValue.symbol})`);
        const rangeTitle = "Range";
        const minRange = "Minimum:   " + this.form.range.minimum;
@@ -601,7 +601,7 @@
 
        doc.text(name, 40, 100);
        doc.text(macAddress, 40, 120);
-       doc.text(machine, 40, 140);
+       doc.text(submachine, 40, 140);
        doc.text(sensorModel, 40, 160);
        doc.text(rangeTitle, 40, 180);
        doc.text(minRange, 80, 200);
@@ -625,7 +625,7 @@
                 MAC
                 createdAt
                 updatedAt
-                machine {
+                submachine {
                     name
                     id
                 }
@@ -650,7 +650,7 @@
         const result = data.data.sensorsToModel;
         return {
           model: result.model,
-          machine: result.machine,
+          submachine: result.submachine,
           MAC: result.MAC,
           name: result.name,
           customModel: result.customModel,
@@ -670,7 +670,7 @@
       })
     },
     async modifySensor () {
-      const { model, machine, MAC, name, customModel, customModelValue, range, limit } = this.form;
+      const { model, submachine, MAC, name, customModel, customModelValue, range, limit } = this.form;
       return this.$axios({
         method: 'POST',
         url: '/graphql',
@@ -683,7 +683,7 @@
              customModelValue: {name: "${customModelValue.name}", symbol: "${customModelValue.symbol}"}
              range: {minimum: ${range.minimum? range.minimum : 0}, maximum: ${range.maximum? range.maximum : 100}}
              limit: {minimum: ${limit.minimum ? limit.minimum : 0}, maximum: ${limit.maximum ? limit.maximum : 100}}
-             machine: "${machine.id}",
+             submachine: "${submachine.id}",
              company: "${this.company}"
              model:${model}}})
              {
@@ -692,7 +692,7 @@
                 MAC
                 createdAt
                 updatedAt
-                machine {
+                submachine {
                     name
                     id
                 }
@@ -719,7 +719,7 @@
         })
     },
     async addSensor () {
-      const { model, machine, MAC, name, customModel, customModelValue, range, limit } = this.form;
+      const { model, submachine, MAC, name, customModel, customModelValue, range, limit } = this.form;
 
       return this.$axios({
         method: 'POST',
@@ -735,7 +735,7 @@
                 customModelValue: {name: "${customModelValue.name}", symbol: "${customModelValue.symbol}"},
                 range: {minimum: ${range.minimum? range.minimum : 0}, maximum: ${range.maximum? range.maximum : 100}},
                 limit: {minimum: ${limit.minimum? limit.minimum : 0}, maximum: ${limit.maximum? limit.maximum : 100}},
-                machine : "${machine.id}",
+                submachine : "${submachine.id}",
                 company: "${this.company}"
                 }
                 })
@@ -749,7 +749,7 @@
       })
         .then(({ data }) => {
           this.snackbar = {
-            message: 'A Sensor has been successfully attached to the machine.',
+            message: 'A Sensor has been successfully attached to the submachine.',
             type: 'success',
             snackbar: true,
           };
@@ -786,13 +786,13 @@
             this.$router.push('/sensor/sensors-list')
           })
     },
-    async getMachines () {
+    async getSubMachines () {
       return this.$axios({
           method: 'POST',
           url: '/graphql',
           data: {
             query: `{
-              machines(where: {company: "${this.company}"}) {
+              subMachines(where: {company: "${this.company}"}) {
                   name
                   id
               }
@@ -800,8 +800,8 @@
         },
       })
         .then(({ data }) => {
-          if (data.data.machines) {
-            return data.data.machines
+          if (data.data.subMachines) {
+            return data.data.subMachines
           } else {
             return []
           }

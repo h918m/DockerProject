@@ -812,7 +812,7 @@
           const doc = new jsPDF(orientation, unit, size);
           const date = new Date().toISOString().replace(".", "");
 
-          const machine = "Machines: " + this.getUserName(this.form.machine);
+          // const machine = "Machines: " + this.getUserName(this.form.machine);
           const facility = "Facility:   " + this.form.name;
           const labourList = "Labour list:   " + this.getUserName(this.form.labour);
 
@@ -835,7 +835,7 @@
           doc.setFontSize(12);
 
           doc.text(facility, 40, 100);
-          doc.text(machine, 40, 120);
+          // doc.text(machine, 40, 120);
           doc.text(labourList, 40, 140);
 
           doc.text(financialTitle, 40, 420);

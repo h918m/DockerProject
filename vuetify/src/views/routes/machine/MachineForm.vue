@@ -1068,7 +1068,7 @@
           const assignedTo = "Assigned to:   " + this.getUserName(this.form.users);
           const spareParts = "Spare parts:   " + this.getUserName(this.form.spareParts);
           const submachines = "SubMachines:   " + this.getUserName(this.form.submachines);
-          const facility = "Facility:   " + this.getUserName(this.form.facility);
+          const facility = "Facility:   " + this.getUserName(Array(this.form.facility));
           const manufactureTitle = "Manufacture Information" ;
           const manufacturer = "Manufacturer:   " + this.form.manufacturer;
           const model = "Model:   " + this.form.model;
@@ -1099,11 +1099,11 @@
 
           doc.text(assignedTo, 40, 100);
           doc.text(machine, 40, 120);
-          doc.text(spareParts, 40, 160);
+          doc.text(spareParts, 40, 140);
           doc.text(submachines, 40, 160);
-          doc.text(facility, 40, 160);
-          doc.text(manufactureTitle, 40, 180);
-          doc.text(manufacturer, 80, 200);
+          doc.text(facility, 40, 180);
+          doc.text(manufactureTitle, 40, 200);
+          doc.text(manufacturer, 80, 220);
           doc.text(model, 80, 240);
           doc.text(sn, 80, 260);
           doc.text(purchasingTitle, 40, 280);
