@@ -160,20 +160,38 @@
                   </validation-provider>
                 </v-col>
 
-                <!--                Relation spare parts-->
                 <v-col
                   cols="12"
-                  md="6"
+                >
+                  <!-- Machine name -->
+                  <validation-provider
+                    v-slot="{ errors }"
+                    rules="required"
+                    name="Machine Name"
+                  >
+                    <v-text-field
+                      v-model="form.name"
+                      :error-messages="errors"
+                      :disabled="formIsDisabled"
+                      color="secondary"
+                      label="Friendly name for a Machine"
+                    />
+                  </validation-provider>
+                </v-col>
+
+                <!--                Relation Facility-->
+                <v-col
+                  cols="12"
+                  md="12"
                 >
                   <v-select
-                    v-model="form.spareParts"
+                    v-model="form.facility"
                     color="secondary"
                     item-color="secondary"
-                    label="Spare parts relation (optional)"
+                    label="Facility relation (optional)"
                     :disabled="formIsDisabled"
                     return-object
-                    :items="spareParts"
-                    multiple
+                    :items="facilities"
                     item-text="name"
                     item-value="id"
                   >
@@ -196,7 +214,7 @@
                 <!--                Relation SubMachines-->
                 <v-col
                   cols="12"
-                  md="6"
+                  md="12"
                 >
                   <v-select
                     v-model="form.submachines"
@@ -226,25 +244,38 @@
                   </v-select>
                 </v-col>
 
+                <!--                Relation spare parts-->
                 <v-col
                   cols="12"
+                  md="12"
                 >
-                  <!-- Machine name -->
-                  <validation-provider
-                    v-slot="{ errors }"
-                    rules="required"
-                    name="Machine Name"
+                  <v-select
+                    v-model="form.spareParts"
+                    color="secondary"
+                    item-color="secondary"
+                    label="Spare parts relation (optional)"
+                    :disabled="formIsDisabled"
+                    return-object
+                    :items="spareParts"
+                    multiple
+                    item-text="name"
+                    item-value="id"
                   >
-                    <v-text-field
-                      v-model="form.name"
-                      :error-messages="errors"
-                      :disabled="formIsDisabled"
-                      color="secondary"
-                      label="Friendly name for a Machine"
-                    />
-                  </validation-provider>
+                    <template v-slot:item="{ attrs, item, on }">
+                      <v-list-item
+                        v-bind="attrs"
+                        active-class="secondary elevation-4 white--text"
+                        class="mx-3 mb-3 v-sheet"
+                        elevation="0"
+                        v-on="on"
+                      >
+                        <v-list-item-content>
+                          <v-list-item-title v-text="`${item ? item.name : ''}`" />
+                        </v-list-item-content>
+                      </v-list-item>
+                    </template>
+                  </v-select>
                 </v-col>
-
 
                 <!-- Operation time -->
                 <v-col
@@ -718,6 +749,7 @@
       loading: true,
       spareParts: [],
       submachines: [],
+      facilities: [],
       formIsValid: null,
       formIsDisabled: false,
       form: {
@@ -738,6 +770,7 @@
         price: '',
         spareParts: null,
         submachines: null,
+        facility: null,
         purchaseFile: null,
         financialLabourPastMonth: '',
         financialLabourPastYear: '',
@@ -777,6 +810,7 @@
 
       this.spareParts = await this.getSpareParts();
       this.submachines = await this.getSubMachines();
+      this.facilities = await this.getFacilities();
       // Check action
       switch (this.action) {
         case 'modify':
@@ -897,6 +931,7 @@
         const assignedTo = "Assigned to:   " + this.getUserName(this.form.users);
         const spareParts = "Spare parts:   " + this.getUserName(this.form.spareParts);
         const submachines = "SubMachines:   " + this.getUserName(this.form.submachines);
+        const facility = "Facilities:   " + this.getUserName(this.form.facility);
         const manufactureTitle = "Manufacture Information" ;
         const manufacturer = "Manufacturer:   " + this.form.manufacturer;
         const model = "Model:   " + this.form.model;
@@ -929,6 +964,7 @@
         doc.text(machine, 40, 120);
         doc.text(spareParts, 40, 160);
         doc.text(submachines, 40, 160);
+        doc.text(facility, 40, 160);
         doc.text(manufactureTitle, 40, 180);
         doc.text(manufacturer, 80, 200);
         doc.text(model, 80, 240);
@@ -1031,7 +1067,8 @@
           const machine = "Machine: " + this.form.name;
           const assignedTo = "Assigned to:   " + this.getUserName(this.form.users);
           const spareParts = "Spare parts:   " + this.getUserName(this.form.spareParts);
-          const submachines = "Spare parts:   " + this.getUserName(this.form.submachines);
+          const submachines = "SubMachines:   " + this.getUserName(this.form.submachines);
+          const facility = "Facility:   " + this.getUserName(this.form.facility);
           const manufactureTitle = "Manufacture Information" ;
           const manufacturer = "Manufacturer:   " + this.form.manufacturer;
           const model = "Model:   " + this.form.model;
@@ -1064,6 +1101,7 @@
           doc.text(machine, 40, 120);
           doc.text(spareParts, 40, 160);
           doc.text(submachines, 40, 160);
+          doc.text(facility, 40, 160);
           doc.text(manufactureTitle, 40, 180);
           doc.text(manufacturer, 80, 200);
           doc.text(model, 80, 240);
@@ -1157,6 +1195,10 @@
                 id
                 name
               }
+              facility {
+                id
+                name
+              }
               operationTime
               manufacturer
               model
@@ -1189,6 +1231,7 @@
               price: result.price,
               spareParts: result.spareParts,
               submachines: result.submachines,
+              facility: result.facility,
               operationTime: result.operationTime,
               financialLabourPastMonth: labourPastMonth,
               financialLabourPastYear: labourPastYear,
@@ -1205,7 +1248,7 @@
       async addMachine() {
         const { name, image, description, warranty, users, location,
           manufacturer, model, serialCode, purchaseDate, seller, price, purchaseFile,
-          spareParts, submachines, operationTime
+          spareParts, submachines, facility, operationTime
         } = this.form;
 
         const formData = new FormData();
@@ -1241,6 +1284,7 @@
           price: price,
           spareParts: spareParam,
           submachines: smParam,
+          facility: facility.id,
           operationTime: operationTime,
           company: this.company
         };
@@ -1275,7 +1319,7 @@
       async modifyMachine() {
         const { name, image, description, warranty, users, location,
           manufacturer,  model, serialCode, purchaseDate, seller, price, purchaseFile,
-          spareParts, submachines, operationTime
+          spareParts, submachines, facility, operationTime
         } = this.form;
         const formData = new FormData();
         let userParam = [];
@@ -1310,6 +1354,7 @@
           price: price,
           spareParts: spareParam,
           submachines: smParam,
+          facility: facility.id,
           operationTime: operationTime,
           company: this.company
         };
@@ -1407,6 +1452,27 @@
           .then(({data}) => {
             if (data.data.subMachines) {
               return data.data.subMachines;
+            } else {
+              return [];
+            }
+          })
+      },
+      async getFacilities() {
+        return this.$axios({
+          method: 'POST',
+          url: '/graphql',
+          data: {
+            query: `{
+              facilities (where: {company: "${this.company}"}){
+                id
+                name
+              }
+            }`,
+          },
+        })
+          .then(({data}) => {
+            if (data.data.facilities) {
+              return data.data.facilities;
             } else {
               return [];
             }

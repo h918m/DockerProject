@@ -73,7 +73,7 @@
                 v-text="item.name"
               />
             </td>
-            <td>
+            <!-- <td>
               <div
                 v-if="getMachiens(item.machines)"
                 class="body-1"
@@ -87,7 +87,7 @@
                   mdi-cancel
                 </v-icon>
               </div>
-            </td>
+            </td> -->
             <td>
               <div
                 v-if="getMachiens(item.labour)"
@@ -229,10 +229,10 @@
               text: 'Name',
               value: 'name',
             },
-            {
-              text: 'Machines',
-              value: 'machines',
-            },
+            // {
+            //   text: 'Machines',
+            //   value: 'machines',
+            // },
             {
               text: 'Labour list',
               value: 'labour',

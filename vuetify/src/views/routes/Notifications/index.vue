@@ -374,7 +374,6 @@
               }`,
           },
         }).then(async (res) => {
-          console.log("//////////////// res =  ", res)
           let count = await this.$axios({
             method: 'POST',
             url: url,

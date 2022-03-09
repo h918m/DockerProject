@@ -121,7 +121,6 @@
               <v-row>
                 <v-col
                   cols="12"
-                  md="6"
                 >
                   <!-- Facility name -->
                   <validation-provider
@@ -138,11 +137,10 @@
                     />
                   </validation-provider>
                 </v-col>
-                <v-col
+                <!-- <v-col
                   cols="12"
                   md="6"
                 >
-                  <!-- Machine Models list -->
                   <validation-provider
                     v-slot="{ errors }"
                     name="Machines"
@@ -175,7 +173,7 @@
                       </template>
                     </v-select>
                   </validation-provider>
-                </v-col>
+                </v-col> -->
                 <v-col
                   cols="12"
                   lg="8"
@@ -935,7 +933,7 @@
           }
           if(result) {
             return {
-              machine: result.machines,
+              // machine: result.machines,
               name: result.name,
               image: null,
               imageUrl: process.env.VUE_APP_API_BASE_URL + result.photo.url,
@@ -957,8 +955,8 @@
         })
       },
       async addMachine () {
-        const { machine, name, document, description, location, image} = this.form;
-
+        // const { machine, name, document, description, location, image} = this.form;
+        const { name, document, description, location, image} = this.form;
 
 
         //For labour list
@@ -970,12 +968,12 @@
         tempBuff = _.uniqBy(temp, 'id');
 
 
-        let machineParam = [];
-        if (machine) {
-          machine.forEach(item => {
-            machineParam.push(item.id)
-          });
-        }
+        // let machineParam = [];
+        // if (machine) {
+        //   machine.forEach(item => {
+        //     machineParam.push(item.id)
+        //   });
+        // }
         let labourParam = [];
         if (tempBuff) {
           tempBuff.forEach(item => {
@@ -985,7 +983,7 @@
         const formData = new FormData();
         const data = {
           name: name,
-          machines: machineParam,
+          // machines: machineParam,
           description: description,
           location: location,
           labour: labourParam,
