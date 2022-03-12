@@ -53,7 +53,6 @@
             prepend-icon="mdi-paperclip"
             type="file"
             outlined
-            multiple="false"
             accept=".xlsx,.csv,.xls, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
             color="deep-purple accent-4"
             @change="importTable($event,url)"

@@ -496,7 +496,6 @@
                       label="Upload document"
                       prepend-icon="mdi-paperclip"
                       type="file"
-                      multiple="false"
                       accept=".doc, .docx, application/msword, .xlsx, .pdf"
                       color="deep-purple accent-4"
                       v-model="form.purchaseFile"
