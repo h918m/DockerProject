@@ -72,6 +72,10 @@
     "submachines": {
       "via": "spareParts",
       "collection": "sub-machine"
+    },
+    "suppliers": {
+      "via": "spare_parts",
+      "collection": "suppliers"
     }
   }
 }

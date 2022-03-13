@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "suppliers",
+  "info": {
+    "name": "Supplier"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "spare_parts": {
+      "collection": "spare-parts",
+      "via": "suppliers",
+      "dominant": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "location": {
+      "type": "string"
+    },
+    "QR": {
+      "type": "string"
+    },
+    "fileUpload": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "photo": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "company": {
+      "model": "company",
+      "via": "suppliers"
+    }
+  }
+}

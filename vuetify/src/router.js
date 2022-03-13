@@ -229,6 +229,26 @@ const router = new Router({
         },
 
 
+        // Supplier
+        {
+          name: 'SupplierForm',
+          path: 'supplier/supplier-form',
+          component: () => import('@/views/routes/supplier/SupplierForm'),
+        },
+
+        {
+          name: 'SupplierFormAction',
+          path: 'supplier/supplier-form/:action/:id',
+          component: () => import('@/views/routes/supplier/SupplierForm'),
+          props: true,
+        },
+
+        {
+          name: 'SuppliersList',
+          path: 'supplier/suppliers-list',
+          component: () => import('@/views/routes/supplier/SuppliersList'),
+        },
+
         // SPARE PART
         {
           name: 'SparePartForm',

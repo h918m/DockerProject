@@ -252,6 +252,21 @@ export default {
             ],
           },
           {
+            group: '/supplier',
+            title: 'Suppliers',
+            icon: 'mdi-lock-pattern',
+            children: [
+              {
+                title: 'Suppliers List',
+                to: 'suppliers-list',
+              },
+              {
+                title: 'Add Supplier',
+                to: 'supplier-form',
+              },
+            ],
+          },
+          {
             group: '/spare-parts',
             title: 'Spare Parts',
             icon: 'mdi-cogs',

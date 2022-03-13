@@ -953,6 +953,12 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "suppliers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             }
           },

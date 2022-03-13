@@ -853,6 +853,12 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "suppliers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -1241,6 +1247,12 @@
                 }
               },
               "submachines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "suppliers": {
                 "type": "array",
                 "items": {
                   "type": "string"

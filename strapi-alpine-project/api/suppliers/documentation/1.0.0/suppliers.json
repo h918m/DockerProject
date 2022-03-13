@@ -1,18 +1,18 @@
 {
   "paths": {
-    "/orders": {
+    "/suppliers": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Find all the suppliers's records",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve suppliers document(s)",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Order"
+                    "$ref": "#/components/schemas/Suppliers"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Suppliers"
         ],
         "parameters": [
           {
@@ -194,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new record",
+        "description": "Create a new suppliers record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve suppliers document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "$ref": "#/components/schemas/Suppliers"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Suppliers"
         ],
         "requestBody": {
           "description": "",
@@ -247,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewOrder"
+                "$ref": "#/components/schemas/NewSuppliers"
               }
             }
           }
         }
       }
     },
-    "/orders/count": {
+    "/suppliers/count": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Retrieve the numver of suppliers documents",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve suppliers document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Suppliers"
         ],
         "parameters": []
       }
     },
-    "/orders/{id}": {
+    "/suppliers/{id}": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Find one suppliers record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve suppliers document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "$ref": "#/components/schemas/Suppliers"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Suppliers"
         ],
         "parameters": [
           {
@@ -376,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a record",
+        "description": "Update a single suppliers record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve suppliers document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "$ref": "#/components/schemas/Suppliers"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Suppliers"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewOrder"
+                "$ref": "#/components/schemas/NewSuppliers"
               }
             }
           }
@@ -449,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a record",
+        "description": "Delete a single suppliers record",
         "responses": {
           "200": {
-            "description": "deletes a single record based on the ID supplied",
+            "description": "deletes a single suppliers based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Suppliers"
         ],
         "parameters": [
           {
@@ -514,13 +514,193 @@
   },
   "components": {
     "schemas": {
-      "Order": {
+      "Suppliers": {
         "required": [
           "id"
         ],
         "properties": {
           "id": {
             "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "spare_parts": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "QR": {
+                  "type": "string"
+                },
+                "photo": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "stockAmount": {
+                  "type": "integer"
+                },
+                "filesToUpload": {
+                  "type": "string"
+                },
+                "leadtime": {
+                  "type": "integer"
+                },
+                "leadtimeType": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "vendorDetails": {
+                  "type": "string"
+                },
+                "warranty": {
+                  "type": "string"
+                },
+                "notes": {
+                  "type": "string"
+                },
+                "machines": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "company": {
+                  "type": "string"
+                },
+                "failure_records": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "submachines": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "suppliers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "QR": {
+            "type": "string"
+          },
+          "fileUpload": {
+            "required": [
+              "id",
+              "name",
+              "hash",
+              "mime",
+              "size",
+              "url",
+              "provider"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "hash": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "number"
+              },
+              "url": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "provider_metadata": {
+                "type": "object"
+              },
+              "related": {
+                "type": "string"
+              }
+            }
+          },
+          "photo": {
+            "required": [
+              "id",
+              "name",
+              "hash",
+              "mime",
+              "size",
+              "url",
+              "provider"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "hash": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "number"
+              },
+              "url": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "provider_metadata": {
+                "type": "object"
+              },
+              "related": {
+                "type": "string"
+              }
+            }
           },
           "company": {
             "required": [
@@ -600,24 +780,30 @@
                 }
               }
             }
-          },
-          "amount": {
-            "type": "integer"
-          },
-          "token": {
-            "type": "string"
           }
         }
       },
-      "NewOrder": {
+      "NewSuppliers": {
         "properties": {
-          "company": {
+          "name": {
             "type": "string"
           },
-          "amount": {
-            "type": "integer"
+          "spare_parts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
-          "token": {
+          "description": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "QR": {
+            "type": "string"
+          },
+          "company": {
             "type": "string"
           }
         }
@@ -626,7 +812,7 @@
   },
   "tags": [
     {
-      "name": "Order"
+      "name": "Suppliers"
     }
   ]
 }

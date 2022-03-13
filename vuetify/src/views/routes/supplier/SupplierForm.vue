@@ -107,7 +107,7 @@
         <base-material-card
           color="success"
           icon="mdi-plus"
-          :title="`${ isAdmin ? getActionName : 'View'} facility`"
+          :title="`${ isAdmin ? getActionName : 'View'} supplier`"
           class="px-5 py-3"
         >
           <validation-observer
@@ -122,58 +122,21 @@
                 <v-col
                   cols="12"
                 >
-                  <!-- Facility name -->
+                  <!-- Supplier name -->
                   <validation-provider
                     v-slot="{ errors }"
                     rules="required"
-                    name="Facility Name"
+                    name="Supplier Name"
                   >
                     <v-text-field
                       v-model="form.name"
                       :error-messages="errors"
                       :disabled="formIsDisabled"
                       color="secondary"
-                      label="Friendly name for a facility"
+                      label="Friendly name for a supplier"
                     />
                   </validation-provider>
                 </v-col>
-                <!-- <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <validation-provider
-                    v-slot="{ errors }"
-                    name="Machines"
-                  >
-                    <v-select
-                      v-model="form.machine"
-                      color="secondary"
-                      item-color="secondary"
-                      label="Machines"
-                      :disabled="formIsDisabled"
-                      return-object
-                      :error-messages="errors"
-                      :items="machines"
-                      multiple
-                      item-text="name"
-                      item-value="id"
-                    >
-                      <template v-slot:item="{ attrs, item, on }">
-                        <v-list-item
-                          v-bind="attrs"
-                          active-class="secondary elevation-4 white--text"
-                          class="mx-3 mb-3 v-sheet"
-                          elevation="0"
-                          v-on="on"
-                        >
-                          <v-list-item-content>
-                            <v-list-item-title v-text="`${item ? item.name : ''}`" />
-                          </v-list-item-content>
-                        </v-list-item>
-                      </template>
-                    </v-select>
-                  </validation-provider>
-                </v-col> -->
                 <v-col
                   cols="12"
                   lg="8"
@@ -181,7 +144,7 @@
                 >
                   <!-- QR Code Generator -->
                   <div class="font-weight-bold grey--text">
-                    QR Code to access the facility
+                    QR Code to access the SupplierFormAction
                   </div>
                   <qrcode
                     :value="id"
@@ -198,10 +161,10 @@
                     v-slot="{ errors }"
                     ref="provider"
                     :rules="`${action === 'add' ? 'required' : ''}`"
-                    name="Machine Image"
+                    name="Supplier Image"
                   >
                     <div class="font-weight-bold grey--text">
-                      Take a Picture of the Spare part
+                      Take a Picture of the Supplier
                     </div>
                     <input
                       ref="file"
@@ -268,20 +231,20 @@
                   md="6"
                   v-if="action === 'modify'"
                 >
-                  <!-- Labour list -->
+                  <!-- Spare Parts list -->
                   <validation-provider
                     v-slot="{ errors }"
-                    name="Labour list"
+                    name="Spare Parts list"
                   >
                     <v-select
-                      v-model="form.labour"
+                      v-model="form.spare_parts"
                       color="secondary"
                       item-color="secondary"
-                      label="Labour list"
+                      label="Spare Parts list"
                       :disabled="formIsDisabled"
                       return-object
                       :error-messages="errors"
-                      :items="form.labour"
+                      :items="form.spare_parts"
                       multiple
                       item-text="name"
                       item-value="id"
@@ -334,136 +297,6 @@
                     />
                   </validation-provider>
                 </v-col>
-
-                <!--                Financial information-->
-                <v-col
-                  cols="12"
-                  v-if="action === 'modify'"
-                >
-                  <h3>Financial (optional)</h3>
-                  <!--                  Labour cost-->
-                  <v-row>
-                    <v-col cols="12">
-                      <h4>Labour cost</h4>
-                    </v-col>
-
-                    <v-col cols="4">
-                      <v-text-field
-                        readonly
-                        v-model="form.financialLabourPastMonth"
-                        :disabled="formIsDisabled"
-                        label="Past month"
-                        color="secondary"
-                        type="number"
-                        prefix="$"
-                      />
-                    </v-col>
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialLabourPastYear"
-                        readonly
-                        :disabled="formIsDisabled"
-                        label="Past month"
-                        color="secondary"
-                        type="number"
-                        prefix="$"
-                      />
-                    </v-col>
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialLabourTotal"
-                        readonly
-                        :disabled="formIsDisabled"
-                        label="Past month"
-                        color="secondary"
-                        type="number"
-                        prefix="$"
-                      />
-                    </v-col>
-                  </v-row>
-
-                  <!--                  Spare parts cost-->
-                  <v-row>
-                    <v-col cols="12">
-                      <h4>Spare parts cost</h4>
-                    </v-col>
-
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialSparePastMonth"
-                        readonly
-                        :disabled="formIsDisabled"
-                        label="Past month"
-                        color="secondary"
-                        type="number"
-                        prefix="$"
-                      />
-                    </v-col>
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialSparePastYear"
-                        readonly
-                        :disabled="formIsDisabled"
-                        label="Past month"
-                        color="secondary"
-                        type="number"
-                        prefix="$"
-                      />
-                    </v-col>
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialSpareTotal"
-                        readonly
-                        :disabled="formIsDisabled"
-                        label="Past month"
-                        color="secondary"
-                        type="number"
-                        prefix="$"
-                      />
-                    </v-col>
-                  </v-row>
-
-                  <!--                  MISC-->
-                  <v-row>
-                    <v-col cols="12">
-                      <h4>Labour cost</h4>
-                    </v-col>
-
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialMiscPastMonth"
-                        readonly
-                        :disabled="formIsDisabled"
-                        label="Past month"
-                        color="secondary"
-                        type="number"
-                        prefix="$"
-                      />
-                    </v-col>
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialMiscPastYear"
-                        readonly
-                        :disabled="formIsDisabled"
-                        label="Past month"
-                        color="secondary"
-                        type="number"
-                        prefix="$"
-                      />
-                    </v-col>
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialMiscTotal"
-                        readonly
-                        :disabled="formIsDisabled"
-                        label="Past month"
-                        color="secondary"
-                        type="number"
-                        prefix="$"
-                      />
-                    </v-col>
-                  </v-row>
-                </v-col>
                 <v-col
                   cols="12"
                 >
@@ -474,7 +307,7 @@
                       type="submit"
                       :disabled="formIsDisabled"
                     >
-                      {{ getActionName }} Facility
+                      {{ getActionName }} Supplier
                     </v-btn>
                   </v-card-actions>
                 </v-col>
@@ -504,7 +337,7 @@
   import moment from "moment";
 
   export default {
-    name: 'FacilityForm',
+    name: 'SupplierForm',
     props: {
       id: {
         default: '0',
@@ -528,28 +361,29 @@
         message: '',
       },
       loading: true,
-      machines: [],
+      suppliers: [],
       userList: [],
       formIsValid: null,
       formIsDisabled: false,
       form: {
-        machine: null,
+        supplier: null,
         name: '',
         image: null,
         imageUrl: null,
         description: null,
         location: '',
         document: null,
-        labour: [],
-        financialLabourPastMonth: '',
-        financialLabourPastYear: '',
-        financialLabourTotal: '',
-        financialSparePastMonth: '',
-        financialSparePastYear: '',
-        financialSpareTotal: '',
-        financialMiscPastMonth: '',
-        financialMiscPastYear: '',
-        financialMiscTotal: ''
+        spare_parts: null,
+        // labour: [],
+        // financialLabourPastMonth: '',
+        // financialLabourPastYear: '',
+        // financialLabourTotal: '',
+        // financialSparePastMonth: '',
+        // financialSparePastYear: '',
+        // financialSpareTotal: '',
+        // financialMiscPastMonth: '',
+        // financialMiscPastYear: '',
+        // financialMiscTotal: ''
       },
     }),
     computed: {
@@ -697,34 +531,34 @@
         const date = new Date().toISOString().replace(".", "");
 
         // const machine = "Machines: " + this.getUserName(this.form.machine);
-        const facility = "Facility:   " + this.form.name;
-        const labourList = "Labour list:   " + this.getUserName(this.form.labour);
+        const supplier = "Supplier:   " + this.form.name;
+        const sparePartsList = "Spare Parts list:   " + this.getUserName(this.form.labour);
 
         const financialTitle = "Financial";
-        const labourTitle = "Labour cost";
-        const labour = "Past Month:   " + this.form.financialLabourPastMonth + "       " + "Past Year:   " +
-          this.form.financialLabourPastYear + "       " + "Total:   " + this.form.financialLabourTotal;
+        // const labourTitle = "Labour cost";
+        // const labour = "Past Month:   " + this.form.financialLabourPastMonth + "       " + "Past Year:   " +
+        //   this.form.financialLabourPastYear + "       " + "Total:   " + this.form.financialLabourTotal;
         const spareTitle = "Spare parts cost";
-        const spare = "Past Month:   " + this.form.financialSparePastMonth + "       " + "Past Year:   " +
-          this.form.financialSparePastYear + "       " + "Total:   " + this.form.financialSpareTotal;
-        const miscTitle = "MISC";
-        const misc = "Past Month:   " + this.form.financialMiscPastMonth + "       " + "Past Year:   " +
-          this.form.financialMiscPastYear + "       " + "Total:   " + this.form.financialMiscTotal;
+        // const spare = "Past Month:   " + this.form.financialSparePastMonth + "       " + "Past Year:   " +
+        //   this.form.financialSparePastYear + "       " + "Total:   " + this.form.financialSpareTotal;
+        // const miscTitle = "MISC";
+        // const misc = "Past Month:   " + this.form.financialMiscPastMonth + "       " + "Past Year:   " +
+        //   this.form.financialMiscPastYear + "       " + "Total:   " + this.form.financialMiscTotal;
         const description = "Description:   " + this.form.description;
         var splitDescription = doc.splitTextToSize(description, 550);
         const location = "Location:   " + this.form.location;
         doc.setFontSize(15);
-        const title = "Facility - " + this.id.substr(-5, 5);
+        const title = "Supplier - " + this.id.substr(-5, 5);
         doc.text(title, 155, 70);
         doc.setFontSize(12);
 
-        doc.text(facility, 40, 100);
-        doc.text(machine, 40, 120);
-        doc.text(labourList, 40, 140);
+        doc.text(supplier, 40, 100);
+        // doc.text(machine, 40, 120);
+        doc.text(sparePartsList, 40, 140);
 
         doc.text(financialTitle, 40, 420);
-        doc.text(labourTitle, 80, 440);
-        doc.text(labour, 100, 460);
+        // doc.text(labourTitle, 80, 440);
+        // doc.text(labour, 100, 460);
         doc.text(spareTitle, 80, 480);
         doc.text(spare, 100, 500);
         doc.text(miscTitle, 80, 520);
@@ -812,34 +646,34 @@
           const date = new Date().toISOString().replace(".", "");
 
           // const machine = "Machines: " + this.getUserName(this.form.machine);
-          const facility = "Facility:   " + this.form.name;
-          const labourList = "Labour list:   " + this.getUserName(this.form.labour);
+          const supplier = "Supplier:   " + this.form.name;
+          // const labourList = "Labour list:   " + this.getUserName(this.form.labour);
 
           const financialTitle = "Financial";
-          const labourTitle = "Labour cost";
-          const labour = "Past Month:   " + this.form.financialLabourPastMonth + "       " + "Past Year:   " +
-            this.form.financialLabourPastYear + "       " + "Total:   " + this.form.financialLabourTotal;
-          const spareTitle = "Spare parts cost";
-          const spare = "Past Month:   " + this.form.financialSparePastMonth + "       " + "Past Year:   " +
-            this.form.financialSparePastYear + "       " + "Total:   " + this.form.financialSpareTotal;
-          const miscTitle = "MISC";
-          const misc = "Past Month:   " + this.form.financialMiscPastMonth + "       " + "Past Year:   " +
-            this.form.financialMiscPastYear + "       " + "Total:   " + this.form.financialMiscTotal;
+          // const labourTitle = "Labour cost";
+          // const labour = "Past Month:   " + this.form.financialLabourPastMonth + "       " + "Past Year:   " +
+          //   this.form.financialLabourPastYear + "       " + "Total:   " + this.form.financialLabourTotal;
+          // const spareTitle = "Spare parts cost";
+          // const spare = "Past Month:   " + this.form.financialSparePastMonth + "       " + "Past Year:   " +
+          //   this.form.financialSparePastYear + "       " + "Total:   " + this.form.financialSpareTotal;
+          // const miscTitle = "MISC";
+          // const misc = "Past Month:   " + this.form.financialMiscPastMonth + "       " + "Past Year:   " +
+          //   this.form.financialMiscPastYear + "       " + "Total:   " + this.form.financialMiscTotal;
           const description = "Description:   " + this.form.description;
           var splitDescription = doc.splitTextToSize(description, 550);
           const location = "Location:   " + this.form.location;
           doc.setFontSize(15);
-          const title = "Facility - " + this.id.substr(-5, 5);
+          const title = "Supplier - " + this.id.substr(-5, 5);
           doc.text(title, 155, 70);
           doc.setFontSize(12);
 
-          doc.text(facility, 40, 100);
+          doc.text(supplier, 40, 100);
           // doc.text(machine, 40, 120);
-          doc.text(labourList, 40, 140);
+          // doc.text(labourList, 40, 140);
 
           doc.text(financialTitle, 40, 420);
-          doc.text(labourTitle, 80, 440);
-          doc.text(labour, 100, 460);
+          // doc.text(labourTitle, 80, 440);
+          // doc.text(labour, 100, 460);
           doc.text(spareTitle, 80, 480);
           doc.text(spare, 100, 500);
           doc.text(miscTitle, 80, 520);
@@ -876,7 +710,7 @@
           url: '/graphql',
           data: {
             query: `{
-            facility (id: "${this.id}") {
+            supplier (id: "${this.id}") {
                 id
                 name
                 QR
@@ -884,17 +718,9 @@
                   id
                   url
                 }
-                labour {
+                spare_parts {
                   id
                   name
-                }
-                machines {
-                  id
-                  name
-                  users {
-                    id
-                    name
-                  }
                 }
                 description
                 location
@@ -903,32 +729,32 @@
           `,
           },
         }).then(async ({ data }) => {
-          const result = data.data.facility;
-          let temp = [];
-          let tempBuff = [];
-          result.machines.forEach(item => {
-            temp = temp.concat(item.users)
-          });
-          tempBuff = _.uniqBy(temp, 'id');
+          const result = data.data.supplier;
+          // let temp = [];
+          // let tempBuff = [];
+          // result.spare_parts.forEach(item => {
+          //   temp = temp.concat(item.users)
+          // });
+          // tempBuff = _.uniqBy(temp, 'id');
 
           //Get financial params
-          let labourPastMonthParam = 0;
-          let labourPastYearParam = 0;
-          let labourTotalParam = 0;
-          let sparePastMonthParam = 0;
-          let sparePastYearParam = 0;
-          let spareTotalParam = 0;
-          for (let item of result.machines) {
+          // let labourPastMonthParam = 0;
+          // let labourPastYearParam = 0;
+          // let labourTotalParam = 0;
+          // let sparePastMonthParam = 0;
+          // let sparePastYearParam = 0;
+          // let spareTotalParam = 0;
+          for (let item of result.spare_parts) {
             let machineId = item.id;
-            let [labourPastMonth, sparePastMonth] = await this.getLabourCost('month', machineId);
-            let [labourPastYear, sparePastYear] = await this.getLabourCost('year', machineId);
-            let [labourTotal, spareTotal] = await this.getLabourCost('total', machineId);
-            labourPastMonthParam += labourPastMonth;
-            labourPastYearParam += labourPastYear;
-            labourTotalParam += labourTotal;
-            sparePastMonthParam += sparePastMonth;
-            sparePastYearParam += sparePastYear;
-            spareTotalParam += spareTotal;
+            // let [labourPastMonth, sparePastMonth] = await this.getLabourCost('month', machineId);
+            // let [labourPastYear, sparePastYear] = await this.getLabourCost('year', machineId);
+            // let [labourTotal, spareTotal] = await this.getLabourCost('total', machineId);
+            // labourPastMonthParam += labourPastMonth;
+            // labourPastYearParam += labourPastYear;
+            // labourTotalParam += labourTotal;
+            // sparePastMonthParam += sparePastMonth;
+            // sparePastYearParam += sparePastYear;
+            // spareTotalParam += spareTotal;
           }
           if(result) {
             return {
@@ -939,13 +765,14 @@
               description: result.description,
               location: result.location,
               document: null,
-              labour: tempBuff,
-              financialLabourPastMonth: labourPastMonthParam,
-              financialLabourPastYear: labourPastYearParam,
-              financialLabourTotal: labourTotalParam,
-              financialSparePastMonth: sparePastMonthParam,
-              financialSpareTotal: spareTotalParam,
-              financialSparePastYear: sparePastYearParam
+              spare_parts: result.spare_parts
+              // labour: tempBuff,
+              // financialLabourPastMonth: labourPastMonthParam,
+              // financialLabourPastYear: labourPastYearParam,
+              // financialLabourTotal: labourTotalParam,
+              // financialSparePastMonth: sparePastMonthParam,
+              // financialSpareTotal: spareTotalParam,
+              // financialSparePastYear: sparePastYearParam
             }
           } else {
             return {}
@@ -953,7 +780,7 @@
 
         })
       },
-      async addMachine () {
+      async addSupplier () {
         // const { machine, name, document, description, location, image} = this.form;
         const { name, document, description, location, image} = this.form;
 
@@ -995,13 +822,13 @@
 
         return this.$axios({
             method: 'post',
-            url: '/facilities',
+            url: '/suppliers',
             data: formData,
             headers: { 'Content-Type': 'multipart/form-data' },
           },
         ).then(({ data }) => {
           this.snackbar = {
-            message: 'Facility has been successfully Added.',
+            message: 'Supplier has been successfully Added.',
             type: 'success',
             snackbar: true,
           };
@@ -1016,39 +843,39 @@
             }
           })
       },
-      async modifyMachine () {
+      async modifySupplier () {
         const {
-          machine, name, document, description, location, image
+          supplier, name, document, description, location, image, spare_parts
         } = this.form;
 
 
         //For labour list
-        let temp = [];
-        let tempBuff = [];
-        machine.forEach(item => {
-          temp = temp.concat(item.users);
-        });
-        tempBuff = _.uniqBy(temp, 'id');
-        let machineParam = [];
-        if (machine) {
-          machine.forEach(item => {
-            machineParam.push(item.id)
+        // let temp = [];
+        // let tempBuff = [];
+        // supplier.forEach(item => {
+        //   temp = temp.concat(item.users);
+        // });
+        // tempBuff = _.uniqBy(temp, 'id');
+        let sparePartParam = [];
+        if (spare_parts) {
+          spare_parts.forEach(item => {
+            sparePartParam.push(item.id)
           });
         }
 
-        let labourParam = [];
-        if (tempBuff) {
-          tempBuff.forEach(item => {
-            labourParam.push(item.id)
-          });
-        }
+        // let labourParam = [];
+        // if (tempBuff) {
+        //   tempBuff.forEach(item => {
+        //     labourParam.push(item.id)
+        //   });
+        // }
         const formData = new FormData();
         const data = {
           name: name,
-          machines: machineParam,
+          spare_parts: sparePartParam,
           description: description,
           location: location,
-          labour: labourParam,
+          // labour: labourParam,
           company: this.company
         };
 
@@ -1071,13 +898,13 @@
         return this.$axios({
             method: 'PUT',
             // The this.id points on the ID from props
-            url: `/facilities/${this.id}`,
+            url: `/suppliers/${this.id}`,
             data: formData,
             headers: { 'Content-Type': 'multipart/form-data' },
           },
         ).then(({ data }) => {
           this.snackbar = {
-            message: 'Machine has been successfully updated.',
+            message: 'Supplier has been successfully updated.',
             type: 'success',
             snackbar: true,
           };
@@ -1101,17 +928,17 @@
 
         switch (this.action) {
           case 'add':
-            await this.addMachine();
+            await this.addSupplier();
             break;
           case 'modify':
-            await this.modifyMachine();
+            await this.modifySupplier();
             break
         }
 
         this.loading = false;
         return this.sleep(500)
           .then(() => {
-            this.$router.push('/facilities/facilities-list')
+            this.$router.push('/supplier/suppliers-list')
           })
       },
       async getMachines () {

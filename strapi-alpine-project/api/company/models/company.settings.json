@@ -56,6 +56,10 @@
     "submachines": {
       "via": "company",
       "collection": "sub-machine"
+    },
+    "suppliers": {
+      "via": "company",
+      "collection": "suppliers"
     }
   }
 }
