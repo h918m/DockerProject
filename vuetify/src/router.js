@@ -229,6 +229,26 @@ const router = new Router({
         },
 
 
+        // Purchase Order
+        {
+          name: 'PurchaseOrderForm',
+          path: 'purchase-orders/purchaseorder-form',
+          component: () => import('@/views/routes/PurchaseOrder/PurchaseOrderForm'),
+        },
+
+        {
+          name: 'PurchaseOrderFormAction',
+          path: 'purchase-orders/purchaseorder-form/:action/:id',
+          component: () => import('@/views/routes/PurchaseOrder/PurchaseOrderForm'),
+          props: true,
+        },
+
+        {
+          name: 'PurchaseOrdersList',
+          path: 'purchase-orders/purchaseorders-list',
+          component: () => import('@/views/routes/PurchaseOrder/PurchaseOrdersList'),
+        },
+
         // Supplier
         {
           name: 'SupplierForm',

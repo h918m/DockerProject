@@ -665,6 +665,12 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "purchase_orders": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }

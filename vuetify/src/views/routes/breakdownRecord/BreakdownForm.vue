@@ -126,7 +126,6 @@
                   <!-- Users list -->
                   <v-col
                     cols="12"
-                    sm="6"
                   >
                     <validation-provider
                       v-slot="{ errors }"
@@ -168,7 +167,6 @@
                   <!-- Machines list -->
                   <v-col
                     cols="12"
-                    sm="6"
                   >
                     <validation-provider
                       v-slot="{ errors }"

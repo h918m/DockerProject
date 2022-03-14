@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "purchase_orders",
+  "info": {
+    "name": "PurchaseOrders"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "QR": {
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "description": {
+      "type": "text"
+    },
+    "location": {
+      "type": "string"
+    },
+    "users": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "purchase_orders",
+      "dominant": true
+    },
+    "purchaseDate": {
+      "type": "date"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "purchaseFile": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "supplier": {
+      "model": "suppliers",
+      "via": "purchase_orders"
+    },
+    "company": {
+      "model": "company",
+      "via": "purchase_orders"
+    }
+  }
+}

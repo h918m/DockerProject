@@ -130,7 +130,8 @@
                       :disabled="formIsDisabled"
                       :error-messages="errors"
                       color="secondary"
-                      hint="Minimum 6 characters"
+                      type="password"
+                      :rules="[rules.password]"
                       :label="`${action === 'add' ? 'Password' : 'New Password (Optional)'}`"
                     />
                   </validation-provider>
@@ -209,6 +210,16 @@
         surname: '',
         password: ''
       },
+      rules: {
+        required: value => !!value || "Required.",
+        password: value => {
+          const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+          return (
+            pattern.test(value) ||
+            "Min. 8 characters with at least one capital letter, a number and a special character."
+          );
+        }
+      }
     }),
     async mounted() {
       this.loading = true;

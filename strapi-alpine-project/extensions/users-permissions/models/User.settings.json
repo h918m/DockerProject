@@ -102,6 +102,10 @@
     "submachines": {
       "via": "users",
       "collection": "sub-machine"
+    },
+    "purchase_orders": {
+      "via": "users",
+      "collection": "purchase-orders"
     }
   }
 }

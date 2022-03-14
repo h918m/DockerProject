@@ -158,6 +158,21 @@ export default {
             ],
           },
           {
+            group: '/purchase-orders',
+            title: 'Purchase Orders',
+            icon: 'mdi-comment-text',
+            children: [
+              {
+                title: 'Add Purchase Order',
+                to: 'purchaseorder-form',
+              },
+              {
+                title: 'List Purchase Orders',
+                to: 'purchaseorders-list',
+              },
+            ],
+          },
+          {
             group: '/planned-maintenance',
             title: 'Planned Maintenance',
             icon: 'mdi-clipboard-list-outline',

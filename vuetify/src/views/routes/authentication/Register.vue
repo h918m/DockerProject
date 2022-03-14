@@ -87,7 +87,6 @@
                           type="password"
                           color="secondary"
                           label="Password"
-                          hint="Minimum 6 characters"
                           prepend-icon="mdi-lock-outline"
                           :rules="[rules.password]"
                         />

@@ -42,6 +42,10 @@
     "company": {
       "model": "company",
       "via": "suppliers"
+    },
+    "purchase_orders": {
+      "via": "supplier",
+      "collection": "purchase-orders"
     }
   }
 }

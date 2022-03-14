@@ -60,6 +60,10 @@
     "suppliers": {
       "via": "company",
       "collection": "suppliers"
+    },
+    "purchase_orders": {
+      "via": "company",
+      "collection": "purchase-orders"
     }
   }
 }

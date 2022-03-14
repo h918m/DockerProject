@@ -1,12 +1,12 @@
 {
   "paths": {
-    "/spare-parts": {
+    "/purchase-orders": {
       "get": {
         "deprecated": false,
-        "description": "Find all the spare-parts's records",
+        "description": "Find all the purchase-orders's records",
         "responses": {
           "200": {
-            "description": "Retrieve spare-parts document(s)",
+            "description": "Retrieve purchase-orders document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -52,7 +52,7 @@
         },
         "summary": "",
         "tags": [
-          "Spare-parts"
+          "Purchase-orders"
         ],
         "parameters": [
           {
@@ -195,10 +195,10 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new spare-parts record",
+        "description": "Create a new purchase-orders record",
         "responses": {
           "200": {
-            "description": "Retrieve spare-parts document(s)",
+            "description": "Retrieve purchase-orders document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -244,7 +244,7 @@
         },
         "summary": "",
         "tags": [
-          "Spare-parts"
+          "Purchase-orders"
         ],
         "requestBody": {
           "description": "",
@@ -252,20 +252,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewSpare-parts"
+                "$ref": "#/components/schemas/NewPurchase-orders"
               }
             }
           }
         }
       }
     },
-    "/spare-parts/count": {
+    "/purchase-orders/count": {
       "get": {
         "deprecated": false,
-        "description": "Retrieve the numver of spare-parts documents",
+        "description": "Retrieve the numver of purchase-orders documents",
         "responses": {
           "200": {
-            "description": "Retrieve spare-parts document(s)",
+            "description": "Retrieve purchase-orders document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -311,18 +311,18 @@
         },
         "summary": "",
         "tags": [
-          "Spare-parts"
+          "Purchase-orders"
         ],
         "parameters": []
       }
     },
-    "/spare-parts/{id}": {
+    "/purchase-orders/{id}": {
       "get": {
         "deprecated": false,
-        "description": "Find one spare-parts record",
+        "description": "Find one purchase-orders record",
         "responses": {
           "200": {
-            "description": "Retrieve spare-parts document(s)",
+            "description": "Retrieve purchase-orders document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -368,7 +368,7 @@
         },
         "summary": "",
         "tags": [
-          "Spare-parts"
+          "Purchase-orders"
         ],
         "parameters": [
           {
@@ -385,10 +385,10 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single spare-parts record",
+        "description": "Update a single purchase-orders record",
         "responses": {
           "200": {
-            "description": "Retrieve spare-parts document(s)",
+            "description": "Retrieve purchase-orders document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -434,7 +434,7 @@
         },
         "summary": "",
         "tags": [
-          "Spare-parts"
+          "Purchase-orders"
         ],
         "requestBody": {
           "description": "",
@@ -442,7 +442,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewSpare-parts"
+                "$ref": "#/components/schemas/NewPurchase-orders"
               }
             }
           }
@@ -462,10 +462,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a single spare-parts record",
+        "description": "Delete a single purchase-orders record",
         "responses": {
           "200": {
-            "description": "deletes a single spare-parts based on the ID supplied",
+            "description": "deletes a single purchase-orders based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -508,7 +508,7 @@
         },
         "summary": "",
         "tags": [
-          "Spare-parts"
+          "Purchase-orders"
         ],
         "parameters": [
           {
@@ -527,7 +527,7 @@
   },
   "components": {
     "schemas": {
-      "Spare-parts": {
+      "Purchase-orders": {
         "required": [
           "id"
         ],
@@ -541,7 +541,7 @@
           "QR": {
             "type": "string"
           },
-          "photo": {
+          "image": {
             "required": [
               "id",
               "name",
@@ -590,10 +590,118 @@
           "description": {
             "type": "string"
           },
-          "stockAmount": {
-            "type": "integer"
+          "location": {
+            "type": "string"
           },
-          "filesToUpload": {
+          "users": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "username",
+                "email"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "provider": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "resetPasswordToken": {
+                  "type": "string"
+                },
+                "confirmed": {
+                  "type": "boolean"
+                },
+                "blocked": {
+                  "type": "boolean"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "surname": {
+                  "type": "string"
+                },
+                "failure_records_created": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "planned_maintenance_tasks": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "failure_records": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "machines": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "facilities": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "planned_maintenance_crons": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "level": {
+                  "type": "integer"
+                },
+                "company": {
+                  "type": "string"
+                },
+                "cost": {
+                  "type": "integer"
+                },
+                "submachines": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "purchase_orders": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "purchaseDate": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "purchaseFile": {
             "required": [
               "id",
               "name",
@@ -639,159 +747,45 @@
               }
             }
           },
-          "leadtime": {
-            "type": "integer"
-          },
-          "leadtimeType": {
-            "type": "string",
-            "enum": [
-              "days",
-              "weeks",
-              "months"
-            ]
-          },
-          "price": {
-            "type": "number"
-          },
-          "vendorDetails": {
-            "type": "string"
-          },
-          "warranty": {
-            "type": "string"
-          },
-          "notes": {
-            "type": "string"
-          },
-          "machines": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "name"
-              ],
-              "properties": {
-                "id": {
+          "supplier": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "spare_parts": {
+                "type": "array",
+                "items": {
                   "type": "string"
-                },
-                "name": {
+                }
+              },
+              "description": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              },
+              "QR": {
+                "type": "string"
+              },
+              "fileUpload": {
+                "type": "string"
+              },
+              "photo": {
+                "type": "string"
+              },
+              "company": {
+                "type": "string"
+              },
+              "purchase_orders": {
+                "type": "array",
+                "items": {
                   "type": "string"
-                },
-                "QR": {
-                  "type": "string"
-                },
-                "image": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "warranty": {
-                  "type": "string"
-                },
-                "location": {
-                  "type": "string"
-                },
-                "users": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "manufacturer": {
-                  "type": "string"
-                },
-                "make": {
-                  "type": "string"
-                },
-                "model": {
-                  "type": "string"
-                },
-                "serialCode": {
-                  "type": "string"
-                },
-                "purchaseDate": {
-                  "type": "string"
-                },
-                "seller": {
-                  "type": "string"
-                },
-                "price": {
-                  "type": "number"
-                },
-                "purchaseFile": {
-                  "type": "string"
-                },
-                "financialLabourPastMonth": {
-                  "type": "number"
-                },
-                "financialLabourPastYear": {
-                  "type": "number"
-                },
-                "financialLabourTotal": {
-                  "type": "number"
-                },
-                "financialSparePastMonth": {
-                  "type": "number"
-                },
-                "financialSparePastYear": {
-                  "type": "number"
-                },
-                "financialSpareTotal": {
-                  "type": "number"
-                },
-                "financialMiscPastMonth": {
-                  "type": "number"
-                },
-                "financialMiscPastYear": {
-                  "type": "number"
-                },
-                "financialMiscTotal": {
-                  "type": "number"
-                },
-                "spareParts": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "failure_records": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "planned_maintenance_tasks": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "sensors_to_models": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "facility": {
-                  "type": "string"
-                },
-                "operationTime": {
-                  "type": "number"
-                },
-                "planned_maintenance_crons": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "company": {
-                  "type": "string"
-                },
-                "submachines": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
                 }
               }
             }
@@ -880,289 +874,10 @@
                 }
               }
             }
-          },
-          "failure_records": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "typeOfWork",
-                "natureOfWork"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "typeOfWork": {
-                  "type": "string"
-                },
-                "natureOfWork": {
-                  "type": "string"
-                },
-                "severity": {
-                  "type": "integer"
-                },
-                "occurance": {
-                  "type": "integer"
-                },
-                "detection": {
-                  "type": "integer"
-                },
-                "operatorsError": {
-                  "type": "boolean"
-                },
-                "workTime": {
-                  "type": "component"
-                },
-                "partsUsed": {
-                  "type": "component"
-                },
-                "requiredFollowUp": {
-                  "type": "string"
-                },
-                "workCarriedOut": {
-                  "type": "string"
-                },
-                "stateDescription": {
-                  "type": "string"
-                },
-                "workorderState": {
-                  "type": "string"
-                },
-                "rootCause": {
-                  "type": "string"
-                },
-                "priority": {
-                  "type": "string"
-                },
-                "submittedBy": {
-                  "type": "string"
-                },
-                "users": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "machine": {
-                  "type": "string"
-                },
-                "image": {
-                  "type": "string"
-                },
-                "completed": {
-                  "type": "boolean"
-                },
-                "company": {
-                  "type": "string"
-                },
-                "labourCost": {
-                  "type": "number"
-                },
-                "spareCost": {
-                  "type": "number"
-                },
-                "spare_parts": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "startDateTime": {
-                  "type": "datetime"
-                },
-                "endDateTime": {
-                  "type": "datetime"
-                },
-                "submachine": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "submachines": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "name"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "QR": {
-                  "type": "string"
-                },
-                "image": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "warranty": {
-                  "type": "string"
-                },
-                "location": {
-                  "type": "string"
-                },
-                "users": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "manufacturer": {
-                  "type": "string"
-                },
-                "make": {
-                  "type": "string"
-                },
-                "model": {
-                  "type": "string"
-                },
-                "serialCode": {
-                  "type": "string"
-                },
-                "purchaseDate": {
-                  "type": "string"
-                },
-                "seller": {
-                  "type": "string"
-                },
-                "price": {
-                  "type": "number"
-                },
-                "purchaseFile": {
-                  "type": "string"
-                },
-                "financialLabourPastMonth": {
-                  "type": "number"
-                },
-                "financialLabourPastYear": {
-                  "type": "number"
-                },
-                "financialLabourTotal": {
-                  "type": "number"
-                },
-                "financialSparePastMonth": {
-                  "type": "number"
-                },
-                "financialSparePastYear": {
-                  "type": "number"
-                },
-                "financialSpareTotal": {
-                  "type": "number"
-                },
-                "financialMiscPastMonth": {
-                  "type": "number"
-                },
-                "financialMiscPastYear": {
-                  "type": "number"
-                },
-                "financialMiscTotal": {
-                  "type": "number"
-                },
-                "spareParts": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "failure_records": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "planned_maintenance_tasks": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "sensors_to_models": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "facility": {
-                  "type": "string"
-                },
-                "operationTime": {
-                  "type": "number"
-                },
-                "planned_maintenance_crons": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "company": {
-                  "type": "string"
-                },
-                "machines": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "suppliers": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "spare_parts": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "description": {
-                  "type": "string"
-                },
-                "location": {
-                  "type": "string"
-                },
-                "QR": {
-                  "type": "string"
-                },
-                "fileUpload": {
-                  "type": "string"
-                },
-                "photo": {
-                  "type": "string"
-                },
-                "company": {
-                  "type": "string"
-                },
-                "purchase_orders": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
           }
         }
       },
-      "NewSpare-parts": {
+      "NewPurchase-orders": {
         "properties": {
           "name": {
             "type": "string"
@@ -1173,58 +888,26 @@
           "description": {
             "type": "string"
           },
-          "stockAmount": {
-            "type": "integer"
+          "location": {
+            "type": "string"
           },
-          "leadtime": {
-            "type": "integer"
+          "users": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
-          "leadtimeType": {
-            "type": "string",
-            "enum": [
-              "days",
-              "weeks",
-              "months"
-            ]
+          "purchaseDate": {
+            "type": "string"
           },
           "price": {
             "type": "number"
           },
-          "vendorDetails": {
+          "supplier": {
             "type": "string"
-          },
-          "warranty": {
-            "type": "string"
-          },
-          "notes": {
-            "type": "string"
-          },
-          "machines": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           },
           "company": {
             "type": "string"
-          },
-          "failure_records": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "submachines": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "suppliers": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           }
         }
       }

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "03/12/2022 10:10:00 PM"
+    "x-generation-date": "03/14/2022 12:52:43 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -4894,6 +4894,530 @@
             }
           }
         }
+      }
+    },
+    "/purchase-orders": {
+      "get": {
+        "deprecated": false,
+        "description": "Find all the purchase-orders's records",
+        "responses": {
+          "200": {
+            "description": "Retrieve purchase-orders document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Purchase-orders"
+        ],
+        "parameters": [
+          {
+            "name": "_limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of results possible",
+            "schema": {
+              "type": "integer"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_sort",
+            "in": "query",
+            "required": false,
+            "description": "Sort according to a specific field.",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_start",
+            "in": "query",
+            "required": false,
+            "description": "Skip a specific number of entries (especially useful for pagination)",
+            "schema": {
+              "type": "integer"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "=",
+            "in": "query",
+            "required": false,
+            "description": "Get entries that matches exactly your input",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_ne",
+            "in": "query",
+            "required": false,
+            "description": "Get records that are not equals to something",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_lt",
+            "in": "query",
+            "required": false,
+            "description": "Get record that are lower than a value",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_lte",
+            "in": "query",
+            "required": false,
+            "description": "Get records that are lower than or equal to a value",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_gt",
+            "in": "query",
+            "required": false,
+            "description": "Get records that are greater than a value",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_gte",
+            "in": "query",
+            "required": false,
+            "description": "Get records that are greater than  or equal a value",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_contains",
+            "in": "query",
+            "required": false,
+            "description": "Get records that contains a value",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_containss",
+            "in": "query",
+            "required": false,
+            "description": "Get records that contains (case sensitive) a value",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_in",
+            "in": "query",
+            "required": false,
+            "description": "Get records that matches any value in the array of values",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_nin",
+            "in": "query",
+            "required": false,
+            "description": "Get records that doesn't match any value in the array of values",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "deprecated": false
+          }
+        ]
+      },
+      "post": {
+        "deprecated": false,
+        "description": "Create a new purchase-orders record",
+        "responses": {
+          "200": {
+            "description": "Retrieve purchase-orders document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Purchase-orders"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewPurchase-orders"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/purchase-orders/count": {
+      "get": {
+        "deprecated": false,
+        "description": "Retrieve the numver of purchase-orders documents",
+        "responses": {
+          "200": {
+            "description": "Retrieve purchase-orders document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Purchase-orders"
+        ],
+        "parameters": []
+      }
+    },
+    "/purchase-orders/{id}": {
+      "get": {
+        "deprecated": false,
+        "description": "Find one purchase-orders record",
+        "responses": {
+          "200": {
+            "description": "Retrieve purchase-orders document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Purchase-orders"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "put": {
+        "deprecated": false,
+        "description": "Update a single purchase-orders record",
+        "responses": {
+          "200": {
+            "description": "Retrieve purchase-orders document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Purchase-orders"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewPurchase-orders"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "deprecated": false,
+        "description": "Delete a single purchase-orders record",
+        "responses": {
+          "200": {
+            "description": "deletes a single purchase-orders based on the ID supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Purchase-orders"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/send-pdfs": {
@@ -10289,6 +10813,12 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "purchase_orders": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -11012,6 +11542,61 @@
                 },
                 "company": {
                   "type": "string"
+                },
+                "purchase_orders": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "purchase_orders": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "QR": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "users": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "purchaseDate": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "purchaseFile": {
+                  "type": "string"
+                },
+                "supplier": {
+                  "type": "string"
+                },
+                "company": {
+                  "type": "string"
                 }
               }
             }
@@ -11085,6 +11670,12 @@
             }
           },
           "suppliers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "purchase_orders": {
             "type": "array",
             "items": {
               "type": "string"
@@ -11323,6 +11914,12 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "purchase_orders": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -11533,6 +12130,12 @@
                 }
               },
               "suppliers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "purchase_orders": {
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -11961,6 +12564,12 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "purchase_orders": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             }
           },
@@ -12052,6 +12661,12 @@
                   "type": "integer"
                 },
                 "submachines": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "purchase_orders": {
                   "type": "array",
                   "items": {
                     "type": "string"
@@ -12312,6 +12927,12 @@
                 }
               },
               "suppliers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "purchase_orders": {
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -12870,6 +13491,12 @@
                   "type": "integer"
                 },
                 "submachines": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "purchase_orders": {
                   "type": "array",
                   "items": {
                     "type": "string"
@@ -13442,6 +14069,12 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "purchase_orders": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             }
           },
@@ -13807,6 +14440,12 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "purchase_orders": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             }
           },
@@ -13911,6 +14550,12 @@
                 }
               },
               "suppliers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "purchase_orders": {
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -14132,6 +14777,12 @@
                   "type": "integer"
                 },
                 "submachines": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "purchase_orders": {
                   "type": "array",
                   "items": {
                     "type": "string"
@@ -14389,6 +15040,12 @@
                 }
               },
               "suppliers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "purchase_orders": {
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -14840,6 +15497,12 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "purchase_orders": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -14962,6 +15625,12 @@
                 }
               },
               "suppliers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "purchase_orders": {
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -15153,6 +15822,390 @@
             "type": "string"
           },
           "submachine": {
+            "type": "string"
+          }
+        }
+      },
+      "Purchase-orders": {
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "QR": {
+            "type": "string"
+          },
+          "image": {
+            "required": [
+              "id",
+              "name",
+              "hash",
+              "mime",
+              "size",
+              "url",
+              "provider"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "hash": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "number"
+              },
+              "url": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "provider_metadata": {
+                "type": "object"
+              },
+              "related": {
+                "type": "string"
+              }
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "username",
+                "email"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "provider": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "resetPasswordToken": {
+                  "type": "string"
+                },
+                "confirmed": {
+                  "type": "boolean"
+                },
+                "blocked": {
+                  "type": "boolean"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "surname": {
+                  "type": "string"
+                },
+                "failure_records_created": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "planned_maintenance_tasks": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "failure_records": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "machines": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "facilities": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "planned_maintenance_crons": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "level": {
+                  "type": "integer"
+                },
+                "company": {
+                  "type": "string"
+                },
+                "cost": {
+                  "type": "integer"
+                },
+                "submachines": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "purchase_orders": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "purchaseDate": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "purchaseFile": {
+            "required": [
+              "id",
+              "name",
+              "hash",
+              "mime",
+              "size",
+              "url",
+              "provider"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "hash": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "number"
+              },
+              "url": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "provider_metadata": {
+                "type": "object"
+              },
+              "related": {
+                "type": "string"
+              }
+            }
+          },
+          "supplier": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "spare_parts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "description": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              },
+              "QR": {
+                "type": "string"
+              },
+              "fileUpload": {
+                "type": "string"
+              },
+              "photo": {
+                "type": "string"
+              },
+              "company": {
+                "type": "string"
+              },
+              "purchase_orders": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "company": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "membership": {
+                "type": "integer"
+              },
+              "users": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "machines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "spare_parts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "facilities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "sensors_to_models": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "planned_maintenance_crons": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "planned_maintenance_tasks": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "failure_records": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "orders": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "submachines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "suppliers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "purchase_orders": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "NewPurchase-orders": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "QR": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "purchaseDate": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "supplier": {
+            "type": "string"
+          },
+          "company": {
             "type": "string"
           }
         }
@@ -15561,6 +16614,12 @@
                 }
               },
               "suppliers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "purchase_orders": {
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -16132,6 +17191,12 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "purchase_orders": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             }
           },
@@ -16404,6 +17469,12 @@
                 },
                 "company": {
                   "type": "string"
+                },
+                "purchase_orders": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -16634,6 +17705,12 @@
                   "type": "integer"
                 },
                 "submachines": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "purchase_orders": {
                   "type": "array",
                   "items": {
                     "type": "string"
@@ -17206,6 +18283,12 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "purchase_orders": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             }
           },
@@ -17731,6 +18814,61 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "purchase_orders": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "purchase_orders": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "QR": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "users": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "purchaseDate": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "purchaseFile": {
+                  "type": "string"
+                },
+                "supplier": {
+                  "type": "string"
+                },
+                "company": {
+                  "type": "string"
+                }
               }
             }
           }
@@ -17758,6 +18896,12 @@
           },
           "company": {
             "type": "string"
+          },
+          "purchase_orders": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -17903,6 +19047,12 @@
                   "type": "integer"
                 },
                 "submachines": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "purchase_orders": {
                   "type": "array",
                   "items": {
                     "type": "string"
@@ -18595,6 +19745,12 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "purchase_orders": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             }
           },
@@ -18735,6 +19891,55 @@
                 }
               }
             }
+          },
+          "purchase_orders": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "QR": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "users": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "purchaseDate": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "purchaseFile": {
+                  "type": "string"
+                },
+                "supplier": {
+                  "type": "string"
+                },
+                "company": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -18827,6 +20032,12 @@
             "default": 12
           },
           "submachines": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "purchase_orders": {
             "type": "array",
             "items": {
               "type": "string"
