@@ -616,12 +616,12 @@
                 url: url,
                 data: {
                   query: `{
-                failureRecordsConnection(where: {natureOfWork_ne: "breakdown", company: "${this.company}"}){
-                  aggregate{
-                    count
-                  }
-                }
-              }`,
+                    failureRecordsConnection(where: {natureOfWork_ne: "breakdown", company: "${this.company}"}){
+                      aggregate{
+                        count
+                      }
+                    }
+                  }`,
                 },
               }).then((res) => {
                 if (res.data.data.failureRecordsConnection) {

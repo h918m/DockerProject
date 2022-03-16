@@ -128,10 +128,10 @@ export default {
             title: 'Dashboard',
             icon: 'mdi-view-dashboard-outline',
             children: [
-              // {
-              //   title: 'Historical Data TEST',
-              //   to: 'historical-data/5e74f348f3580f00125b1f30',
-              // },
+              {
+                title: 'Dashboard Status View',
+                to: 'dashboard-status',
+              },
               {
                 title: 'Machine Choosing',
                 to: 'machines-list',

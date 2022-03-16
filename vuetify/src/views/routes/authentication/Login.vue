@@ -114,7 +114,7 @@
             this.$router.push('/authentication/membership');
           }
         } else {
-          this.$router.push('/dashboard/machines-list');
+          this.$router.push('/dashboard/dashboard-status');
         }
       }
     },
@@ -133,7 +133,7 @@
                 this.$router.push('/authentication/membership');
               }
             } else {
-              this.$router.push('/dashboard/machines-list');
+              this.$router.push('/dashboard/dashboard-status');
             }
           }
         })

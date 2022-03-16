@@ -324,6 +324,11 @@ const router = new Router({
           component: () => import('@/views/routes/dashboard/MachineDetailsView'),
         },
         {
+          name: 'DashboardStatusView',
+          path: 'dashboard/dashboard-status',
+          component: () => import('@/views/routes/dashboard/DashboardStatusView'),
+        },
+        {
           name: 'DashboardSensorsForMachineDashboard',
           path: 'dashboard/sensor-readings-for-machine/:id',
           component: () => import('@/views/routes/dashboard/SensorsForMachineDashboard'),

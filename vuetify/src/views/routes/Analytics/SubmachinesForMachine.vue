@@ -506,8 +506,8 @@
             url: '/graphql',
             data: {
               query: `{
-                failureRecordsConnection(where: {startDateTime_gt: "${monthFrom}", endDateTime_lt: "${monthTo}", machine: "${machineId}"})
-                {
+                failureRecordsConnection(where: {startDateTime_gt: "2022-03-01T05:00:00.000Z", endDateTime_lt: "${monthTo}", machine: "${machineId}"})
+                  {
                     aggregate {
                       sum {
                         labourCost
