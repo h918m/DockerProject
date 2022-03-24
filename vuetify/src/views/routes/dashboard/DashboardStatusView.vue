@@ -166,6 +166,57 @@
               </v-card>
             </v-col>
           </v-row>
+          <v-divider class="mt-3"/>
+          <v-row>
+            <v-col md="4">
+              <v-card elevation="5" style="height: 27rem">
+                <v-card-title class="justify-center">PM CRONs Status</v-card-title>
+                <v-divider class="mx-4"></v-divider>
+                <v-card-text class="text-center">
+                  <v-progress-circular
+                    :value="pm_completed_percent"
+                    size="300"
+                    width="40"
+                    color="indigo lighten-2"
+                    style="max-width: 100%"
+                  >
+                    <p style="font-size: 4rem">{{pm_completed_count + '/' + pm_total_count }}</p>
+                  </v-progress-circular>
+                </v-card-text>
+              </v-card>
+            </v-col>
+            <v-col md="4">
+              <v-layout row wrap class="mt-3">
+                <v-flex d-flex>
+                  <v-card elevation="5" style="width: 100%;height:10rem">
+                    <v-card-title class="justify-center">Completed PM CRONs</v-card-title>
+                    <v-divider class="mx-4"></v-divider>
+                    <v-card-text class="text-center mt-4">
+                      <p style="font-size: 4rem">{{pm_completed_count}}</p>
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+                <v-flex d-flex>
+                  <v-card elevation="5" style="width: 100%;height:10rem">
+                    <v-card-title class="justify-center">InCompleted PM CRONs</v-card-title>
+                    <v-divider class="mx-4"></v-divider>
+                    <v-card-text class="text-center mt-4">
+                      <p style="font-size: 4rem">{{pm_incompleted_count}}</p>
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+              </v-layout>
+            </v-col>
+            <v-col md="4">
+              <v-card elevation="5" style="height: 27rem">
+                <v-card-title class="justify-center">Total PM CRONs</v-card-title>
+                <v-divider class="mx-4"></v-divider>
+                <v-card-text class="text-center mt-15">
+                  <p style="font-size: 6rem;color:#559900" class="mt-10">{{pm_total_count }}</p>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
         </base-material-card>
       </v-col>
     </v-row>
@@ -218,6 +269,11 @@
       pm_incompleted_count: 0,
       pm_completed_percent: 0,
       pm_incompleted_percent: 0,
+      cron_total_count: 0,
+      cron_completed_count: 0,
+      cron_incompleted_count: 0,
+      cron_completed_percent: 0,
+      cron_incompleted_percent: 0,
       search: '',
       loading: true,
       dataTable: {
@@ -275,7 +331,8 @@
     watch: {
       currentOption: function () {
         this.getWorkOrders();
-        // this.getMTC();
+        this.getPlannedMaintenance();
+        this.getPMCrons();
       },
       // options: {
       //   async handler(newOptions) {
@@ -315,7 +372,6 @@
       // Load form data
       this.wo_total_count = await this.getWorkOrders();
       this.pm_total_count = await this.getPlannedMaintenance();
-      console.log("/////////// this = ", this)
       this.loading = false
     },
 
@@ -361,7 +417,6 @@
           }
           this.wo_incompleted_percent = this.wo_incompleted_count / this.wo_total_count *100
           this.loading = false;
-          console.log("============ this = ", this)
           return res.data.data.failureRecordsConnection.aggregate.count
         })
       },
@@ -382,7 +437,6 @@
               }`,
           },
         }).then(async (res) => {
-          console.log(" ====================== res: ", res)
           this.pm_completed_count = await this.$axios({
             method: 'POST',
             url: '/graphql',
@@ -402,8 +456,46 @@
           this.pm_completed_percent = this.pm_completed_count / this.pm_total_count *100
           this.pm_incompleted_percent = this.pm_incompleted_count / this.pm_total_count *100
           this.loading = false;
-          console.log("============ this = ", this)
           return res.data.data.plannedMaintenanceTasksConnection.aggregate.count
+        })
+      },
+      async getPMCrons() {
+        this.loading = true;
+        this.setDuration();
+        return this.$axios({
+          method: 'POST',
+          url: '/graphql',
+          data: {
+            query: `{
+                plannedMaintenancesConnection(where: { company: "${this.company}"})
+                  {
+                    aggregate {
+                      count
+                    }
+                  }
+              }`,
+          },
+        }).then(async (res) => {
+          this.cron_completed_count = await this.$axios({
+            method: 'POST',
+            url: '/graphql',
+            data: {
+              query: `{
+                plannedMaintenancesConnection(where: {completed: "true", company: "${this.company}"}){
+                  aggregate{
+                    count
+                  }
+                }
+              }`,
+            },
+          });
+          this.cron_total_count = res.data.data.plannedMaintenancesConnection.aggregate.count
+          this.cron_completed_count = this.cron_completed_count.data.data.plannedMaintenancesConnection.aggregate.count
+          this.cron_incompleted_count = this.cron_total_count - this.cron_completed_count
+          this.cron_completed_percent = this.cron_completed_count / this.cron_total_count *100
+          this.cron_incompleted_percent = this.cron_incompleted_count / this.cron_total_count *100
+          this.loading = false;
+          return res.data.data.plannedMaintenancesConnection.aggregate.count
         })
       },
       setDuration() {

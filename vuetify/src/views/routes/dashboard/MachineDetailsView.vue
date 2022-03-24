@@ -40,6 +40,7 @@
             :items="machines"
             item-text="name"
             item-value="id"
+            @change="refetchMachines"
           >
             <template v-slot:item="{ attrs, item, on }">
               <v-list-item
@@ -98,6 +99,9 @@ export default {
         message: '',
       },
     }
+  },
+  mounted() {
+    // this.refetchMachines()
   },
   computed: {
     ...mapState({

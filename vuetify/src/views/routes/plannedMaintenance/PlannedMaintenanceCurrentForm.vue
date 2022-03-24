@@ -502,7 +502,6 @@
         this.dialog = false;
         const [pdf, title] = this.getPDF();
         var file = this.dataURLtoFile(pdf,'attachment.pdf');
-        console.log("file", file, "============", file.name);
         const formData = new FormData();
         const data = {
           text: "completed",

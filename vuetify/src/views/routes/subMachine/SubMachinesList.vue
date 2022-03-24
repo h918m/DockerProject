@@ -353,11 +353,11 @@
         }
       },
       openHistoricalData(id) {
-        this.$router.push({name: 'MachineMachineFormAction', params: {action: 'modify',id: id}})
+        this.$router.push({name: 'SubMachineFormAction', params: {action: 'modify',id: id}})
       },
       onClick(item) {
         if (!this.isAdmin) {
-          this.$router.push({ name: 'MachineMachineFormAction', params: {action: 'modify', id: item.id}});
+          this.$router.push({ name: 'SubMachineFormAction', params: {action: 'modify', id: item.id}});
         }
       },
       async getSubMachinesData(payload) {

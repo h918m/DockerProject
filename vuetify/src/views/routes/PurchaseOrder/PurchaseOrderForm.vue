@@ -167,135 +167,17 @@
                   <validation-provider
                     v-slot="{ errors }"
                     rules="required"
-                    name="Equip Name"
+                    name="Part Name"
                   >
                     <v-text-field
                       v-model="form.name"
                       :error-messages="errors"
                       :disabled="formIsDisabled"
                       color="secondary"
-                      label="Friendly name for a Equipment"
+                      label="Friendly name for a Part"
                     />
                   </validation-provider>
                 </v-col>
-
-                <!--                Relation Facility-->
-                <!-- <v-col
-                  cols="12"
-                  md="12"
-                >
-                  <v-select
-                    v-model="form.facility"
-                    color="secondary"
-                    item-color="secondary"
-                    label="Facility relation (optional)"
-                    :disabled="formIsDisabled"
-                    return-object
-                    :items="facilities"
-                    item-text="name"
-                    item-value="id"
-                  >
-                    <template v-slot:item="{ attrs, item, on }">
-                      <v-list-item
-                        v-bind="attrs"
-                        active-class="secondary elevation-4 white--text"
-                        class="mx-3 mb-3 v-sheet"
-                        elevation="0"
-                        v-on="on"
-                      >
-                        <v-list-item-content>
-                          <v-list-item-title v-text="`${item ? item.name : ''}`" />
-                        </v-list-item-content>
-                      </v-list-item>
-                    </template>
-                  </v-select>
-                </v-col> -->
-
-                <!--                Relation SubMachines-->
-                <!-- <v-col
-                  cols="12"
-                  md="12"
-                >
-                  <v-select
-                    v-model="form.submachines"
-                    color="secondary"
-                    item-color="secondary"
-                    label="SubMachines relation (optional)"
-                    :disabled="formIsDisabled"
-                    return-object
-                    :items="submachines"
-                    multiple
-                    item-text="name"
-                    item-value="id"
-                  >
-                    <template v-slot:item="{ attrs, item, on }">
-                      <v-list-item
-                        v-bind="attrs"
-                        active-class="secondary elevation-4 white--text"
-                        class="mx-3 mb-3 v-sheet"
-                        elevation="0"
-                        v-on="on"
-                      >
-                        <v-list-item-content>
-                          <v-list-item-title v-text="`${item ? item.name : ''}`" />
-                        </v-list-item-content>
-                      </v-list-item>
-                    </template>
-                  </v-select>
-                </v-col> -->
-
-                <!--                Relation spare parts-->
-                <!-- <v-col
-                  cols="12"
-                  md="12"
-                >
-                  <v-select
-                    v-model="form.spareParts"
-                    color="secondary"
-                    item-color="secondary"
-                    label="Spare parts relation (optional)"
-                    :disabled="formIsDisabled"
-                    return-object
-                    :items="spareParts"
-                    multiple
-                    item-text="name"
-                    item-value="id"
-                  >
-                    <template v-slot:item="{ attrs, item, on }">
-                      <v-list-item
-                        v-bind="attrs"
-                        active-class="secondary elevation-4 white--text"
-                        class="mx-3 mb-3 v-sheet"
-                        elevation="0"
-                        v-on="on"
-                      >
-                        <v-list-item-content>
-                          <v-list-item-title v-text="`${item ? item.name : ''}`" />
-                        </v-list-item-content>
-                      </v-list-item>
-                    </template>
-                  </v-select>
-                </v-col> -->
-
-                <!-- Operation time -->
-                <!-- <v-col
-                  cols="12"
-                >
-                  <validation-provider
-                    v-slot="{ errors }"
-                    rules="required|operationTime"
-                    name="Operation time"
-                  >
-                    <v-text-field
-                      v-model="form.operationTime"
-                      :error-messages="errors"
-                      :disabled="formIsDisabled"
-                      color="secondary"
-                      label="Operation time"
-                      type="number"
-                    />
-                  </validation-provider>
-                </v-col> -->
 
 
                 <v-col
@@ -305,7 +187,7 @@
                 >
                   <!-- QR Code Generator -->
                   <div class="font-weight-bold grey--text">
-                    QR Code to access the equip
+                    QR Code to access the part
                   </div>
                   <qrcode
                     :value="id"
@@ -325,7 +207,7 @@
                     name="Machine Image"
                   >
                     <div class="font-weight-bold grey--text">
-                      Take a Picture of the Equip
+                      Take a Picture of the Part
                     </div>
                     <input
                       ref="file"
@@ -1286,6 +1168,7 @@
           purchaseDate: purchaseDate,
           price: price,
           supplier: supplier.id,
+          company: this.company
         };
 
         formData.append('files.image', image, image.name);

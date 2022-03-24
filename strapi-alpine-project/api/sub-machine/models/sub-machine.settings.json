@@ -128,9 +128,9 @@
       "model": "company",
       "via": "submachines"
     },
-    "machines": {
+    "machine": {
       "via": "submachines",
-      "collection": "machine"
+      "model": "machine"
     }
   }
 }

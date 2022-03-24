@@ -97,11 +97,6 @@
                         <span class="white--text headline">{{Object.values(sensor.sensorReadings[0].formattedData)[formattedDataIndex]===0? 'OFF' : 'ON'}}</span>
                       </v-avatar>
                     </div>
-
-
-
-
-
                     <vue-svg-gauge
                       v-else
                       :value="Object.values(sensor.sensorReadings[0].formattedData)[formattedDataIndex]"
@@ -120,7 +115,9 @@
                         :value="Object.values(sensor.sensorReadings[0].formattedData)[formattedDataIndex]"
                       />
                     </vue-svg-gauge>
+                    <v-spacer></v-spacer>
                   </base-material-card>
+                  <div>Predicted Day : {{sensor.predDate}} - {{sensor.predDays}} Days later</div>
                 </v-col>
                 <v-col
                   cols="12"
@@ -147,6 +144,8 @@
   import {mapState} from 'vuex'
   import 'vue-loading-overlay/dist/vue-loading.css'
   import SensorReading from "./SensorReadingChart";
+  import moment from 'moment'
+  import regression from 'regression';
 
   export default {
     name: 'SensorsForMachineDashboard',
@@ -167,7 +166,12 @@
       return {
         currentOption: 'year',
         options: ['year', 'month', 'week'],
+        regressionResult: ''
       }
+    },
+    async mounted() {
+      console.log(' =============== moment = ', moment())
+      this.linearRegression([1, 2], [3, 4]);
     },
     watch: {
       machines: (newValue) => {
@@ -181,7 +185,14 @@
       }),
       machine() {
         for (let x = 0; x <= this.machines.length; x += 1) {
-          if (this.machines[x] && this.machines[x].id === this.id) return this.machines[x]
+          if (this.machines[x] && this.machines[x].id === this.id) {
+            for (let i = 0; i < this.machines[x].sensors_to_models.length; i++) {
+              this.machines[x].sensors_to_models[i].predDays = Math.floor(Math.random() * 10) + 1;
+              this.machines[x].sensors_to_models[i].predDate = moment().subtract(Math.floor(Math.random() * 10) + 1, 'days').format('MM/DD/YYYY');
+            }
+            console.log('---------- this.machines[x] = ', this.machines[x])
+            return this.machines[x]
+          }
         }
         return null
       },
@@ -190,6 +201,14 @@
       //TODO: get data for mac address
       complete(index) {
         this.list[index] = !this.list[index]
+      },
+      linearRegression(xArr, yArr) {
+        const result = regression.linear([[0, 1], [32, 67], [12, 79]]);
+        const gradient = result.equation[0];
+        const yIntercept = result.equation[1];
+        console.log('---------- linear result', result)
+        console.log('---------- linear yIntercept', yIntercept)
+        console.log('---------- linear gradient', gradient)
       },
       openHistoricalData(sensorId) {
         this.$router.push({name: 'DashboardHistoricalData', params: {id: sensorId}})

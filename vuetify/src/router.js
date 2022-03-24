@@ -155,6 +155,13 @@ const router = new Router({
         },
 
         {
+          name: 'SubMachineFormAction',
+          path: 'sub-machine/sub-machine-form/:action/:id',
+          component: () => import('@/views/routes/subMachine/SubMachineForm'),
+          props: true,
+        },
+        
+        {
           name: 'MachineSubMachinesForMachine',
           path: 'machine/submachines-list/:id',
           component: () => import('@/views/routes/machine/SubMachinesForMachine'),
@@ -327,6 +334,11 @@ const router = new Router({
           name: 'DashboardStatusView',
           path: 'dashboard/dashboard-status',
           component: () => import('@/views/routes/dashboard/DashboardStatusView'),
+        },
+        {
+          name: 'DashboardML',
+          path: 'dashboard/dashboard-ml',
+          component: () => import('@/views/routes/dashboard/DashboardML'),
         },
         {
           name: 'DashboardSensorsForMachineDashboard',

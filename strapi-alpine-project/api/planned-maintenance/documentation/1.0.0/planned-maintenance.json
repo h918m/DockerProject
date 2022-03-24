@@ -1127,11 +1127,8 @@
               "company": {
                 "type": "string"
               },
-              "machines": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+              "machine": {
+                "type": "string"
               }
             }
           }

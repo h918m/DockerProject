@@ -1094,7 +1094,7 @@
           url: '/graphql',
           data: {
             query: `{
-            machine(id: "${id}"){
+            subMachine(id: "${id}"){
               name
               id
               image{
@@ -1213,7 +1213,6 @@
           //   eventDate: new Date().toLocaleString(),
           //   checked: false,
           // };
-          // console.log('====== notification data = ', notification_data)
           // notifyData.append('data', JSON.stringify(notification_data));
           // return this.$axios({
           //     method: 'post',
@@ -1222,7 +1221,6 @@
           //     headers: {'Content-Type': 'multipart/form-data'},
           //   },
           // ).then(({not_data}) => {
-          //   console.log('--------- not_data = ', not_data)
           //   return not_data
           // });
           return data

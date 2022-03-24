@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "03/14/2022 12:52:43 PM"
+    "x-generation-date": "03/23/2022 9:23:36 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -11497,11 +11497,8 @@
                 "company": {
                   "type": "string"
                 },
-                "machines": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
+                "machine": {
+                  "type": "string"
                 }
               }
             }
@@ -12268,11 +12265,8 @@
                 "company": {
                   "type": "string"
                 },
-                "machines": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
+                "machine": {
+                  "type": "string"
                 }
               }
             }
@@ -13153,11 +13147,8 @@
               "company": {
                 "type": "string"
               },
-              "machines": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+              "machine": {
+                "type": "string"
               }
             }
           }
@@ -14203,11 +14194,8 @@
                 "company": {
                   "type": "string"
                 },
-                "machines": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
+                "machine": {
+                  "type": "string"
                 }
               }
             }
@@ -15176,11 +15164,8 @@
               "company": {
                 "type": "string"
               },
-              "machines": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+              "machine": {
+                "type": "string"
               }
             }
           }
@@ -15761,11 +15746,8 @@
               "company": {
                 "type": "string"
               },
-              "machines": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+              "machine": {
+                "type": "string"
               }
             }
           }
@@ -16750,11 +16732,8 @@
               "company": {
                 "type": "string"
               },
-              "machines": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+              "machine": {
+                "type": "string"
               }
             }
           }
@@ -17424,11 +17403,8 @@
                 "company": {
                   "type": "string"
                 },
-                "machines": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
+                "machine": {
+                  "type": "string"
                 }
               }
             }
@@ -18292,136 +18268,133 @@
               }
             }
           },
-          "machines": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "name"
-              ],
-              "properties": {
-                "id": {
+          "machine": {
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "QR": {
+                "type": "string"
+              },
+              "image": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "warranty": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              },
+              "users": {
+                "type": "array",
+                "items": {
                   "type": "string"
-                },
-                "name": {
+                }
+              },
+              "manufacturer": {
+                "type": "string"
+              },
+              "make": {
+                "type": "string"
+              },
+              "model": {
+                "type": "string"
+              },
+              "serialCode": {
+                "type": "string"
+              },
+              "purchaseDate": {
+                "type": "string"
+              },
+              "seller": {
+                "type": "string"
+              },
+              "price": {
+                "type": "number"
+              },
+              "purchaseFile": {
+                "type": "string"
+              },
+              "financialLabourPastMonth": {
+                "type": "number"
+              },
+              "financialLabourPastYear": {
+                "type": "number"
+              },
+              "financialLabourTotal": {
+                "type": "number"
+              },
+              "financialSparePastMonth": {
+                "type": "number"
+              },
+              "financialSparePastYear": {
+                "type": "number"
+              },
+              "financialSpareTotal": {
+                "type": "number"
+              },
+              "financialMiscPastMonth": {
+                "type": "number"
+              },
+              "financialMiscPastYear": {
+                "type": "number"
+              },
+              "financialMiscTotal": {
+                "type": "number"
+              },
+              "spareParts": {
+                "type": "array",
+                "items": {
                   "type": "string"
-                },
-                "QR": {
+                }
+              },
+              "failure_records": {
+                "type": "array",
+                "items": {
                   "type": "string"
-                },
-                "image": {
+                }
+              },
+              "planned_maintenance_tasks": {
+                "type": "array",
+                "items": {
                   "type": "string"
-                },
-                "description": {
+                }
+              },
+              "sensors_to_models": {
+                "type": "array",
+                "items": {
                   "type": "string"
-                },
-                "warranty": {
+                }
+              },
+              "facility": {
+                "type": "string"
+              },
+              "operationTime": {
+                "type": "number"
+              },
+              "planned_maintenance_crons": {
+                "type": "array",
+                "items": {
                   "type": "string"
-                },
-                "location": {
+                }
+              },
+              "company": {
+                "type": "string"
+              },
+              "submachines": {
+                "type": "array",
+                "items": {
                   "type": "string"
-                },
-                "users": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "manufacturer": {
-                  "type": "string"
-                },
-                "make": {
-                  "type": "string"
-                },
-                "model": {
-                  "type": "string"
-                },
-                "serialCode": {
-                  "type": "string"
-                },
-                "purchaseDate": {
-                  "type": "string"
-                },
-                "seller": {
-                  "type": "string"
-                },
-                "price": {
-                  "type": "number"
-                },
-                "purchaseFile": {
-                  "type": "string"
-                },
-                "financialLabourPastMonth": {
-                  "type": "number"
-                },
-                "financialLabourPastYear": {
-                  "type": "number"
-                },
-                "financialLabourTotal": {
-                  "type": "number"
-                },
-                "financialSparePastMonth": {
-                  "type": "number"
-                },
-                "financialSparePastYear": {
-                  "type": "number"
-                },
-                "financialSpareTotal": {
-                  "type": "number"
-                },
-                "financialMiscPastMonth": {
-                  "type": "number"
-                },
-                "financialMiscPastYear": {
-                  "type": "number"
-                },
-                "financialMiscTotal": {
-                  "type": "number"
-                },
-                "spareParts": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "failure_records": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "planned_maintenance_tasks": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "sensors_to_models": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "facility": {
-                  "type": "string"
-                },
-                "operationTime": {
-                  "type": "number"
-                },
-                "planned_maintenance_crons": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "company": {
-                  "type": "string"
-                },
-                "submachines": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
                 }
               }
             }
@@ -18542,11 +18515,8 @@
           "company": {
             "type": "string"
           },
-          "machines": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "machine": {
+            "type": "string"
           }
         }
       },
@@ -19883,11 +19853,8 @@
                 "company": {
                   "type": "string"
                 },
-                "machines": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
+                "machine": {
+                  "type": "string"
                 }
               }
             }

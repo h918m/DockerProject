@@ -18,6 +18,8 @@
       name="Breakdown Records"
       url="/failure-records-bulk"
       :data="data"
+      @excelFile="getExcelData"
+      @uploadData="uploadExcelData"
     />
     <base-v-component
       heading="Work orders List"
@@ -134,7 +136,7 @@
         </template>
       </v-data-table>
     </base-material-card>
-      <base-material-card
+    <base-material-card
       color="purple"
       icon="mdi-calendar"
       inline
@@ -829,6 +831,97 @@
         }
 
         nativeEvent.stopPropagation()
+      },
+      loadExcelData (url, excelData) {
+        var test_data = [{id: 'asdfsadfasdfasdfa', users: [{name:'user1'},{name: 'user2'}], machine: {name: 'machine'}, createdAt: '2020-02-03', submittedBy: {name: 'submit'}, workorderState: 'inProgress'}]
+        console.log(excelData)
+        this.searchedData = test_data;
+      },
+      uploadExcelData (url, data) {
+        this.$axios.post(url, data).then((res) => {
+          this.getMachinesData();
+        });
+      },
+      async getExcelData (file) {
+        if (file == null) { 
+          this.searchedData = this.data;
+          return;
+        }
+
+        const XLSX = require('xlsx');
+        var reader = new FileReader();
+        reader.onload = (e) => {
+          // pre-process data
+          var binary = '';
+          var bytes = new Uint8Array(e.target.result);
+          var length = bytes.byteLength;
+          var apiUrl = '/failure-records-bulk';
+          for (var i = 0; i < length; i++) {
+            binary += String.fromCharCode(bytes[i])
+          }
+
+          /* read workbook */
+          var wb = XLSX.read(binary, {type: 'binary'});
+          var worksheet = wb.Sheets['data'];
+          var headers = {};
+          var data = [];
+          for (const z in worksheet) {
+            if (z[0] === '!') continue;
+            // parse out the column, row, and value
+            var tt = 0;
+            for (var i = 0; i < z.length; i++) {
+              if (!isNaN(z[i])) {
+                tt = i;
+                break
+              }
+            }
+            var col = z.substring(0, tt);
+            var row = parseInt(z.substring(tt));
+            var value = worksheet[z].v;
+
+            // store header names
+            if (row === 1 && value) {
+              headers[col] = value;
+              continue
+            }
+
+            if (!data[row]) data[row] = {};
+            data[row][headers[col]] = value
+          }
+          // drop those first two rows which are empty
+          data.shift();
+          data.shift();
+
+          // Sanitize data to remove fragile data
+          for (let x = 0; x < data.length; x += 1) {
+            delete data[x].id;
+            delete data[x].createdAt;
+            delete data[x].updatedAt;
+            let users = data[x].users;
+            let userArr = users.split(',')
+            data[x].users = userArr;
+          }
+
+          switch (apiUrl) {
+            case '/failure-records-bulk':
+              for (let x = 0; x < data.length; x += 1) {
+                data[x].workTime = {
+                  startDateTime: data[x].startDateTime,
+                  endDateTime: data[x].endDateTime,
+                };
+                delete data[x].startDateTime;
+                delete data[x].endDateTime
+              }
+              break
+          }
+
+          this.loadExcelData(apiUrl, data);
+          // axios.post(apiUrl, data);
+          this.loading = false
+        };
+
+        reader.readAsArrayBuffer(file);
+        this.loading = false
       },
       async updateRange ({ start, end }) {
         const events = []

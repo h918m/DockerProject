@@ -41,9 +41,9 @@
           </v-btn>
           <v-btn
             v-if="data"
-            @click="getTemplate(name)"
+            @click="uploadData()"
           >
-            Get Template
+            Upload Data
           </v-btn>
           <div class="mt-5" />
           <v-file-input
@@ -128,7 +128,10 @@ export default {
 
   methods: {
     importTable : function($event,url) {
-      console.log($event, url);
+      this.$emit('excelFile', $event);
+    },
+    uploadData : function($event) {
+      this.emit('uploadData', $event)
     }
   },
 }

@@ -284,7 +284,6 @@
       this.loading = true;
       this.data = await this.getMachinesData();
       this.searchedData = this.data;
-      console.log('///////////////// this.searcheddata = ', this.data)
       this.loading = false
     },
     methods: {
@@ -384,7 +383,6 @@
             }`,
           },
         }).then(async (res) => {
-          console.log('////////////// res = ', res)
           const machines = res.data.data.purchaseOrders;
           // Get data count
           this.count = await this.$axios({

@@ -1185,7 +1185,6 @@
         const {valid} = await this.$refs.provider.validate(val);
         if (valid) {
           const value = val.target.files[0];
-          console.log("value==========", value);
           if (!value) {
             return (this.form.image = null)
           }

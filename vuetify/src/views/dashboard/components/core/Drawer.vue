@@ -136,6 +136,10 @@ export default {
                 title: 'Machine Choosing',
                 to: 'machines-list',
               },
+              {
+                title: 'Prediction of Failure',
+                to: 'dashboard-ml',
+              },
             ],
           },
           {
@@ -339,6 +343,10 @@ export default {
               {
                 title: 'Machine Choosing',
                 to: 'machines-list',
+              },
+              {
+                title: 'Prediction of Failure',
+                to: 'dashboard-ml',
               },
             ],
           },

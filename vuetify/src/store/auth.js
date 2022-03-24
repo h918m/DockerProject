@@ -52,7 +52,6 @@ export default {
                     `
           }
         }).then(res => {
-          console.log("=====================", res);
           commit('setUser', res.data.data.user);
           commit('setCompany', res.data.data.user.company);
         });

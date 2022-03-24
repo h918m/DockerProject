@@ -23,7 +23,7 @@
       }
     },
     mounted() {
-      this.refreshSensorData();
+      // this.refreshSensorData();
     },
     data() {
       return {
@@ -82,6 +82,7 @@
             returnParam.push({ "date": month, "views": avgValue },)
           }
           this.sensorData = returnParam;
+          console.log('------------- year this = ', this)
         } else if (this.currentOption === 'month') {
           let returnParam = [];
           const monthFrom = moment().subtract(1, 'months');
@@ -112,6 +113,7 @@
             returnParam.push({ "date": month, "views": avgValue },)
           }
           this.sensorData = returnParam;
+          console.log('------------- month this = ', this)
         } else {
           let returnParam = [];
           const monthFrom = moment().subtract(1, 'weeks');
@@ -144,6 +146,7 @@
             });
             returnParam.push({ "date": month, "views": avgValue },)
           }
+          console.log('------------- week this = ', this)
           this.sensorData = returnParam;
         }
       }
