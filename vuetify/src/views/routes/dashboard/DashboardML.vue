@@ -39,14 +39,15 @@
           </template>
           <div id="period">
             <v-select
-              v-model="currentSubmachine"
+              v-model="currentMachine"
               color="secondary"
               item-color="secondary"
-              label="Select Submachine"
+              label="Select Machine"
               return-object
               :items="options"
               item-text="name"
               item-value="id"
+              @change="setCurrentOptions"
             >
               <template v-slot:item="{ attrs, item, on }">
                 <v-list-item
@@ -57,63 +58,36 @@
                   v-on="on"
                 >
                   <v-list-item-content>
-                    <v-list-item-title v-text="item.toUpperCase()"/>
+                    <v-list-item-title v-text="item.name.toUpperCase()"/>
                   </v-list-item-content>
                 </v-list-item>
               </template>
             </v-select>
           </div>
           <v-divider class="mt-3"/>
-          <v-row>
-            <v-col md="4">
-              <v-card elevation="5" style="height: 27rem">
-                <v-card-title class="justify-center">Work Orders Status</v-card-title>
-                <v-divider class="mx-4"></v-divider>
-                <v-card-text class="text-center">
-                  <v-progress-circular
-                    :value="wo_completed_percent"
-                    size="300"
-                    width="40"
-                    color="deep-orange lighten-2"
-                    style="max-width: 100%"
-                  >
-                    <p style="font-size: 4rem">{{wo_completed_count + '/' + wo_total_count }}</p>
-                  </v-progress-circular>
-                </v-card-text>
-              </v-card>
-            </v-col>
-            <v-col md="4">
-              <v-layout row wrap class="mt-3">
-                <v-flex d-flex>
-                  <v-card elevation="5" style="width: 100%;height:10rem">
-                    <v-card-title class="justify-center">Completed Work Orders</v-card-title>
-                    <v-divider class="mx-4"></v-divider>
-                    <v-card-text class="text-center mt-4">
-                      <p style="font-size: 4rem">{{wo_completed_count}}</p>
-                    </v-card-text>
-                  </v-card>
-                </v-flex>
-                <v-flex d-flex>
-                  <v-card elevation="5" style="width: 100%;height:10rem">
-                    <v-card-title class="justify-center">InCompleted Work Orders</v-card-title>
-                    <v-divider class="mx-4"></v-divider>
-                    <v-card-text class="text-center mt-4">
-                      <p style="font-size: 4rem">{{wo_incompleted_count}}</p>
-                    </v-card-text>
-                  </v-card>
-                </v-flex>
-              </v-layout>
-            </v-col>
-            <v-col md="4">
-              <v-card elevation="5" style="height: 27rem">
-                <v-card-title class="justify-center">Total Work Orders</v-card-title>
-                <v-divider class="mx-4"></v-divider>
-                <v-card-text class="text-center mt-15">
-                  <p style="font-size: 6rem;color:#990000" class="mt-10">{{wo_total_count }}</p>
-                </v-card-text>
-              </v-card>
-            </v-col>
-          </v-row>
+          <v-data-table
+            :headers="headers"
+            :items="currentSubmachines"
+            :server-items-length="count"
+            :loading="loading"
+            :footer-props="{
+              itemsPerPageOptions: [10, 50, 100]
+            }"
+          >
+            <template v-slot:item="{ item }">
+              <tr>
+                <td>
+                  <div v-text="item.name"></div>
+                </td>
+                <td>
+                  <div v-text="`2022-03-05`"></div>
+                </td>
+                <td>
+                  <div v-text="`4`"></div>
+                </td>
+              </tr>
+            </template>
+          </v-data-table>
         </base-material-card>
       </v-col>
     </v-row>
@@ -132,6 +106,7 @@
 <script>
   import {mapState, mapGetters} from 'vuex'
   import moment from 'moment'
+  import regression from 'regression'
 
   export default {
     name: 'DashboardML',
@@ -156,12 +131,7 @@
       workOrders: [],
       plannedMaintenances: [],
       searchedData: [],
-      wo_total_count: 0,
-      wo_completed_count: 0,
-      wo_incompleted_count: 0,
-      wo_completed_percent: 0,
-      wo_incompleted_percent: 0,
-      search: '',
+      count: 0,
       loading: true,
       dataTable: {
         page: 1,
@@ -176,9 +146,9 @@
         type: 'success',
         message: '',
       },
-      options: ['year', 'month', 'week', 'day'],
-      currentSubmachine: 'week'
-      
+      options: [],
+      currentMachine: {},
+      currentSubmachines: []
     }),
     computed: {
       ...mapState({
@@ -197,78 +167,62 @@
       headers: function() {
         return (     [
           {
-            text: 'Status',
-            value: 'status',
+            text: 'SubMachine',
+            value: 'submachine_name',
           },
           {
-            text: 'Completed',
-            value: 'completed',
+            text: 'Predicted Date',
+            value: 'pred_date',
           },
           {
-            text: 'In Progress',
-            value: 'incomplete',
-          },
-          {
-            text: 'Total',
-            value: 'total',
+            text: 'From Now',
+            value: 'num_days',
           },
         ])
       }
     },
     watch: {
-      currentSubmachine: function () {
-        this.getWorkOrders();
+      currentMachine: function () {
+        this.getMachines();
       },
     },
     async mounted() {
       this.loading = true;
       // Load form data
-      this.wo_total_count = await this.getWorkOrders();
+      this.options = await this.getMachines();
+      this.currentMachine = this.options[0]
+      await this.setCurrentOptions();
       this.loading = false
     },
 
     methods: {
-      async getSubmachines () {
+      async setCurrentOptions () {
+        console.log('---------------- this.currentMachine', this)
+        this.currentSubmachines = this.currentMachine.submachines;
+        this.count = this.currentSubmachines.length;
+      },
+      async getMachines () {
         this.loading = true;
         return this.$axios({
           method: 'POST',
           url: '/graphql',
           data: {
             query: `{
-                subMachines(where: { company: "${this.company}"})
+                machines(where: { company: "${this.company}"})
                   {
                     id
                     name
-                    
+                    submachines {
+                      id
+                      name
+                      
+                    }
                   }
               }`,
           },
         }).then(async (res) => {
-          console.log(res)
-          this.wo_completed_count = await this.$axios({
-            method: 'POST',
-            url: '/graphql',
-            data: {
-              query: `{
-                failureRecordsConnection(where: {workorderState: "completed", company: "${this.company}", endDateTime_gte: "${this.firstday}", endDateTime_lte: "${this.lastday}"}){
-                  aggregate{
-                    count
-                  }
-                }
-              }`,
-            },
-          });
-          this.wo_total_count = res.data.data.failureRecordsConnection.aggregate.count
-          this.wo_completed_count = this.wo_completed_count.data.data.failureRecordsConnection.aggregate.count
-          this.wo_incompleted_count = this.wo_total_count - this.wo_completed_count
-          this.wo_completed_percent = this.wo_completed_count / this.wo_total_count *100
-          if (this.wo_total_count == 0) {
-            this.wo_completed_count = 0
-            this.wo_completed_percent = 0
-          }
-          this.wo_incompleted_percent = this.wo_incompleted_count / this.wo_total_count *100
           this.loading = false;
-          return res.data.data.failureRecordsConnection.aggregate.count
+          return res.data.data.machines
         })
       },
       async getWorkOrders() {
@@ -316,7 +270,7 @@
         })
       },
       setDuration() {
-        switch (this.currentSubmachine) {
+        switch (this.currentMachine) {
           case ('year'):
             this.firstday = moment().subtract(0, 'years').startOf('year').toISOString();
             this.lastday = moment().subtract(0, 'years').endOf('year').toISOString();
