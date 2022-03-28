@@ -874,6 +874,9 @@
                 }
               }
             }
+          },
+          "quantity": {
+            "type": "integer"
           }
         }
       },
@@ -908,6 +911,9 @@
           },
           "company": {
             "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
           }
         }
       }

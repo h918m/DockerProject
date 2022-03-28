@@ -49,7 +49,7 @@
         stripe:undefined,
         card:undefined,
         msg: 'Donate Here',
-        payAmount:"$99.00",
+        payAmount:"£40.00",
         lockSubmit:false,
         errorMsg: null,
         loading: false

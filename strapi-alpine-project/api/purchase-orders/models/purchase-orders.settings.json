@@ -53,6 +53,9 @@
     "company": {
       "model": "company",
       "via": "purchase_orders"
+    },
+    "quantity": {
+      "type": "integer"
     }
   }
 }

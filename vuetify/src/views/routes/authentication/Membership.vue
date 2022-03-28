@@ -67,7 +67,7 @@
                       <h2 class="text-center display-3 fw-bold">Premium</h2>
                     </v-col>
                     <v-col cols="12" class="mt-3">
-                      <h2 class="text-center display-4 fw-bold">$99</h2>
+                      <h2 class="text-center display-4 fw-bold">£40</h2>
                     </v-col>
                     <v-col cols="12">
                       <v-divider></v-divider>

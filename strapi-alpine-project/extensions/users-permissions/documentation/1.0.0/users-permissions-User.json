@@ -2026,6 +2026,9 @@
                 },
                 "company": {
                   "type": "string"
+                },
+                "quantity": {
+                  "type": "integer"
                 }
               }
             }

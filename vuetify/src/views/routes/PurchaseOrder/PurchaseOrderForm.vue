@@ -245,50 +245,6 @@
                   </validation-provider>
                 </v-col>
 
-                <!--                Manufacturer information-->
-                <!-- <v-col
-                  cols="12"
-                >
-                  <h3>Manufacturer information </h3>
-                  <validation-provider
-                    v-slot="{ errors }"
-                    rules="required"
-                    name="Manufacturer"
-                  >
-                    <v-text-field
-                      v-model="form.manufacturer"
-                      :error-messages="errors"
-                      :disabled="formIsDisabled"
-                      label="Manufacturer"
-                    />
-                  </validation-provider>
-
-                  <validation-provider
-                    v-slot="{ errors }"
-                    rules="required"
-                    name="Model"
-                  >
-                    <v-text-field
-                      v-model="form.model"
-                      :error-messages="errors"
-                      :disabled="formIsDisabled"
-                      label="Model"
-                    />
-                  </validation-provider>
-                  <validation-provider
-                    v-slot="{ errors }"
-                    rules="required"
-                    name="Serial Code"
-                  >
-                    <v-text-field
-                      v-model="form.serialCode"
-                      :error-messages="errors"
-                      :disabled="formIsDisabled"
-                      label="Serial Code"
-                    />
-                  </validation-provider>
-                </v-col> -->
-
                 <!--                Purchasing information-->
                 <v-col
                   cols="12"
@@ -371,21 +327,47 @@
                       </template>
                     </v-select>
                   </v-col>
-                  <validation-provider
-                    v-slot="{ errors }"
-                    rules="required"
-                    name="Price"
-                  >
-                    <v-text-field
-                      v-model="form.price"
-                      :error-messages="errors"
-                      label="Price"
-                      color="secondary"
-                      type="number"
-                      prefix="$"
-                      :disabled="formIsDisabled"
-                    />
-                  </validation-provider>
+                  <v-row>
+                    <v-col
+                      cols="12"
+                      md="6"
+                    >
+                      <validation-provider
+                        v-slot="{ errors }"
+                        rules="required"
+                        name="Price"
+                      >
+                        <v-text-field
+                          v-model="form.price"
+                          :error-messages="errors"
+                          label="Price"
+                          color="secondary"
+                          type="number"
+                          prefix="$"
+                          :disabled="formIsDisabled"
+                        />
+                      </validation-provider>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      md="6"
+                    >
+                      <validation-provider
+                        v-slot="{ errors }"
+                        name="Quantity"
+                        rules="required|numeric"
+                      >
+                        <v-text-field
+                          v-model="form.quantity"
+                          :error-messages="errors"
+                          label="Quantity"
+                          :disabled="formIsDisabled"
+                          color="secondary"
+                          type="number"
+                        />
+                      </validation-provider>
+                    </v-col>
+                  </v-row>
                   <validation-provider
                     v-slot="{ errors }"
                     name="File upload"
@@ -405,135 +387,6 @@
                   </validation-provider>
                 </v-col>
 
-                <!--                Financial information-->
-                <!-- <v-col
-                  cols="12"
-                  v-if="action === 'modify'"
-                >
-                  <h3>Financial</h3> -->
-                  <!--                  Labour cost-->
-                  <!-- <v-row>
-                    <v-col cols="12">
-                      <h4>Labour cost</h4>
-                    </v-col>
-
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialLabourPastMonth"
-                        :disabled="formIsDisabled"
-                        label="Past month"
-                        color="secondary"
-                        type="number"
-                        readonly
-                        prefix="$"
-                      />
-                    </v-col>
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialLabourPastYear"
-                        :disabled="formIsDisabled"
-                        label="Past year"
-                        color="secondary"
-                        type="number"
-                        prefix="$"
-                        readonly
-                      />
-                    </v-col>
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialLabourTotal"
-                        :disabled="formIsDisabled"
-                        label="Total"
-                        color="secondary"
-                        type="number"
-                        prefix="$"
-                        readonly
-                      />
-                    </v-col>
-                  </v-row> -->
-
-                  <!--                  Spare parts cost-->
-                  <!-- <v-row>
-                    <v-col cols="12">
-                      <h4>Spare parts cost</h4>
-                    </v-col>
-
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialSparePastMonth"
-                        :disabled="formIsDisabled"
-                        label="Past month"
-                        color="secondary"
-                        type="number"
-                        prefix="$"
-                        readonly
-                      />
-                    </v-col>
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialSparePastYear"
-                        :disabled="formIsDisabled"
-                        label="Past year"
-                        color="secondary"
-                        type="number"
-                        prefix="$"
-                        readonly
-                      />
-                    </v-col>
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialSpareTotal"
-                        :disabled="formIsDisabled"
-                        label="Total"
-                        color="secondary"
-                        type="number"
-                        prefix="$"
-                        readonly
-                      />
-                    </v-col>
-                  </v-row> -->
-                  <!--                  MISC-->
-                  <!-- <v-row>
-                    <v-col cols="12">
-                      <h4>MISC</h4>
-                    </v-col>
-
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialMiscPastMonth"
-                        :disabled="formIsDisabled"
-                        label="Past month"
-                        color="secondary"
-                        type="number"
-                        readonly
-                        prefix="$"
-                      />
-                    </v-col>
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialMiscPastYear"
-                        :disabled="formIsDisabled"
-                        label="Past year"
-                        color="secondary"
-                        type="number"
-                        readonly
-                        prefix="$"
-                      />
-                    </v-col>
-                    <v-col cols="4">
-                      <v-text-field
-                        v-model="form.financialMiscTotal"
-                        :disabled="formIsDisabled"
-                        label="Total"
-                        color="secondary"
-                        type="number"
-                        prefix="$"
-                        readonly
-                      />
-                    </v-col>
-                  </v-row>
-                </v-col> -->
-
                 <!--                Description-->
                 <v-col cols="12">
                   <validation-provider
@@ -550,23 +403,6 @@
                     />
                   </validation-provider>
                 </v-col>
-
-                <!--                Waranty-->
-                <!-- <v-col cols="12">
-                  <validation-provider
-                    v-slot="{ errors }"
-                    rules="required"
-                    name="Warranty"
-                  >
-                    <v-textarea
-                      v-model="form.warranty"
-                      name="textarea-1"
-                      :error-messages="errors"
-                      :disabled="formIsDisabled"
-                      label="Warranty"
-                    />
-                  </validation-provider>
-                </v-col> -->
 
                 <!--                location-->
                 <v-col cols="12">
@@ -827,8 +663,6 @@
 
         const machine = "Machine: " + this.form.name;
         const assignedTo = "Assigned to:   " + this.getUserName(this.form.users);
-        const spareParts = "Spare parts:   " + this.getUserName(this.form.spareParts);
-        const submachines = "SubMachines:   " + this.getUserName(this.form.submachines);
         const facility = "Facilities:   " + this.getUserName(this.form.facility);
         const manufactureTitle = "Manufacture Information" ;
         const manufacturer = "Manufacturer:   " + this.form.manufacturer;
@@ -860,8 +694,6 @@
 
         doc.text(assignedTo, 40, 100);
         doc.text(machine, 40, 120);
-        doc.text(spareParts, 40, 160);
-        doc.text(submachines, 40, 160);
         doc.text(facility, 40, 160);
         doc.text(manufactureTitle, 40, 180);
         doc.text(manufacturer, 80, 200);
@@ -964,8 +796,6 @@
 
           const machine = "Machine: " + this.form.name;
           const assignedTo = "Assigned to:   " + this.getUserName(this.form.users);
-          const spareParts = "Spare parts:   " + this.getUserName(this.form.spareParts);
-          const submachines = "SubMachines:   " + this.getUserName(this.form.submachines);
           const facility = "Facility:   " + this.getUserName(Array(this.form.facility));
           const manufactureTitle = "Manufacture Information" ;
           const manufacturer = "Manufacturer:   " + this.form.manufacturer;
@@ -997,8 +827,6 @@
 
           doc.text(assignedTo, 40, 100);
           doc.text(machine, 40, 120);
-          doc.text(spareParts, 40, 140);
-          doc.text(submachines, 40, 160);
           doc.text(facility, 40, 180);
           doc.text(manufactureTitle, 40, 200);
           doc.text(manufacturer, 80, 220);
@@ -1090,40 +918,24 @@
               }
               purchaseDate
               price
+              quantity
             }
           }
           `,
           },
         }).then(async ({data}) => {
           const result = data.data.purchaseOrder;
-          // const [labourPastMonth, sparePastMonth] = await this.getLabourCost('month');
-          // const [labourPastYear, sparePastYear] = await this.getLabourCost('year');
-          // const [labourTotal, spareTotal] = await this.getLabourCost('total');
           if (result) {
             return {
               name: result.name,
               imageUrl: this.getBaseUrl + result.image.url,
               users: result.users,
               description: result.description,
-              // warranty: result.warranty,
               location: result.location,
-              // manufacturer: result.manufacturer,
-              // model: result.model,
-              // serialCode: result.serialCode,
               purchaseDate: result.purchaseDate,
-              // seller: result.seller,
               price: result.price,
-              // spareParts: result.spareParts,
-              // submachines: result.submachines,
+              quantity: result.quantity,
               supplier: result.supplier,
-              // facility: result.facility,
-              // operationTime: result.operationTime,
-              // financialLabourPastMonth: labourPastMonth,
-              // financialLabourPastYear: labourPastYear,
-              // financialLabourTotal: labourTotal,
-              // financialSparePastMonth: sparePastMonth,
-              // financialSparePastYear: sparePastYear,
-              // financialSpareTotal: spareTotal
             }
           } else {
             return {}
@@ -1132,7 +944,7 @@
       },
       async addMachine() {
         const { name, image, description, users, location, purchaseDate, price, purchaseFile,
-          spareParts, submachines, supplier
+          supplier, quantity
         } = this.form;
 
         const formData = new FormData();
@@ -1143,23 +955,6 @@
           });
         }
         let smParam = [];
-        let spareParam = [];
-        if (spareParts) {
-          spareParts.forEach(item => {
-            spareParam.push(item.id);
-          })
-        }
-        // let supplierParam = [];
-        // if (supplier) {
-        //   Array(supplier).forEach(item => {
-        //     supplierParam.push(item.id);
-        //   })
-        // }
-        if (submachines) {
-          submachines.forEach(item => {
-            smParam.push(item.id);
-          })
-        }
         const data = {
           name,
           description: description,
@@ -1167,6 +962,7 @@
           users: userParam,
           purchaseDate: purchaseDate,
           price: price,
+          quantity: quantity,
           supplier: supplier.id,
           company: this.company
         };
@@ -1199,9 +995,9 @@
           })
       },
       async modifyMachine() {
-        const { name, image, description, warranty, users, location,
-          manufacturer,  model, serialCode, purchaseDate, seller, price, purchaseFile,
-          spareParts, submachines, facility, operationTime, supplier
+        const { name, image, description, users, location,
+          purchaseDate, price, purchaseFile,
+          supplier, quantity
         } = this.form;
         const formData = new FormData();
         let userParam = [];
@@ -1210,36 +1006,15 @@
             userParam.push(item.id)
           });
         }
-        let spareParam = [];
-        let smParam = [];
-        // let supplierParam = [];
-        if (spareParts) {
-          spareParts.forEach(item => {
-            spareParam.push(item.id);
-          })
-        }
-        // if (supplier) {
-        //   suppliers.forEach(item => {
-        //     supplierParam.push(item.id);
-        //   })
-        // }
         const data = {
           name,
           description: description,
-          warranty: warranty,
           location: location,
           users: userParam,
-          manufacturer: manufacturer,
-          model: model,
-          serialCode: serialCode,
           purchaseDate: purchaseDate,
-          seller: seller,
           price: price,
-          spareParts: spareParam,
-          submachines: smParam,
+          quantity: quantity,
           supplier: supplier.id,
-          facility: facility.id,
-          operationTime: operationTime,
           company: this.company
         };
         // This checks if image was updated (image will be null if no new image was uploaded)
@@ -1256,7 +1031,7 @@
         return this.$axios({
             method: 'PUT',
             // The this.id points on the ID from props
-            url: `/purchase_orders/${this.id}`,
+            url: `/purchase-orders/${this.id}`,
             data: formData,
             headers: {'Content-Type': 'multipart/form-data'},
           },

@@ -131,7 +131,7 @@ export default {
       this.$emit('excelFile', $event);
     },
     uploadData : function($event) {
-      this.emit('uploadData', $event)
+      this.$emit('uploadData', $event)
     }
   },
 }
