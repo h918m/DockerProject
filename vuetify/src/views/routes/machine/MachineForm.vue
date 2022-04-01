@@ -118,6 +118,7 @@
             <v-form
               class="mt-5"
               @submit.prevent="handleSubmit(onSubmit)"
+              :disabled="action === 'view'"
             >
               <v-row>
                 <!--                Assign to specific user-->
@@ -213,14 +214,15 @@
 
                 <!--                Relation SubMachines-->
                 <v-col
+                  v-if="action === 'modify'"
                   cols="12"
-                  md="12"
                 >
                   <v-select
                     v-model="form.submachines"
                     color="secondary"
+                    readonly
                     item-color="secondary"
-                    label="SubMachines relation (optional)"
+                    label="SubMachines relation (readonly)"
                     :disabled="formIsDisabled"
                     return-object
                     :items="submachines"
@@ -243,7 +245,23 @@
                     </template>
                   </v-select>
                 </v-col>
-
+                
+                <v-row class="d-flex justify-space-around"
+                  v-if="action === 'modify'"
+                >
+                  <v-btn
+                    color="secondary"
+                    @click="addSubmachine"
+                  >
+                    Add Submachine
+                  </v-btn>
+                  <v-btn
+                    color="secondary"
+                    @click="viewSubmachines"
+                  >
+                    View Submachines
+                  </v-btn>
+                </v-row>
                 <!--                Relation spare parts-->
                 <v-col
                   cols="12"
@@ -689,7 +707,7 @@
                       color="success"
                       min-width="100"
                       type="submit"
-                      :disabled="formIsDisabled"
+                      :disabled="formIsDisabled || action === 'view'"
                     >
                       {{ getActionName }} Machine
                     </v-btn>
@@ -815,6 +833,9 @@
         case 'modify':
           this.form = await this.getFormForId(this.id);
           break;
+        case 'view':
+          this.form = await this.getFormForId(this.id);
+          break;
         case 'add':
           break;
         default:
@@ -829,8 +850,6 @@
         if (duration === 'month') {
           const monthFrom = moment().subtract(1, 'months').startOf('month').toISOString();
           const monthTo = moment().subtract(1, 'months').endOf('month').toISOString();
-          console.log("monthFrom", monthFrom);
-          console.log("monthTo", monthTo);
           return this.$axios({
             method: 'POST',
             url: '/graphql',
@@ -859,8 +878,6 @@
         } else if (duration === 'year') {
           const monthFrom = moment().subtract(1, 'years').startOf('year').toISOString();
           const monthTo = moment().subtract(1, 'years').endOf('year').toISOString();
-          console.log("monthFrom", monthFrom);
-          console.log("monthTo", monthTo);
           return this.$axios({
             method: 'POST',
             url: '/graphql',
@@ -1477,6 +1494,20 @@
             }
           })
       },
+      addSubmachine() {
+        this.$store.commit('settings/setCurrentMachine', this.id)
+        return this.sleep(500)
+          .then(() => {
+            this.$router.push('/sub-machine/sub-machine-form')
+          })
+      },
+      viewSubmachines() {
+        this.$store.commit('settings/setCurrentMachine', this.id)
+        return this.sleep(500)
+          .then(() => {
+            this.$router.push('/sub-machine/sub-machines-list')
+          })
+      }
     },
   }
 </script>

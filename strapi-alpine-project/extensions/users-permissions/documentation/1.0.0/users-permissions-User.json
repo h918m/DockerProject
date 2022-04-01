@@ -2029,6 +2029,9 @@
                 },
                 "quantity": {
                   "type": "integer"
+                },
+                "spare_part": {
+                  "type": "string"
                 }
               }
             }

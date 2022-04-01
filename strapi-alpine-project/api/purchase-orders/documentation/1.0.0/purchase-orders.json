@@ -877,6 +877,85 @@
           },
           "quantity": {
             "type": "integer"
+          },
+          "spare_part": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "QR": {
+                "type": "string"
+              },
+              "photo": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "stockAmount": {
+                "type": "integer"
+              },
+              "filesToUpload": {
+                "type": "string"
+              },
+              "leadtime": {
+                "type": "integer"
+              },
+              "leadtimeType": {
+                "type": "string"
+              },
+              "price": {
+                "type": "number"
+              },
+              "vendorDetails": {
+                "type": "string"
+              },
+              "warranty": {
+                "type": "string"
+              },
+              "notes": {
+                "type": "string"
+              },
+              "machines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "company": {
+                "type": "string"
+              },
+              "failure_records": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "submachines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "suppliers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "purchase_orders": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -914,6 +993,9 @@
           },
           "quantity": {
             "type": "integer"
+          },
+          "spare_part": {
+            "type": "string"
           }
         }
       }

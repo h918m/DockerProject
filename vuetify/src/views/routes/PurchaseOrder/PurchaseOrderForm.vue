@@ -297,36 +297,69 @@
                       </v-date-picker>
                     </v-menu>
                   </validation-provider>
-                  <v-col
-                    cols="12"
-                    md="12"
-                  >
-                    <v-select
-                      v-model="form.supplier"
-                      color="secondary"
-                      item-color="secondary"
-                      label="Suppliers relation (optional)"
-                      :disabled="formIsDisabled"
-                      return-object
-                      :items="suppliers"
-                      item-text="name"
-                      item-value="id"
+                  <v-row>
+                    <v-col
+                      cols="12"
+                      md="6"
                     >
-                      <template v-slot:item="{ attrs, item, on }">
-                        <v-list-item
-                          v-bind="attrs"
-                          active-class="secondary elevation-4 white--text"
-                          class="mx-3 mb-3 v-sheet"
-                          elevation="0"
-                          v-on="on"
-                        >
-                          <v-list-item-content>
-                            <v-list-item-title v-text="`${item ? item.name : ''}`" />
-                          </v-list-item-content>
-                        </v-list-item>
-                      </template>
-                    </v-select>
-                  </v-col>
+                      <v-select
+                        v-model="form.supplier"
+                        color="secondary"
+                        item-color="secondary"
+                        label="Suppliers relation (optional)"
+                        :disabled="formIsDisabled"
+                        return-object
+                        :items="suppliers"
+                        item-text="name"
+                        item-value="id"
+                        @change="getSpareParts"
+                      >
+                        <template v-slot:item="{ attrs, item, on }">
+                          <v-list-item
+                            v-bind="attrs"
+                            active-class="secondary elevation-4 white--text"
+                            class="mx-3 mb-3 v-sheet"
+                            elevation="0"
+                            v-on="on"
+                          >
+                            <v-list-item-content>
+                              <v-list-item-title v-text="`${item ? item.name : ''}`" />
+                            </v-list-item-content>
+                          </v-list-item>
+                        </template>
+                      </v-select>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      md="6"
+                    >
+                      <v-select
+                        v-model="form.spareParts"
+                        color="secondary"
+                        item-color="secondary"
+                        label="Spare Parts relation (optional)"
+                        :disabled="formIsDisabled"
+                        return-object
+                        :items="spareParts"
+                        item-text="name"
+                        item-value="id"
+                      >
+                        <template v-slot:item="{ attrs, item, on }">
+                          <v-list-item
+                            v-bind="attrs"
+                            active-class="secondary elevation-4 white--text"
+                            class="mx-3 mb-3 v-sheet"
+                            elevation="0"
+                            v-on="on"
+                          >
+                            <v-list-item-content>
+                              <v-list-item-title v-text="`${item ? item.name : ''}`" />
+                            </v-list-item-content>
+                          </v-list-item>
+                        </template>
+                      </v-select>
+                    </v-col>
+                  </v-row>
                   <v-row>
                     <v-col
                       cols="12"
@@ -545,7 +578,6 @@
 
       }
 
-      this.spareParts = await this.getSpareParts();
       this.submachines = await this.getSubMachines();
       this.suppliers = await this.getSuppliers();
       this.facilities = await this.getFacilities();
@@ -553,6 +585,7 @@
       switch (this.action) {
         case 'modify':
           this.form = await this.getFormForId(this.id);
+          this.spareParts = await this.getSpareParts();
           break;
         case 'add':
           break;
@@ -1080,7 +1113,7 @@
           url: '/graphql',
           data: {
             query: `{
-              spareParts (where: {company: "${this.company}"}){
+              spareParts (where: {company: "${this.company}", suppliers: {id: "${this.form.supplier.id}"}}){
                 id
                 name
               }
@@ -1089,6 +1122,7 @@
         })
           .then(({data}) => {
             if (data.data.spareParts) {
+              this.spareParts = data.data.spareParts;
               return data.data.spareParts;
             } else {
               return [];

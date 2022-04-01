@@ -157,40 +157,90 @@
                     </template>
                   </v-select>
                 </validation-provider>
-                <!-- Machines list -->
-                <validation-provider
-                  v-slot="{ errors }"
-                  rules="required"
-                  name="Machine"
-                >
-                  <v-select
-                    v-model="form.machine"
-                    color="secondary"
-                    item-color="secondary"
-                    label="Machine"
-                    :disabled="formIsDisabled"
-                    return-object
-                    :error-messages="errors"
-                    :items="machines"
-                    item-text="name"
-                    item-value="id"
+                
+                <v-row>
+                  <!-- Machines list -->
+                  <v-col
+                    cols="12"
+                    md="6"
                   >
-                    <template v-slot:item="{ attrs, item, on }">
-                      <v-list-item
-                        v-bind="attrs"
-                        active-class="secondary elevation-4 white--text"
-                        class="mx-3 mb-3 v-sheet"
-                        elevation="0"
-                        v-on="on"
+                    <validation-provider
+                      v-slot="{ errors }"
+                      rules="required"
+                      name="Machine"
+                    >
+                      <v-select
+                        v-model="form.machine"
+                        color="secondary"
+                        item-color="secondary"
+                        label="Machine"
+                        :disabled="formIsDisabled"
+                        return-object
+                        :error-messages="errors"
+                        :items="machines"
+                        item-text="name"
+                        item-value="id"
+                        @change="getSubMachines"
                       >
-                        <v-list-item-content>
-                          <v-list-item-title
-                            v-text="`${item ? item.name : ''}`"/>
-                        </v-list-item-content>
-                      </v-list-item>
-                    </template>
-                  </v-select>
-                </validation-provider>
+                        <template v-slot:item="{ attrs, item, on }">
+                          <v-list-item
+                            v-bind="attrs"
+                            active-class="secondary elevation-4 white--text"
+                            class="mx-3 mb-3 v-sheet"
+                            elevation="0"
+                            v-on="on"
+                          >
+                            <v-list-item-content>
+                              <v-list-item-title
+                                v-text="`${item ? item.name : ''}`"/>
+                            </v-list-item-content>
+                          </v-list-item>
+                        </template>
+                      </v-select>
+                    </validation-provider>
+                  </v-col>
+
+                  <!-- SubMachines list -->
+                  <v-col
+                    cols="12"
+                    md="6"
+                  >
+                    <validation-provider
+                      v-slot="{ errors }"
+                      rules="required"
+                      name="Submachines"
+                    >
+                      <v-select
+                        v-model="form.submachine"
+                        color="secondary"
+                        item-color="secondary"
+                        label="SubMachines"
+                        :disabled="formIsDisabled"
+                        return-object
+                        :error-messages="errors"
+                        :items="submachines"
+                        item-text="name"
+                        item-value="id"
+                      >
+                        <template v-slot:item="{ attrs, item, on }">
+                          <v-list-item
+                            v-bind="attrs"
+                            active-class="secondary elevation-4 white--text"
+                            class="mx-3 mb-3 v-sheet"
+                            elevation="0"
+                            v-on="on"
+                          >
+                            <v-list-item-content>
+                              <v-list-item-title
+                                v-text="`${item ? item.name : ''}`"/>
+                            </v-list-item-content>
+                          </v-list-item>
+                        </template>
+                      </v-select>
+                    </validation-provider>
+                  </v-col>
+
+                </v-row>
 
                 <!--Maintenance Image-->
                 <v-col cols="8">
@@ -390,16 +440,19 @@
       formIsDisabled: false,
       maintenanceTypes: ['mechanical', 'electrical', 'pneumatic', 'steam', 'control', 'sensor'],
       machines: [],
+      submachines: [],
       form: {
         image: null,
         imageUrl: null,
         type: '',
         completed: false,
         machine: null,
+        submachine: null,
         task: '',
         component: '',
         comment: '',
         user: null,
+        submachine: null
       },
     }),
     computed: {
@@ -595,6 +648,28 @@
           this.dialog = true;
         }
       },
+      async getSubMachines() {
+        return this.$axios({
+          method: 'POST',
+          url: '/graphql',
+          data: {
+            query: `{
+              subMachines(where: {company: "${this.company}", machine: {id: "${this.form.machine.id}"}}) {
+                  name
+                  id
+              }
+          }`,
+          },
+        })
+          .then(({data}) => {
+            if (data.data.subMachines) {
+              this.submachines = data.data.subMachines
+              return data.data.subMachines
+            } else {
+              return []
+            }
+          })
+      },
       async getUserList() {
         return this.$axios({
           method: 'POST',
@@ -660,7 +735,7 @@
         })
       },
       async modifyPlannedMaintenance() {
-        const {type, task, component, completed, machine, comment, user, image} = this.form;
+        const {type, task, component, completed, machine, submachine, comment, user, image} = this.form;
         let userParam = [];
         if (user) {
           user.forEach(item => {
@@ -672,6 +747,7 @@
           comment: comment,
           task: task,
           machine: machine.id,
+          submachine: submachine.id,
           component: component,
           completed: completed,
           users: userParam,
@@ -706,7 +782,7 @@
           });
       },
       async addPlannedMaintenance() {
-        const {type, task, component, completed, machine, comment, user, image} = this.form;
+        const {type, task, component, completed, machine, submachine, comment, user, image} = this.form;
         let userParam = [];
         if (user) {
           user.forEach(item => {
@@ -718,6 +794,7 @@
           comment: comment,
           task: task,
           machine: machine.id,
+          submachine: submachine.id,
           component: component,
           completed: completed,
           users: userParam,

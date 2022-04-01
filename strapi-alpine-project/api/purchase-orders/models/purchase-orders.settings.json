@@ -56,6 +56,10 @@
     },
     "quantity": {
       "type": "integer"
+    },
+    "spare_part": {
+      "model": "spare-parts",
+      "via": "purchase_orders"
     }
   }
 }

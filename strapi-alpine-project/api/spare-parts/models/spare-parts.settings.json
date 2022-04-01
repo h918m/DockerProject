@@ -76,6 +76,10 @@
     "suppliers": {
       "via": "spare_parts",
       "collection": "suppliers"
+    },
+    "purchase_orders": {
+      "via": "spare_part",
+      "collection": "purchase-orders"
     }
   }
 }

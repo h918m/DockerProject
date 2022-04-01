@@ -1156,6 +1156,61 @@
                 }
               }
             }
+          },
+          "purchase_orders": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "QR": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "users": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "purchaseDate": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "purchaseFile": {
+                  "type": "string"
+                },
+                "supplier": {
+                  "type": "string"
+                },
+                "company": {
+                  "type": "string"
+                },
+                "quantity": {
+                  "type": "integer"
+                },
+                "spare_part": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -1218,6 +1273,12 @@
             }
           },
           "suppliers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "purchase_orders": {
             "type": "array",
             "items": {
               "type": "string"

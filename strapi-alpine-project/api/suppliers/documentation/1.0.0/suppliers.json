@@ -597,6 +597,12 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "purchase_orders": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -835,6 +841,9 @@
                 },
                 "quantity": {
                   "type": "integer"
+                },
+                "spare_part": {
+                  "type": "string"
                 }
               }
             }

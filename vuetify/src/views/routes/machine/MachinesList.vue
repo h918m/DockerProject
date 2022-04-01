@@ -79,6 +79,11 @@
                 v-text="item.name"
               />
             </td>
+            <td>
+              <div class="body-1">
+              {{ getNames(item.submachines)}}
+              </div>
+            </td>
             <td v-if="isAdmin">
               <div
                 v-if="item.users"
@@ -203,6 +208,11 @@
           action: 'subMachinesForMachine',
         },
         {
+          color: 'purple',
+          icon: 'mdi-eye',
+          action: 'view',
+        },
+        {
           color: 'red',
           icon: 'mdi-minus-circle-outline',
           action: 'remove',
@@ -227,6 +237,10 @@
             {
               text: 'Name',
               value: 'name',
+            },
+            {
+              text: 'SubMachines',
+              value: 'submachines',
             },
             {
               text: 'Assigned to',
@@ -291,9 +305,10 @@
         this.$router.push('/machine/machine-form')
       },
       getNames(aray) {
+        console.log('============= array : ', aray)
         let name = "";
         if (aray.length === 0) {
-          return false;
+          return "N/A";
         }
         aray.forEach(item => {
           name += item.name + ' ,'
@@ -342,6 +357,9 @@
           case 'subMachinesForMachine':
             this.openHistoricalData(id);
             break;
+          case 'view':
+            this.viewData(id);
+            break;
           case 'remove':
             this.removeDialog = {
               state: true,
@@ -354,6 +372,9 @@
       },
       openHistoricalData(id) {
         this.$router.push({name: 'MachineMachineFormAction', params: {action: 'modify',id: id}})
+      },
+      viewData(id) {
+        this.$router.push({name: 'MachineMachineFormAction', params: {action: 'view',id: id}})
       },
       onClick(item) {
         if (!this.isAdmin) {
@@ -424,6 +445,10 @@
                     url
                   }
                   users {
+                    id
+                    name
+                  }
+                  submachines {
                     id
                     name
                   }

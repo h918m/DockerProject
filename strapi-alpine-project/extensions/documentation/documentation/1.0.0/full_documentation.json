@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "03/28/2022 5:00:10 AM"
+    "x-generation-date": "04/01/2022 1:53:54 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -11029,6 +11029,12 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "purchase_orders": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -11597,6 +11603,9 @@
                 },
                 "quantity": {
                   "type": "integer"
+                },
+                "spare_part": {
+                  "type": "string"
                 }
               }
             }
@@ -13017,6 +13026,12 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "purchase_orders": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -13661,6 +13676,12 @@
                   }
                 },
                 "suppliers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "purchase_orders": {
                   "type": "array",
                   "items": {
                     "type": "string"
@@ -16161,6 +16182,85 @@
           },
           "quantity": {
             "type": "integer"
+          },
+          "spare_part": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "QR": {
+                "type": "string"
+              },
+              "photo": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "stockAmount": {
+                "type": "integer"
+              },
+              "filesToUpload": {
+                "type": "string"
+              },
+              "leadtime": {
+                "type": "integer"
+              },
+              "leadtimeType": {
+                "type": "string"
+              },
+              "price": {
+                "type": "number"
+              },
+              "vendorDetails": {
+                "type": "string"
+              },
+              "warranty": {
+                "type": "string"
+              },
+              "notes": {
+                "type": "string"
+              },
+              "machines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "company": {
+                "type": "string"
+              },
+              "failure_records": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "submachines": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "suppliers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "purchase_orders": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -16198,6 +16298,9 @@
           },
           "quantity": {
             "type": "integer"
+          },
+          "spare_part": {
+            "type": "string"
           }
         }
       },
@@ -17463,6 +17566,61 @@
                 }
               }
             }
+          },
+          "purchase_orders": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "QR": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "users": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "purchaseDate": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "purchaseFile": {
+                  "type": "string"
+                },
+                "supplier": {
+                  "type": "string"
+                },
+                "company": {
+                  "type": "string"
+                },
+                "quantity": {
+                  "type": "integer"
+                },
+                "spare_part": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -17525,6 +17683,12 @@
             }
           },
           "suppliers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "purchase_orders": {
             "type": "array",
             "items": {
               "type": "string"
@@ -17866,6 +18030,12 @@
                   }
                 },
                 "suppliers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "purchase_orders": {
                   "type": "array",
                   "items": {
                     "type": "string"
@@ -18612,6 +18782,12 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "purchase_orders": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -18850,6 +19026,9 @@
                 },
                 "quantity": {
                   "type": "integer"
+                },
+                "spare_part": {
+                  "type": "string"
                 }
               }
             }
@@ -19919,6 +20098,9 @@
                 },
                 "quantity": {
                   "type": "integer"
+                },
+                "spare_part": {
+                  "type": "string"
                 }
               }
             }

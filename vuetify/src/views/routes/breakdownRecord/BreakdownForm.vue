@@ -167,6 +167,7 @@
                   <!-- Machines list -->
                   <v-col
                     cols="12"
+                    md="6"
                   >
                     <validation-provider
                       v-slot="{ errors }"
@@ -182,6 +183,47 @@
                         return-object
                         :error-messages="errors"
                         :items="machines"
+                        item-text="name"
+                        item-value="id"
+                        @change="getSubMachines"
+                      >
+                        <template v-slot:item="{ attrs, item, on }">
+                          <v-list-item
+                            v-bind="attrs"
+                            active-class="secondary elevation-4 white--text"
+                            class="mx-3 mb-3 v-sheet"
+                            elevation="0"
+                            v-on="on"
+                          >
+                            <v-list-item-content>
+                              <v-list-item-title
+                                v-text="`${item ? item.name : ''}`"/>
+                            </v-list-item-content>
+                          </v-list-item>
+                        </template>
+                      </v-select>
+                    </validation-provider>
+                  </v-col>
+
+                  <!-- SubMachines list -->
+                  <v-col
+                    cols="12"
+                    md="6"
+                  >
+                    <validation-provider
+                      v-slot="{ errors }"
+                      rules="required"
+                      name="Submachines"
+                    >
+                      <v-select
+                        v-model="form.submachine"
+                        color="secondary"
+                        item-color="secondary"
+                        label="SubMachines"
+                        :disabled="formIsDisabled"
+                        return-object
+                        :error-messages="errors"
+                        :items="submachines"
                         item-text="name"
                         item-value="id"
                       >
@@ -815,6 +857,7 @@
       },
       loading: true,
       machines: [],
+      submachines: [],
       formIsValid: null,
       formIsDisabled: false,
       userList: [],
@@ -837,6 +880,7 @@
           endTime: '',
         },
         machine: null,
+        submachines: null,
         spareParts: null,
         requiredFollowUp: '',
         stateDescription: '',
@@ -882,6 +926,7 @@
 
       // Load form data
       this.machines = await this.getMachines();
+      // this.submachines = await this.getSubMachines();
 
       // Check action
       switch (this.action) {
@@ -1308,7 +1353,7 @@
           typeOfWork, natureOfWork, severity, occurance,
           detection, operatorsError, machine, requiredFollowUp,
           stateDescription, workCarriedOut, user,
-          priority, workorderState, rootCause, image, completed, spareParts
+          priority, workorderState, rootCause, image, completed, spareParts, submachine
         } = this.form;
         const startDateTime = this.startDateTime;
         const endDateTime = this.endDateTime;
@@ -1392,6 +1437,7 @@
           rootCause: rootCause,
           workorderState: workorderState,
           machine: machine.id,
+          submachine: submachine.id,
           requiredFollowUp: requiredFollowUp,
           stateDescription: stateDescription,
           workCarriedOut: workCarriedOut,
@@ -1431,7 +1477,7 @@
           typeOfWork, natureOfWork, severity, occurance,
           detection, operatorsError, machine, requiredFollowUp,
           stateDescription, workCarriedOut, user,
-          priority, workorderState, rootCause, image, completed, spareParts
+          priority, workorderState, rootCause, image, completed, spareParts, submachine
         } = this.form;
         const startDateTime = this.startDateTime;
         const endDateTime = this.endDateTime;
@@ -1451,6 +1497,13 @@
             userParam.push(item.id)
           });
         }
+
+        // let sbParam = [];
+        // if (submachines) {
+        //   submachines.forEach(item => {
+        //     sbParam.push(item.id)
+        //   });
+        // }
 
         let sparePartsParam = [];
         let spareCost = 0;
@@ -1494,6 +1547,7 @@
             rootCause: rootCause,
             workorderState: workorderState,
             machine: machine.id,
+            submachine: submachine.id,
             requiredFollowUp: requiredFollowUp,
             stateDescription: stateDescription,
             workCarriedOut: workCarriedOut,
@@ -1624,6 +1678,28 @@
           .then(({data}) => {
             if (data.data.machines) {
               return data.data.machines
+            } else {
+              return []
+            }
+          })
+      },
+      async getSubMachines() {
+        return this.$axios({
+          method: 'POST',
+          url: '/graphql',
+          data: {
+            query: `{
+              subMachines(where: {company: "${this.company}", machine: {id: "${this.form.machine.id}"}}) {
+                  name
+                  id
+              }
+          }`,
+          },
+        })
+          .then(({data}) => {
+            if (data.data.subMachines) {
+              this.submachines = data.data.subMachines
+              return data.data.subMachines
             } else {
               return []
             }

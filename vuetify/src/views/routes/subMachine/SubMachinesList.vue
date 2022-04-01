@@ -368,7 +368,7 @@
           data: {
             query: `
               {
-                subMachines(where: {company: "${this.company}"}){
+                subMachines(where: {company: "${this.company}", machine: {id: "${this.$store.state.settings.currentMachine}"}}){
                   id
                   name
                   QR
@@ -418,7 +418,7 @@
           url: url || '/graphql',
           data: {
             query: `{
-                subMachines(where: {company: "${this.company}"}, limit: ${limit || 10}, sort: "${sortBy || 'name'}:${sortDesc ? 'desc' : 'asc'}", start: ${start || 0}){
+                subMachines(where: {company: "${this.company}", machine: {id: "${this.$store.state.settings.currentMachine}"}}, limit: ${limit || 10}, sort: "${sortBy || 'name'}:${sortDesc ? 'desc' : 'asc'}", start: ${start || 0}){
                   id
                   name
                   QR
@@ -433,6 +433,7 @@
               }`,
           },
         }).then((res) => {
+          console.log("------------------------- res = ", res)
           this.loading = false;
           return res.data.data.subMachines
         })

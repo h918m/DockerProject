@@ -751,6 +751,7 @@
       }
 
       this.loading = false
+      console.log(' ====== this.store3 = ', this.$store.state.settings.currentMachine)
     },
     methods: {
       //TODO: get Labour Cost data
@@ -1186,6 +1187,7 @@
           purchaseDate: purchaseDate,
           seller: seller,
           price: price,
+          machine: this.$store.state.settings.currentMachine,
           spareParts: spareParam,
           operationTime: operationTime,
           company: this.company
@@ -1338,7 +1340,7 @@
         this.loading = false;
         return this.sleep(500)
           .then(() => {
-            this.$router.push('/sub-machine/sub-machines-list')
+            this.$router.go(-1)
           })
       },
       async getSpareParts() {

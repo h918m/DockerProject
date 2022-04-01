@@ -5,6 +5,7 @@ export default {
         barImage: require('@/assets/background.jpg'),
         logoImage: require('@/assets/Logo.png'),
         drawer: null,
+        currentMachine: '',
         // Options for loader
         loader: {
           color: 'indigo',
@@ -22,6 +23,9 @@ export default {
         SET_SCRIM (state, payload) {
           state.barColor = payload
         },
+        setCurrentMachine (state, payload) {
+          state.currentMachine = payload
+        }
       },
       actions: {
 
