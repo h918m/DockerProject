@@ -111,6 +111,32 @@
           :title="`${ isAdmin ? getActionName : 'View' } Purchase Order`"
           class="px-5 py-3"
         >
+          <div id="period" v-if="action === 'add'">
+            <v-select
+              v-model="currentOption"
+              color="secondary"
+              item-color="secondary"
+              label="Select Machine"
+              return-object
+              :items="options"
+              item-text="name"
+              item-value="id"
+            >
+              <template v-slot:item="{ attrs, item, on }">
+                <v-list-item
+                  v-bind="attrs"
+                  active-class="secondary elevation-4 white--text"
+                  class="mx-3 mb-3 v-sheet"
+                  elevation="0"
+                  v-on="on"
+                >
+                  <v-list-item-content>
+                    <v-list-item-title v-text="item.toUpperCase()"/>
+                  </v-list-item-content>
+                </v-list-item>
+              </template>
+            </v-select>
+          </div>
           <validation-observer
             v-slot="{ handleSubmit }"
             slim
@@ -119,6 +145,71 @@
               class="mt-5"
               @submit.prevent="handleSubmit(onSubmit)"
             >
+              <v-row v-if="currentOption === 'Existing one'">
+                <v-col
+                  cols="12"
+                  md="6"
+                >
+                  <v-select
+                    v-model="form.supplier"
+                    color="secondary"
+                    item-color="secondary"
+                    label="Suppliers relation (optional)"
+                    :disabled="formIsDisabled"
+                    return-object
+                    :items="suppliers"
+                    item-text="name"
+                    item-value="id"
+                    @change="getSpareParts"
+                  >
+                    <template v-slot:item="{ attrs, item, on }">
+                      <v-list-item
+                        v-bind="attrs"
+                        active-class="secondary elevation-4 white--text"
+                        class="mx-3 mb-3 v-sheet"
+                        elevation="0"
+                        v-on="on"
+                      >
+                        <v-list-item-content>
+                          <v-list-item-title v-text="`${item ? item.name : ''}`" />
+                        </v-list-item-content>
+                      </v-list-item>
+                    </template>
+                  </v-select>
+                </v-col>
+                <v-col
+                  cols="12"
+                  md="6"
+                >
+                  <v-select
+                    v-model="form.spareParts"
+                    color="secondary"
+                    item-color="secondary"
+                    label="Spare Parts relation"
+                    :disabled="formIsDisabled"
+                    return-object
+                    :items="spareParts"
+                    item-text="name"
+                    item-value="id"
+                    @change="setCurrentOptions"
+                  >
+                    <template v-slot:item="{ attrs, item, on }">
+                      <v-list-item
+                        v-bind="attrs"
+                        active-class="secondary elevation-4 white--text"
+                        class="mx-3 mb-3 v-sheet"
+                        elevation="0"
+                        v-on="on"
+                      >
+                        <v-list-item-content>
+                          <v-list-item-title v-text="`${item ? item.name : ''}`" />
+                        </v-list-item-content>
+                      </v-list-item>
+                    </template>
+                  </v-select>
+                </v-col>
+                
+              </v-row>
               <v-row>
                 <!--                Assign to specific user-->
                 <v-col
@@ -297,7 +388,8 @@
                       </v-date-picker>
                     </v-menu>
                   </validation-provider>
-                  <v-row>
+
+                  <v-row v-if="currentOption === 'New Part'">
                     <v-col
                       cols="12"
                       md="6"
@@ -337,7 +429,7 @@
                         v-model="form.spareParts"
                         color="secondary"
                         item-color="secondary"
-                        label="Spare Parts relation (optional)"
+                        label="Spare Parts relation"
                         :disabled="formIsDisabled"
                         return-object
                         :items="spareParts"
@@ -359,7 +451,9 @@
                         </template>
                       </v-select>
                     </v-col>
+                    
                   </v-row>
+                  
                   <v-row>
                     <v-col
                       cols="12"
@@ -506,6 +600,7 @@
         { title: 'Save to PC' },
         { title: 'Send to Email' },
       ],
+      options: ['New Part', 'Existing one'],
       date: '',
       dateMenu1: false,
       snackbar: {
@@ -513,6 +608,7 @@
         type: 'success',
         message: '',
       },
+      currentOption: 'New Part',
       userList: [],
       loading: true,
       spareParts: [],
@@ -597,6 +693,9 @@
     },
     methods: {
       //TODO: get Labour Cost data
+      async setCurrentOptions () {
+        this.form = await this.getCurrentSparePart(this.form.spareParts.id)
+      },
       async getLabourCost(duration) {
         if (duration === 'month') {
           const monthFrom = moment().subtract(1, 'months').startOf('month').toISOString();
@@ -925,8 +1024,6 @@
           }
         })
       },
-
-
       async getFormForId(id) {
         return this.$axios({
           method: 'POST',
@@ -952,6 +1049,10 @@
               purchaseDate
               price
               quantity
+              spare_part {
+                id
+                name
+              }
             }
           }
           `,
@@ -969,6 +1070,44 @@
               price: result.price,
               quantity: result.quantity,
               supplier: result.supplier,
+              spareParts: result.spare_part
+            }
+          } else {
+            return {}
+          }
+        })
+      },
+      async getCurrentSparePart(id) {
+        let temp_supplier = this.form.supplier
+        let temp_sparePart = this.form.spareParts
+        return this.$axios({
+          method: 'POST',
+          url: '/graphql',
+          data: {
+            query: `{
+            sparePart(id: "${id}"){
+              name
+              id
+              photo{
+                url
+                id
+              }
+              description
+              price
+            }
+          }
+          `,
+          },
+        }).then(async ({data}) => {
+          const result = data.data.sparePart;
+          if (result) {
+            return {
+              name: result.name,
+              // imageUrl: this.getBaseUrl + result.photo.url,
+              description: result.description,
+              price: result.price,
+              supplier: temp_supplier,
+              spareParts: temp_sparePart
             }
           } else {
             return {}
@@ -977,7 +1116,7 @@
       },
       async addMachine() {
         const { name, image, description, users, location, purchaseDate, price, purchaseFile,
-          supplier, quantity
+          supplier, quantity, spareParts
         } = this.form;
 
         const formData = new FormData();
@@ -989,11 +1128,12 @@
         }
         let smParam = [];
         const data = {
-          name,
+          name: name,
           description: description,
           location: location,
           users: userParam,
           purchaseDate: purchaseDate,
+          spare_part: spareParts.id,
           price: price,
           quantity: quantity,
           supplier: supplier.id,

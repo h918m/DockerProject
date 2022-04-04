@@ -197,7 +197,6 @@
 
     methods: {
       async setCurrentOptions () {
-        console.log('---------------- this.currentMachine', this)
         this.currentSubmachines = this.currentMachine.submachines;
         this.count = this.currentSubmachines.length;
       },

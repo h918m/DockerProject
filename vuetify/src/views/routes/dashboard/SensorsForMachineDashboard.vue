@@ -75,7 +75,7 @@
                   <base-material-card
                     id="multiple-bar"
                     :color="getColorForSensor(getRangesForDataName(sensor,Object.keys(sensor.sensorReadings[0].formattedData)[formattedDataIndex]), Object.values(sensor.sensorReadings[0].formattedData)[0])"
-                    icon="mdi-poll-box"
+                    icon="mdi-access-point"
                     class="px-4 py-3"
                     v-if="sensor.model !== 'call'"
                   >

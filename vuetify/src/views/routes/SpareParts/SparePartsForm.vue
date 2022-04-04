@@ -809,6 +809,7 @@
         formData.append('files.photo', image, image.name);
         formData.append('files.filesToUpload', document, document.name);
         formData.append('data', JSON.stringify(data));
+        console.log('============= stringified formData = ', formData)
 
         return this.$axios({
             method: 'post',
