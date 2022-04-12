@@ -121,6 +121,7 @@
               :items="options"
               item-text="name"
               item-value="id"
+              @change="setExisting"
             >
               <template v-slot:item="{ attrs, item, on }">
                 <v-list-item
@@ -150,63 +151,77 @@
                   cols="12"
                   md="6"
                 >
-                  <v-select
-                    v-model="form.supplier"
-                    color="secondary"
-                    item-color="secondary"
-                    label="Suppliers relation (optional)"
-                    :disabled="formIsDisabled"
-                    return-object
-                    :items="suppliers"
-                    item-text="name"
-                    item-value="id"
-                    @change="getSpareParts"
+                  <validation-provider
+                    v-slot="{ errors }"
+                    rules="required"
+                    name="Users"
                   >
-                    <template v-slot:item="{ attrs, item, on }">
-                      <v-list-item
-                        v-bind="attrs"
-                        active-class="secondary elevation-4 white--text"
-                        class="mx-3 mb-3 v-sheet"
-                        elevation="0"
-                        v-on="on"
-                      >
-                        <v-list-item-content>
-                          <v-list-item-title v-text="`${item ? item.name : ''}`" />
-                        </v-list-item-content>
-                      </v-list-item>
-                    </template>
-                  </v-select>
+                    <v-select
+                      v-model="form.supplier"
+                      color="secondary"
+                      item-color="secondary"
+                      label="Suppliers relation (optional)"
+                      :disabled="formIsDisabled"
+                      :error-messages="errors"
+                      return-object
+                      :items="suppliers"
+                      item-text="name"
+                      item-value="id"
+                      @change="getSpareParts"
+                    >
+                      <template v-slot:item="{ attrs, item, on }">
+                        <v-list-item
+                          v-bind="attrs"
+                          active-class="secondary elevation-4 white--text"
+                          class="mx-3 mb-3 v-sheet"
+                          elevation="0"
+                          v-on="on"
+                        >
+                          <v-list-item-content>
+                            <v-list-item-title v-text="`${item ? item.name : ''}`" />
+                          </v-list-item-content>
+                        </v-list-item>
+                      </template>
+                    </v-select>
+                  </validation-provider>
                 </v-col>
                 <v-col
                   cols="12"
                   md="6"
                 >
-                  <v-select
-                    v-model="form.spareParts"
-                    color="secondary"
-                    item-color="secondary"
-                    label="Spare Parts relation"
-                    :disabled="formIsDisabled"
-                    return-object
-                    :items="spareParts"
-                    item-text="name"
-                    item-value="id"
-                    @change="setCurrentOptions"
+                  <validation-provider
+                    v-slot="{ errors }"
+                    rules="required"
+                    name="Users"
                   >
-                    <template v-slot:item="{ attrs, item, on }">
-                      <v-list-item
-                        v-bind="attrs"
-                        active-class="secondary elevation-4 white--text"
-                        class="mx-3 mb-3 v-sheet"
-                        elevation="0"
-                        v-on="on"
-                      >
-                        <v-list-item-content>
-                          <v-list-item-title v-text="`${item ? item.name : ''}`" />
-                        </v-list-item-content>
-                      </v-list-item>
-                    </template>
-                  </v-select>
+                    <v-select
+                      v-model="form.spareParts"
+                      color="secondary"
+                      item-color="secondary"
+                      label="Spare Parts relation"
+                      :disabled="formIsDisabled"
+                      return-object
+                      :items="spareParts"
+                      :error-messages="errors"
+                      item-text="name"
+                      item-value="id"
+                      @change="setCurrentOptions"
+                    >
+                      <template v-slot:item="{ attrs, item, on }">
+                        <v-list-item
+                          v-bind="attrs"
+                          active-class="secondary elevation-4 white--text"
+                          class="mx-3 mb-3 v-sheet"
+                          elevation="0"
+                          v-on="on"
+                        >
+                          <v-list-item-content>
+                            <v-list-item-title v-text="`${item ? item.name : ''}`" />
+                          </v-list-item-content>
+                        </v-list-item>
+                      </template>
+                    </v-select>
+                  </validation-provider>
                 </v-col>
                 
               </v-row>
@@ -394,62 +409,76 @@
                       cols="12"
                       md="6"
                     >
-                      <v-select
-                        v-model="form.supplier"
-                        color="secondary"
-                        item-color="secondary"
-                        label="Suppliers relation (optional)"
-                        :disabled="formIsDisabled"
-                        return-object
-                        :items="suppliers"
-                        item-text="name"
-                        item-value="id"
-                        @change="getSpareParts"
+                      <validation-provider
+                        v-slot="{ errors }"
+                        rules="required"
+                        name="Users"
                       >
-                        <template v-slot:item="{ attrs, item, on }">
-                          <v-list-item
-                            v-bind="attrs"
-                            active-class="secondary elevation-4 white--text"
-                            class="mx-3 mb-3 v-sheet"
-                            elevation="0"
-                            v-on="on"
-                          >
-                            <v-list-item-content>
-                              <v-list-item-title v-text="`${item ? item.name : ''}`" />
-                            </v-list-item-content>
-                          </v-list-item>
-                        </template>
-                      </v-select>
+                        <v-select
+                          v-model="form.supplier"
+                          color="secondary"
+                          item-color="secondary"
+                          label="Suppliers relation (optional)"
+                          :disabled="formIsDisabled"
+                          return-object
+                          :error-messages="errors"
+                          :items="suppliers"
+                          item-text="name"
+                          item-value="id"
+                          @change="getSpareParts"
+                        >
+                          <template v-slot:item="{ attrs, item, on }">
+                            <v-list-item
+                              v-bind="attrs"
+                              active-class="secondary elevation-4 white--text"
+                              class="mx-3 mb-3 v-sheet"
+                              elevation="0"
+                              v-on="on"
+                            >
+                              <v-list-item-content>
+                                <v-list-item-title v-text="`${item ? item.name : ''}`" />
+                              </v-list-item-content>
+                            </v-list-item>
+                          </template>
+                        </v-select>
+                      </validation-provider>
                     </v-col>
                     <v-col
                       cols="12"
                       md="6"
                     >
-                      <v-select
-                        v-model="form.spareParts"
-                        color="secondary"
-                        item-color="secondary"
-                        label="Spare Parts relation"
-                        :disabled="formIsDisabled"
-                        return-object
-                        :items="spareParts"
-                        item-text="name"
-                        item-value="id"
+                      <validation-provider
+                        v-slot="{ errors }"
+                        rules="required"
+                        name="Users"
                       >
-                        <template v-slot:item="{ attrs, item, on }">
-                          <v-list-item
-                            v-bind="attrs"
-                            active-class="secondary elevation-4 white--text"
-                            class="mx-3 mb-3 v-sheet"
-                            elevation="0"
-                            v-on="on"
-                          >
-                            <v-list-item-content>
-                              <v-list-item-title v-text="`${item ? item.name : ''}`" />
-                            </v-list-item-content>
-                          </v-list-item>
-                        </template>
-                      </v-select>
+                        <v-select
+                          v-model="form.spareParts"
+                          color="secondary"
+                          item-color="secondary"
+                          label="Spare Parts relation"
+                          :error-messages="errors"
+                          :disabled="formIsDisabled"
+                          return-object
+                          :items="spareParts"
+                          item-text="name"
+                          item-value="id"
+                        >
+                          <template v-slot:item="{ attrs, item, on }">
+                            <v-list-item
+                              v-bind="attrs"
+                              active-class="secondary elevation-4 white--text"
+                              class="mx-3 mb-3 v-sheet"
+                              elevation="0"
+                              v-on="on"
+                            >
+                              <v-list-item-content>
+                                <v-list-item-title v-text="`${item ? item.name : ''}`" />
+                              </v-list-item-content>
+                            </v-list-item>
+                          </template>
+                        </v-select>
+                      </validation-provider>
                     </v-col>
                     
                   </v-row>
@@ -694,7 +723,11 @@
     methods: {
       //TODO: get Labour Cost data
       async setCurrentOptions () {
-        this.form = await this.getCurrentSparePart(this.form.spareParts.id)
+        if (this.currentOption === 'New Part') this.form = new FormData()
+        else this.form = await this.getCurrentSparePart(this.form.spareParts.id)
+      },
+      async setExisting () {
+        if (this.currentOption === 'New Part') this.form = new FormData()
       },
       async getLabourCost(duration) {
         if (duration === 'month') {

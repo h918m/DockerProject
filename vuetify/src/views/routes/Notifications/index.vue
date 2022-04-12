@@ -29,7 +29,6 @@
         <base-material-card
           color="success"
           icon="mdi-bell"
-          title="Notifications"
           class="px-5 py-3"
         >
           <template v-slot:after-heading>

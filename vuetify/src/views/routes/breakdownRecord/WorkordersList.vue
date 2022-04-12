@@ -328,6 +328,8 @@
       search: '',
       loading: true,
       options: {},
+      uploadUrl: '',
+      uploadData: [],
       template: {
         typeOfWork: 'mechanical',
         natureOfWork: 'planned',
@@ -833,16 +835,26 @@
         nativeEvent.stopPropagation()
       },
       loadExcelData (url, excelData) {
+        console.log('------------------ loadExcelData = ', url, excelData)
         var test_data = [{id: 'asdfsadfasdfasdfa', users: [{name:'user1'},{name: 'user2'}], machine: {name: 'machine'}, createdAt: '2020-02-03', submittedBy: {name: 'submit'}, workorderState: 'inProgress'}]
-        console.log(excelData)
         this.searchedData = test_data;
       },
-      uploadExcelData (url, data) {
-        this.$axios.post(url, data).then((res) => {
-          this.getMachinesData();
+      uploadExcelData () {
+        this.$axios.post(this.uploadUrl, this.uploadData).then(async (res) => {
+          this.snackbar = {
+            message: 'A Breakdown has been successfully removed.',
+            type: 'success',
+            snackbar: true,
+          };
+          this.loading = true;
+          this.$refs.calendar.checkChange()
+          this.data = await this.getMachinesData();
+          this.searchedData = this.data;
+          this.loading = false
         });
       },
-      async getExcelData (file) {
+      async getExcelData (file, url) {
+        console.log('---------------- url = ', url)
         if (file == null) { 
           this.searchedData = this.data;
           return;
@@ -855,7 +867,7 @@
           var binary = '';
           var bytes = new Uint8Array(e.target.result);
           var length = bytes.byteLength;
-          var apiUrl = '/failure-records-bulk';
+          this.uploadUrl = url;
           for (var i = 0; i < length; i++) {
             binary += String.fromCharCode(bytes[i])
           }
@@ -902,7 +914,7 @@
             data[x].users = userArr;
           }
 
-          switch (apiUrl) {
+          switch (this.uploadUrl) {
             case '/failure-records-bulk':
               for (let x = 0; x < data.length; x += 1) {
                 data[x].workTime = {
@@ -915,7 +927,8 @@
               break
           }
 
-          this.loadExcelData(apiUrl, data);
+          this.uploadData = data;
+          this.loadExcelData(this.uploadUrl, this.uploadData);
           // axios.post(apiUrl, data);
           this.loading = false
         };

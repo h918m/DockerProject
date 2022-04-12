@@ -117,7 +117,7 @@
                     </vue-svg-gauge>
                     <v-spacer></v-spacer>
                   </base-material-card>
-                  <div>Predicted Day : {{sensor.predDate}} - {{sensor.predDays}} Days later</div>
+                  <div class="d-flex justify-center">Predicted Day : {{sensor.predDate}} - {{sensor.predDays}} Days later</div>
                 </v-col>
                 <v-col
                   cols="12"
@@ -170,7 +170,6 @@
       }
     },
     async mounted() {
-      console.log(' =============== moment = ', moment())
       this.linearRegression([1, 2], [3, 4]);
     },
     watch: {

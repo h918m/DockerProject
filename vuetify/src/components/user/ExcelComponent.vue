@@ -49,6 +49,7 @@
           <v-file-input
             id="sheetjs-input"
             label="Upload Excel Sheet"
+            ref="uploadFile"
             hint="Use provided template"
             prepend-icon="mdi-paperclip"
             type="file"
@@ -128,9 +129,10 @@ export default {
 
   methods: {
     importTable : function($event,url) {
-      this.$emit('excelFile', $event);
+      this.$emit('excelFile', $event, url);
     },
     uploadData : function($event) {
+      this.$refs.uploadFile.reset();
       this.$emit('uploadData', $event)
     }
   },

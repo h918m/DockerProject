@@ -64,7 +64,6 @@
               </template>
             </v-select>
           </div>
-          <v-divider class="mt-3"/>
           <v-data-table
             :headers="headers"
             :items="currentSubmachines"

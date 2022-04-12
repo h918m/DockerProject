@@ -67,7 +67,7 @@
         </template>
         <template v-slot:item="{ item }">
           <tr v-on:click="onClick(item)">
-            <td>
+            <td style="width: 33.33%">
               <div
                 class="body-1 fw-bold"
                 v-text="item.name"
@@ -88,7 +88,7 @@
                 </v-icon>
               </div>
             </td> -->
-            <td>
+            <td style="width: 33.33%">
               <div
                 v-if="getMachiens(item.spare_parts)"
                 class="body-1"
@@ -103,7 +103,7 @@
                 </v-icon>
               </div>
             </td>
-            <td v-if="isAdmin">
+            <td v-if="isAdmin" style="width: 33.33%">
               <v-btn
                 v-for="(action, actionIndex) in actions"
                 :key="actionIndex"

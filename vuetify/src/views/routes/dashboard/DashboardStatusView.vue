@@ -38,31 +38,41 @@
             </div>
           </template>
           <div id="period">
-            <v-select
-              v-model="currentOption"
-              color="secondary"
-              item-color="secondary"
-              label="Select duration"
-              return-object
-              :items="options"
-              item-text="name"
-              item-value="id"
-              outlined
+            <v-row
+              justify="end"
             >
-              <template v-slot:item="{ attrs, item, on }">
-                <v-list-item
-                  v-bind="attrs"
-                  active-class="secondary elevation-4 white--text"
-                  class="mx-3 mb-3 v-sheet"
-                  elevation="0"
-                  v-on="on"
+              <v-col
+                cols="12"
+                md="6"
+                class="pb-0"
+              >
+                <v-select
+                  v-model="currentOption"
+                  color="secondary"
+                  item-color="secondary"
+                  label="Select duration"
+                  return-object
+                  :items="options"
+                  item-text="name"
+                  item-value="id"
+                  outlined
                 >
-                  <v-list-item-content>
-                    <v-list-item-title v-text="item.toUpperCase()"/>
-                  </v-list-item-content>
-                </v-list-item>
-              </template>
-            </v-select>
+                  <template v-slot:item="{ attrs, item, on }">
+                    <v-list-item
+                      v-bind="attrs"
+                      active-class="secondary elevation-4 white--text"
+                      class="mx-3 mb-3 v-sheet"
+                      elevation="0"
+                      v-on="on"
+                    >
+                      <v-list-item-content>
+                        <v-list-item-title v-text="item.toUpperCase()"/>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </template>
+                </v-select>
+              </v-col>
+            </v-row>
           </div>
           <v-divider class="mt-3"/>
           <v-row>

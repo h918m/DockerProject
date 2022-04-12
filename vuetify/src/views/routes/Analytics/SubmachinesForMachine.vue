@@ -74,7 +74,7 @@
 
         <v-row class="pt-12">
           <v-col cols="12" md="3">
-            <h2>FMEA</h2>
+            <h2>Risk Priority Number </h2>
           </v-col>
           <v-col cols="12" md="9" class="pb-10">
             <v-btn

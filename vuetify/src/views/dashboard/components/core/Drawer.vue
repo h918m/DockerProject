@@ -133,7 +133,7 @@ export default {
                 to: 'dashboard-status',
               },
               {
-                title: 'Machine Choosing',
+                title: 'Live Reading',
                 to: 'machines-list',
               },
               {
@@ -341,7 +341,7 @@ export default {
               //   to: 'historical-data/5e74f348f3580f00125b1f30',
               // },
               {
-                title: 'Machine Choosing',
+                title: 'Live Reading',
                 to: 'machines-list',
               },
               {

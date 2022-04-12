@@ -10,8 +10,8 @@
         <v-col
           v-for="(link, i) in links"
           :key="i"
-          class="text-center mb-sm-0 mb-5"
-          cols="auto"
+          class="text-center mb-sm-0"
+          cols="3"
         >
           <a
             :href="link.href"
@@ -25,13 +25,12 @@
         <v-spacer class="hidden-sm-and-down" />
 
         <v-col
-          cols="12"
-          md="auto"
+          cols="9"
         >
 <!--          <div class="body-1 font-weight-light pt-6 pt-md-0 text-center">-->
 <!--            &copy; 2020, operated by <a href="https://lapissoft.co.uk">Searu Uk Ltd</a>-->
 <!--          </div>-->
-          <div class="body-1 font-weight-light pt-6 pt-md-0 text-center">
+          <div class="body-1 font-weight-light pt-3 pb-3 pt-md-0 text-center">
             &copy; 2020, operated by <a>Searu Uk Ltd</a>
           </div>
         </v-col>

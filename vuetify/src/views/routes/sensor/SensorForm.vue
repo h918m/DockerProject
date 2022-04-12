@@ -156,6 +156,43 @@
                 </v-col>
 
                 <v-col cols="12">
+                  <!-- Machines list -->
+                  <validation-provider
+                    v-slot="{ errors }"
+                    rules="required"
+                    name="Machine"
+                  >
+                    <v-select
+                      v-model="form.machine"
+                      color="secondary"
+                      item-color="secondary"
+                      label="Machine"
+                      :disabled="formIsDisabled"
+                      :error-messages="errors"
+                      :items="machines"
+                      return-object
+                      item-text="name"
+                      item-value="id"
+                      @change="setCurrentMachine"
+                    >
+                      <template v-slot:item="{ attrs, item, on }">
+                        <v-list-item
+                          v-bind="attrs"
+                          active-class="secondary elevation-4 white--text"
+                          class="mx-3 mb-3 v-sheet"
+                          elevation="0"
+                          v-on="on"
+                        >
+                          <v-list-item-content>
+                            <v-list-item-title v-text="`${item ? item.name : ''}`" />
+                          </v-list-item-content>
+                        </v-list-item>
+                      </template>
+                    </v-select>
+                  </validation-provider>
+                </v-col>
+
+                <v-col cols="12">
                   <!-- Sub Machines list -->
                   <validation-provider
                     v-slot="{ errors }"
@@ -401,6 +438,7 @@
       message: '',
     },
     loading: true,
+    machines: [],
     submachines: [],
     sensorModels: [
       {
@@ -466,7 +504,8 @@
       this.formIsDisabled = true;
     }
     // Load form data
-    this.submachines = await this.getSubMachines();
+    this.machines = await this.getMachines();
+    // this.submachines = await this.getSubMachines();
 
     // Check action
     switch (this.action) {
@@ -719,7 +758,7 @@
         })
     },
     async addSensor () {
-      const { model, submachine, MAC, name, customModel, customModelValue, range, limit } = this.form;
+      const { model, machine, submachine, MAC, name, customModel, customModelValue, range, limit } = this.form;
 
       return this.$axios({
         method: 'POST',
@@ -735,6 +774,7 @@
                 customModelValue: {name: "${customModelValue.name}", symbol: "${customModelValue.symbol}"},
                 range: {minimum: ${range.minimum? range.minimum : 0}, maximum: ${range.maximum? range.maximum : 100}},
                 limit: {minimum: ${limit.minimum? limit.minimum : 0}, maximum: ${limit.maximum? limit.maximum : 100}},
+                machine : "${machine.id}",
                 submachine : "${submachine.id}",
                 company: "${this.company}"
                 }
@@ -786,13 +826,34 @@
             this.$router.push('/sensor/sensors-list')
           })
     },
-    async getSubMachines () {
+    async getMachines () {
       return this.$axios({
           method: 'POST',
           url: '/graphql',
           data: {
             query: `{
-              subMachines(where: {company: "${this.company}"}) {
+              machines(where: {company: "${this.company}"}) {
+                name
+                id
+              }
+          }`,
+        },
+      })
+        .then(({ data }) => {
+          if (data.data.machines) {
+            return data.data.machines
+          } else {
+            return []
+          }
+        })
+    },
+    async getSubMachines (id) {
+      return this.$axios({
+          method: 'POST',
+          url: '/graphql',
+          data: {
+            query: `{
+              subMachines(where: {company: "${this.company}", machine: {id: "${id}"}}) {
                   name
                   id
               }
@@ -806,7 +867,11 @@
             return []
           }
         })
-      },
+    },
+    async setCurrentMachine () {
+      console.log('============== this.fom = ', this.form.machine.id);
+      this.submachines = await this.getSubMachines(this.form.machine.id);
+    }
   },
 }
 

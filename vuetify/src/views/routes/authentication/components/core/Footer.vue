@@ -14,8 +14,7 @@
           v-for="(link, i) in links"
           :key="i"
           class="text-center"
-          cols="6"
-          md="auto"
+          cols="3"
         >
           <a
             :href="link.href"
@@ -29,8 +28,7 @@
         <v-spacer class="hidden-sm-and-down" />
 
         <v-col
-          cols="12"
-          md="auto"
+          cols="9"
         >
 <!--          <div class="body-1 font-weight-light pt-6 pt-md-0 text-center">-->
 <!--            &copy; 2020, operated by <a-->
@@ -38,7 +36,7 @@
 <!--              class="white&#45;&#45;text"-->
 <!--            >Searu Uk Ltd</a>-->
 <!--          </div>-->
-          <div class="body-1 font-weight-light pt-6 pt-md-0 text-center">
+          <div class="body-1 font-weight-light pt-3 pb-3  pt-md-0 text-center">
             &copy; 2020, operated by <a
             class="white--text"
           >Searu Uk Ltd</a>

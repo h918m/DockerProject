@@ -50,7 +50,12 @@
         <template v-slot:top>
           <v-toolbar flat>
             <v-row class="mt-6">
-              <v-col>
+              <v-col
+                lg="8"
+                sm="8"
+                cols="4"
+                xs="4"
+              >
                 <v-text-field
                   v-model="search"
                   label="Search"
@@ -59,8 +64,9 @@
               </v-col>
               <v-col
                 lg="3"
-                sm="6"
-                cols="10"
+                sm="3"
+                cols="6"
+                xs="6"
               >
                 <v-select
                   v-model="dataTable.filter"
@@ -74,6 +80,7 @@
                 lg="1"
                 cols="2"
                 sm="1"
+                xs="2"
                 v-if="isAdmin"
               >
                 <v-btn
