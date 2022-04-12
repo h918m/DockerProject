@@ -114,7 +114,7 @@
                 createOrder(input: {
                   data: {
                     company: "${self.company}",
-                    amount: 99,
+                    amount: 40,
                     token: "${transactionToken}"
                   }
                 }) {
