@@ -34,12 +34,12 @@
 <!--            &copy; 2020, operated by <a-->
 <!--              href="https://lapissoft.co.uk"-->
 <!--              class="white&#45;&#45;text"-->
-<!--            >Searu Uk Ltd</a>-->
+<!--            >Revendica Ltd</a>-->
 <!--          </div>-->
           <div class="body-1 font-weight-light pt-3 pb-3  pt-md-0 text-center">
             &copy; 2020, operated by <a
             class="white--text"
-          >Searu Uk Ltd</a>
+          >Revendica Ltd</a>
           </div>
         </v-col>
       </v-row>

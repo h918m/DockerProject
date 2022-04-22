@@ -28,10 +28,10 @@
           cols="9"
         >
 <!--          <div class="body-1 font-weight-light pt-6 pt-md-0 text-center">-->
-<!--            &copy; 2020, operated by <a href="https://lapissoft.co.uk">Searu Uk Ltd</a>-->
+<!--            &copy; 2020, operated by <a href="https://lapissoft.co.uk">Revendica Ltd</a>-->
 <!--          </div>-->
           <div class="body-1 font-weight-light pt-3 pb-3 pt-md-0 text-center">
-            &copy; 2020, operated by <a>Searu Uk Ltd</a>
+            &copy; 2020, operated by <a>Revendica Ltd</a>
           </div>
         </v-col>
       </v-row>
