@@ -13,7 +13,7 @@
 module.exports = () => {
   // import socket io
   var io = require('socket.io')(strapi.server, {
-    origins: ["http://localhost:8080", "https://searuuk.uk"]
+    origins: ["http://localhost:8080", "https://revendica.com"]
   });
   // listen for user connection
 

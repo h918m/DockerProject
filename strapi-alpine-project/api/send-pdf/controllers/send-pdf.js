@@ -22,7 +22,7 @@ module.exports = {
     // send an email by using the email plugin
     // await strapi.plugins['email'].services.email.send({
     //   to: 'vadimdev8@gmail.com',
-    //   from: 'no-reply@searuuk.uk',
+    //   from: 'no-reply@revendica.com',
     //   subject: 'Exported PDF is arrived',
     // }).then(res => {
     //   console.log("success======", res)
@@ -45,7 +45,7 @@ module.exports = {
 
       const res = await strapi.plugins['email'].services.email.send({
         to: data.mail,
-        from: 'no-reply@searuuk.uk',
+        from: 'no-reply@revendica.com',
         subject: 'Exported PDF is arrived',
         attachments: [
           {
