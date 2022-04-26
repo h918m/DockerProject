@@ -13,16 +13,27 @@
 module.exports = () => {
   // import socket io
   var io = require('socket.io')(strapi.server, {
-    origins: ["http://localhost:8080", "https://revendica.com"]
+    cors: {
+      origins: ["*"],
+      handlePreflightRequest: (req, res) => {
+        res.writeHead(200, {
+          "Access-Control-Allow-Origin": "https://example.com",
+          "Access-Control-Allow-Methods": "GET,POST",
+          "Access-Control-Allow-Headers": "my-custom-header",
+          "Access-Control-Allow-Credentials": true
+        });
+        res.end();
+      }
+    }
   });
   // listen for user connection
 
 
-  io.on('connection', function(socket){
+  io.on('connection', function (socket) {
     console.log('connected');
-    io.emit('hello','hellou');
+    io.emit('hello', 'hellou');
     // send message on user connection
-    socket.emit('hello', JSON.stringify({message: 'Hello food lover'}));
+    socket.emit('hello', JSON.stringify({ message: 'Hello food lover' }));
     // listen for user diconnect
     socket.on('disconnect', () => console.log('a user disconnected'));
   });
