@@ -1,11 +1,10 @@
 module.exports = {
   devServer: {
     disableHostCheck: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-    }
+    port: 8080,
+    public: '0.0.0.0:8080'
   },
+  publicPath: "/",
 
   transpileDependencies: ['vue-world-map', 'vuetify'],
 
