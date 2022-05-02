@@ -1004,6 +1004,15 @@
                 },
                 "submachine": {
                   "type": "string"
+                },
+                "workTime": {
+                  "type": "component"
+                },
+                "startDateTime": {
+                  "type": "datetime"
+                },
+                "endDateTime": {
+                  "type": "datetime"
                 }
               }
             }

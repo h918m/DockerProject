@@ -103,8 +103,8 @@
       "via": "submachine"
     },
     "planned_maintenance_tasks": {
-      "collection": "planned-maintenance-tasks",
-      "via": "submachine"
+      "via": "submachine",
+      "collection": "planned-maintenance-tasks"
     },
     "sensors_to_models": {
       "collection": "sensors-to-models",

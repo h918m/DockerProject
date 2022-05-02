@@ -1122,6 +1122,30 @@
                 "type": "string"
               }
             }
+          },
+          "workTime": {
+            "type": "object",
+            "required": [
+              "id",
+              "startDateTime"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "startDateTime": {
+                "type": "datetime"
+              },
+              "endDateTime": {
+                "type": "datetime"
+              }
+            }
+          },
+          "startDateTime": {
+            "type": "datetime"
+          },
+          "endDateTime": {
+            "type": "datetime"
           }
         }
       },
@@ -1168,6 +1192,30 @@
           },
           "submachine": {
             "type": "string"
+          },
+          "workTime": {
+            "type": "object",
+            "required": [
+              "id",
+              "startDateTime"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "startDateTime": {
+                "type": "datetime"
+              },
+              "endDateTime": {
+                "type": "datetime"
+              }
+            }
+          },
+          "startDateTime": {
+            "type": "datetime"
+          },
+          "endDateTime": {
+            "type": "datetime"
           }
         }
       }

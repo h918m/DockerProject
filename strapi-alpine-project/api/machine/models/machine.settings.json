@@ -103,8 +103,8 @@
       "via": "machine"
     },
     "planned_maintenance_tasks": {
-      "collection": "planned-maintenance-tasks",
-      "via": "machine"
+      "via": "machine",
+      "collection": "planned-maintenance-tasks"
     },
     "sensors_to_models": {
       "collection": "sensors-to-models",

@@ -36,14 +36,14 @@
       "type": "richtext"
     },
     "users": {
-      "via": "planned_maintenance_tasks",
       "plugin": "users-permissions",
       "collection": "user",
+      "via": "planned_maintenance_tasks",
       "dominant": true
     },
     "machine": {
-      "via": "planned_maintenance_tasks",
-      "model": "machine"
+      "model": "machine",
+      "via": "planned_maintenance_tasks"
     },
     "image": {
       "model": "file",
@@ -56,8 +56,19 @@
       "via": "planned_maintenance_tasks"
     },
     "submachine": {
-      "via": "planned_maintenance_tasks",
-      "model": "sub-machine"
+      "model": "sub-machine",
+      "via": "planned_maintenance_tasks"
+    },
+    "workTime": {
+      "type": "component",
+      "repeatable": false,
+      "component": "work-time.work-time"
+    },
+    "startDateTime": {
+      "type": "datetime"
+    },
+    "endDateTime": {
+      "type": "datetime"
     }
   }
 }

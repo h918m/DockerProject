@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "04/01/2022 1:53:54 AM"
+    "x-generation-date": "05/02/2022 12:14:07 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -11253,6 +11253,15 @@
                 },
                 "submachine": {
                   "type": "string"
+                },
+                "workTime": {
+                  "type": "component"
+                },
+                "startDateTime": {
+                  "type": "datetime"
+                },
+                "endDateTime": {
+                  "type": "datetime"
                 }
               }
             }
@@ -13832,6 +13841,15 @@
                 },
                 "submachine": {
                   "type": "string"
+                },
+                "workTime": {
+                  "type": "component"
+                },
+                "startDateTime": {
+                  "type": "datetime"
+                },
+                "endDateTime": {
+                  "type": "datetime"
                 }
               }
             }
@@ -15192,6 +15210,30 @@
                 "type": "string"
               }
             }
+          },
+          "workTime": {
+            "type": "object",
+            "required": [
+              "id",
+              "startDateTime"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "startDateTime": {
+                "type": "datetime"
+              },
+              "endDateTime": {
+                "type": "datetime"
+              }
+            }
+          },
+          "startDateTime": {
+            "type": "datetime"
+          },
+          "endDateTime": {
+            "type": "datetime"
           }
         }
       },
@@ -15238,6 +15280,30 @@
           },
           "submachine": {
             "type": "string"
+          },
+          "workTime": {
+            "type": "object",
+            "required": [
+              "id",
+              "startDateTime"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "startDateTime": {
+                "type": "datetime"
+              },
+              "endDateTime": {
+                "type": "datetime"
+              }
+            }
+          },
+          "startDateTime": {
+            "type": "datetime"
+          },
+          "endDateTime": {
+            "type": "datetime"
           }
         }
       },
@@ -18186,6 +18252,15 @@
                 },
                 "submachine": {
                   "type": "string"
+                },
+                "workTime": {
+                  "type": "component"
+                },
+                "startDateTime": {
+                  "type": "datetime"
+                },
+                "endDateTime": {
+                  "type": "datetime"
                 }
               }
             }
@@ -19462,6 +19537,15 @@
                 },
                 "submachine": {
                   "type": "string"
+                },
+                "workTime": {
+                  "type": "component"
+                },
+                "startDateTime": {
+                  "type": "datetime"
+                },
+                "endDateTime": {
+                  "type": "datetime"
                 }
               }
             }

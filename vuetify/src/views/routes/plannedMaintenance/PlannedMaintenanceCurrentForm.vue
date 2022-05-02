@@ -350,6 +350,190 @@
                     </template>
                   </v-select>
                 </validation-provider>
+
+                <!-- Date Time Pickers -->
+
+                <v-row class="mt-6">
+                  <!-- Start date -->
+                  <v-col cols="3">
+                    <validation-provider
+                      v-slot="{ errors }"
+                      :rules="`required`"
+                      name="Start Date"
+                    >
+                      <v-menu
+                        ref="dateMenu1"
+                        v-model="dateMenu1"
+                        :close-on-content-click="false"
+                        :return-value.sync="date"
+                        transition="scale-transition"
+                        min-width="290px"
+                        offset-y
+                      >
+                        <template v-slot:activator="{ on }">
+                          <v-text-field
+                            v-model="form.workTime.startDate"
+                            label="Start Date"
+                            :disabled="formIsDisabled"
+                            color="secondary"
+                            prepend-icon="mdi-calendar-outline"
+                            readonly
+                            :error-messages="errors"
+                            v-on="on"
+                          />
+                        </template>
+
+                        <v-date-picker
+                          v-model="form.workTime.startDate"
+                          color="secondary"
+                          :max="form.workTime.endDate"
+                          landscape
+                          scrollable
+                          @input="dateMenu1 = false"
+                        >
+                          <v-spacer/>
+
+                          <v-btn
+                            color="secondary"
+                            large
+                            @click="dateMenu1 = false"
+                          >
+                            Cancel
+                          </v-btn>
+                        </v-date-picker>
+                      </v-menu>
+                    </validation-provider>
+                  </v-col>
+                  <!-- Start time -->
+                  <v-col cols="3">
+                    <validation-provider
+                      v-slot="{ errors }"
+                      rules="required"
+                      name="Start time"
+                    >
+                      <v-menu
+                        ref="timeMenu1"
+                        v-model="timeMenu1"
+                        :close-on-content-click="false"
+                        :nudge-right="40"
+                        :return-value.sync="date"
+                        transition="scale-transition"
+                        offset-y
+                        max-width="290px"
+                        min-width="290px"
+                      >
+                        <template v-slot:activator="{ on }">
+                          <v-text-field
+                            v-model="form.workTime.startTime"
+                            label="Start time"
+                            prepend-icon="mdi-clock"
+                            :disabled="formIsDisabled"
+                            :error-messages="errors"
+                            readonly
+                            v-on="on"
+                          />
+                        </template>
+                        <v-time-picker
+                          v-if="timeMenu1"
+                          v-model="form.workTime.startTime"
+                          full-width
+                          :max="form.workTime.endTime"
+                          @click:minute="$refs.timeMenu1.save(form.workTime.startTime)"
+                        />
+                      </v-menu>
+                    </validation-provider>
+                  </v-col>
+                  <!-- End date -->
+                  <v-col cols="3">
+                    <validation-provider
+                      v-slot="{ errors }"
+                      rules="required"
+                      name="End date"
+                    >
+                      <v-menu
+                        ref="dateMenu2"
+                        v-model="dateMenu2"
+                        :close-on-content-click="false"
+                        :return-value.sync="date"
+                        transition="scale-transition"
+                        min-width="290px"
+                        offset-y
+                      >
+                        <template v-slot:activator="{ on }">
+                          <v-text-field
+                            v-model="form.workTime.endDate"
+                            label="End Date"
+                            color="secondary"
+                            prepend-icon="mdi-calendar-outline"
+                            :disabled="formIsDisabled"
+                            readonly
+                            :error-messages="errors"
+                            v-on="on"
+                          />
+                        </template>
+
+                        <v-date-picker
+                          v-model="form.workTime.endDate"
+                          color="secondary"
+                          :min="form.workTime.startDate"
+                          landscape
+                          scrollable
+                          @input="dateMenu2 = false"
+                        >
+                          <v-spacer/>
+
+                          <v-btn
+                            color="secondary"
+                            large
+                            @click="dateMenu2 = false"
+                          >
+                            Cancel
+                          </v-btn>
+                        </v-date-picker>
+                      </v-menu>
+                    </validation-provider>
+                  </v-col>
+                  <!-- End time -->
+                  <v-col cols="3">
+                    <validation-provider
+                      v-slot="{ errors }"
+                      rules="required"
+                      name="End time"
+                    >
+                      <v-menu
+                        ref="timeMenu2"
+                        v-model="timeMenu2"
+                        :close-on-content-click="false"
+                        :nudge-right="40"
+                        :return-value.sync="date"
+                        transition="scale-transition"
+                        offset-y
+                        max-width="290px"
+                        min-width="290px"
+                      >
+                        <template v-slot:activator="{ on }">
+                          <v-text-field
+                            v-model="form.workTime.endTime"
+                            label="End time"
+                            prepend-icon="mdi-clock"
+                            :error-messages="errors"
+                            :disabled="formIsDisabled"
+                            readonly
+                            v-on="on"
+                          />
+                        </template>
+                        <v-time-picker
+                          v-if="timeMenu2"
+                          v-model="form.workTime.endTime"
+                          :min="form.workTime.startTime"
+                          full-width
+                          @click:minute="$refs.timeMenu2.save(form.workTime.endTime)"
+                        />
+                      </v-menu>
+                    </validation-provider>
+                  </v-col>
+                </v-row>
+
                 <!-- Completed -->
                 <validation-provider
                   v-slot="{ errors }"
@@ -441,6 +625,11 @@
       maintenanceTypes: ['mechanical', 'electrical', 'pneumatic', 'steam', 'control', 'sensor'],
       machines: [],
       submachines: [],
+      date: '',
+      dateMenu1: false,
+      timeMenu1: false,
+      dateMenu2: false,
+      timeMenu2: false,
       form: {
         image: null,
         imageUrl: null,
@@ -452,7 +641,13 @@
         component: '',
         comment: '',
         user: null,
-        submachine: null
+        submachine: null,
+        workTime: {
+          startDate: '',
+          startTime: '',
+          endDate: '',
+          endTime: '',
+        },
       },
     }),
     computed: {
@@ -466,6 +661,14 @@
       }),
       getActionName() {
         return this.action.replace(/^./, this.action[0].toUpperCase())
+      },
+      startDateTime() {
+        const {startDate, startTime} = this.form.workTime;
+        return this.$moment.utc(`${startDate} ${startTime}`, 'YYYY-MM-DD HH:mm').toISOString()
+      },
+      endDateTime() {
+        const {endDate, endTime} = this.form.workTime;
+        return this.$moment.utc(`${endDate} ${endTime}`, 'YYYY-MM-DD HH:mm').toISOString()
       },
     },
 
@@ -483,6 +686,7 @@
       switch (this.action) {
         case 'modify':
           this.form = await this.getFormForId(this.id);
+          this.submachines = await this.getSubMachines();
           break;
         case 'add':
           break;
@@ -508,6 +712,8 @@
         const taskType = "Task type:   " + this.form.type;
         const completed = "Is this task completed?   " + (this.form.completed ? "Yes" : "No");
         const additionalComments = "Additional comments:   " + this.form.comment;
+        const startDateTime = "Start Datetime:   " + this.startDateTime;
+        const endDateTime = "End Datetime:   " + this.endDateTime;
         var splitAdditions = doc.splitTextToSize(additionalComments, 550);
 
         doc.setFontSize(15);
@@ -522,6 +728,8 @@
         doc.text(taskType, 40, 180);
         doc.text(completed, 40, 200);
         doc.text(splitAdditions, 40, 220);
+        doc.text(startDateTime, 40, 240);
+        doc.text(endDateTime, 40, 260);
         if (this.form.imageUrl) {
           doc.addImage(this.form.imageUrl, "JPEG", 350, 150, 200, 200);
         }
@@ -626,6 +834,8 @@
           const taskType = "Task type:   " + this.form.type;
           const completed = "Is this task completed?   " + (this.form.completed ? "Yes" : "No");
           const additionalComments = "Additional comments:   " + this.form.comment;
+          const startDateTime = "Start Datetime:   " + this.startDateTime;
+          const endDateTime = "End Datetime:   " + this.endDateTime;
           var splitAdditions = doc.splitTextToSize(additionalComments, 550);
 
           doc.setFontSize(15);
@@ -640,6 +850,8 @@
           doc.text(taskType, 40, 180);
           doc.text(completed, 40, 200);
           doc.text(splitAdditions, 40, 220);
+          doc.text(startDateTime, 40, 240);
+          doc.text(endDateTime, 40, 260);
           if (this.form.imageUrl) {
             doc.addImage(this.form.imageUrl, "JPEG", 350, 150, 200, 200);
           }
@@ -690,6 +902,12 @@
           }
         })
       },
+      getDateForDateTime(dateTime) {
+        return this.$moment(dateTime).format('YYYY-MM-DD')
+      },
+      getTimeForDateTime(dateTime) {
+        return this.$moment(dateTime).format('HH:mm')
+      },
       async getFormForId(id) {
         return this.$axios({
           method: 'POST',
@@ -706,6 +924,10 @@
                     name
                     id
                 }
+                submachine{
+                    name
+                    id
+                }
                 image {
                   id
                   name
@@ -714,6 +936,10 @@
                 users {
                   id
                   name
+                }
+                workTime{
+                  startDateTime
+                  endDateTime
                 }
                 comment
               }
@@ -729,13 +955,22 @@
             imageUrl: result.image?(process.env.VUE_APP_API_BASE_URL + result.image.url) : null,
             component: result.component,
             machine: result.machine,
+            submachine: result.submachine,
             comment: result.comment,
-            user: result.users
+            user: result.users,
+            workTime: {
+              startDate: this.getDateForDateTime(result.workTime.startDateTime),
+              startTime: this.getTimeForDateTime(result.workTime.startDateTime),
+              endDate: this.getDateForDateTime(result.workTime.endDateTime),
+              endTime: this.getTimeForDateTime(result.workTime.endDateTime),
+            },
           }
         })
       },
       async modifyPlannedMaintenance() {
         const {type, task, component, completed, machine, submachine, comment, user, image} = this.form;
+        const startDateTime = this.startDateTime;
+        const endDateTime = this.endDateTime;
         let userParam = [];
         if (user) {
           user.forEach(item => {
@@ -751,7 +986,13 @@
           component: component,
           completed: completed,
           users: userParam,
-          company: this.company
+          company: this.company,
+          workTime: {
+            startDateTime: startDateTime,
+            endDateTime: endDateTime
+          },
+          startDateTime: startDateTime,
+          endDateTime: endDateTime,
         };
         const formData = new FormData();
         formData.append('data', JSON.stringify(data));
@@ -783,6 +1024,8 @@
       },
       async addPlannedMaintenance() {
         const {type, task, component, completed, machine, submachine, comment, user, image} = this.form;
+        const startDateTime = this.startDateTime;
+        const endDateTime = this.endDateTime;
         let userParam = [];
         if (user) {
           user.forEach(item => {
@@ -798,7 +1041,13 @@
           component: component,
           completed: completed,
           users: userParam,
-          company: this.company
+          company: this.company,
+          workTime: {
+            startDateTime: startDateTime,
+            endDateTime: endDateTime
+          },
+          startDateTime: startDateTime,
+          endDateTime: endDateTime,
         };
         const formData = new FormData();
         formData.append('data', JSON.stringify(data));

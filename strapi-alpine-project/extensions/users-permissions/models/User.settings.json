@@ -65,8 +65,8 @@
       "collection": "failure-record"
     },
     "planned_maintenance_tasks": {
-      "collection": "planned-maintenance-tasks",
-      "via": "users"
+      "via": "users",
+      "collection": "planned-maintenance-tasks"
     },
     "failure_records": {
       "via": "users",

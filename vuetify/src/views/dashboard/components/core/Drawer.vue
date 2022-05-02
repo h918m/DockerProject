@@ -181,14 +181,14 @@ export default {
             title: 'Planned Maintenance',
             icon: 'mdi-clipboard-list-outline',
             children: [
-              {
-                title: 'PM Cron list',
-                to: 'planned-maintenance-cron-list',
-              },
-              {
-                title: 'Add PM Cron',
-                to: 'planned-maintenance-cron-form',
-              },
+              // {
+              //   title: 'PM Cron list',
+              //   to: 'planned-maintenance-cron-list',
+              // },
+              // {
+              //   title: 'Add PM Cron',
+              //   to: 'planned-maintenance-cron-form',
+              // },
               // {
               //   title: 'Current Maintenances List',
               //   to: 'current-maintenances-list',
